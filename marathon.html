@@ -1,0 +1,2152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rupesh — 16-Week Marathon Plan · July 26 SF</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f7f5f0;
+  --surface: #ffffff;
+  --border: rgba(0,0,0,0.08);
+  --border-med: rgba(0,0,0,0.13);
+  --text: #1c1b18;
+  --muted: #6b6860;
+  --faint: #9e9c97;
+
+  --run-easy-bg: #ddeeff;
+  --run-easy-txt: #0a3d6b;
+  --run-easy-border: #90bce8;
+
+  --run-long-bg: #e8e4ff;
+  --run-long-txt: #2d1f7a;
+  --run-long-border: #a89de8;
+
+  --gym-upper-bg: #fff1d6;
+  --gym-upper-txt: #5c3400;
+  --gym-upper-border: #e8b966;
+
+  --gym-legs-bg: #fde0d4;
+  --gym-legs-txt: #5a1a06;
+  --gym-legs-border: #e89070;
+
+  --recovery-bg: #d6f5ea;
+  --recovery-txt: #054030;
+  --recovery-border: #6dcfaa;
+
+  --rest-bg: #efede8;
+  --rest-txt: #6b6860;
+  --rest-border: #ccc9c2;
+
+  --race-bg: #1c1b18;
+  --race-txt: #f7f5f0;
+
+  --speed-bg: #fce8f8;
+  --speed-txt: #5a0a52;
+  --speed-border: #d97fd0;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(247,245,240,0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  display: flex; align-items: center; gap: 2rem;
+  height: 52px;
+}
+.nav-brand {
+  font-family: 'DM Serif Display', serif;
+  font-size: 16px; color: var(--text);
+  white-space: nowrap;
+}
+.nav-brand span { color: var(--muted); font-style: italic; font-size: 14px; }
+.nav-tabs { display: flex; gap: 4px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 2px; }
+.nav-tabs::-webkit-scrollbar { display: none; }
+.nav-tab {
+  padding: 5px 14px; border-radius: 20px;
+  font-size: 13px; cursor: pointer; white-space: nowrap; flex-shrink: 0;
+  color: var(--muted); border: none; background: none;
+  transition: all 0.15s;
+}
+.nav-tab:hover { background: var(--border); color: var(--text); }
+.nav-tab.active { background: var(--text); color: var(--bg); }
+.nav-badge {
+  margin-left: auto;
+  font-size: 12px; color: var(--muted);
+  white-space: nowrap;
+}
+
+/* PAGES */
+.page { display: none; padding: 2rem; max-width: 980px; margin: 0 auto; width: 100%; }
+@media(max-width:600px){.page{padding:1rem;}}
+.page.active { display: block; }
+
+/* HERO */
+.hero {
+  padding: 2.5rem 0 2rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2rem;
+}
+.hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.15;
+  margin-bottom: 0.5rem;
+}
+.hero h1 em { font-style: italic; color: var(--muted); }
+.hero p { font-size: 14px; color: var(--muted); max-width: 560px; }
+
+/* PHASE TABS */
+.phase-tabs { display: flex; gap: 6px; margin-bottom: 1.5rem; flex-wrap: wrap; }
+.phase-tab {
+  padding: 7px 16px; border-radius: 8px;
+  border: 1px solid var(--border-med);
+  font-size: 13px; font-weight: 400; cursor: pointer;
+  background: var(--surface); color: var(--muted);
+  transition: all 0.15s;
+}
+.phase-tab:hover { border-color: var(--text); color: var(--text); }
+.phase-tab.active { background: var(--text); color: var(--bg); border-color: var(--text); }
+
+.phase-banner {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.25rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.75rem 2rem;
+  align-items: start;
+}
+.phase-banner h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 18px; margin-bottom: 4px;
+}
+.phase-banner p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+.phase-stats { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
+.stat-pill {
+  font-size: 12px; font-weight: 500;
+  padding: 3px 10px; border-radius: 20px;
+  background: var(--bg); border: 1px solid var(--border-med);
+  white-space: nowrap; color: var(--text);
+}
+
+/* WEEK CARD */
+.week-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 10px;
+}
+.week-header {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 10px;
+}
+.week-label { font-size: 14px; font-weight: 500; }
+.week-meta { font-size: 12px; color: var(--muted); }
+.days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 6px;
+}
+.day {
+  border-radius: 8px;
+  padding: 7px 4px;
+  text-align: center;
+  min-height: 72px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: flex-start;
+  gap: 3px;
+  border: 1px solid;
+  cursor: default;
+}
+.day-name { font-size: 10px; font-weight: 500; opacity: 0.6; }
+.day-label { font-size: 10px; font-weight: 500; line-height: 1.3; }
+.day-dist { font-size: 11px; font-weight: 500; margin-top: 1px; opacity: 0.8; }
+.day-sub { font-size: 9px; opacity: 0.65; line-height: 1.25; }
+
+.run-easy  { background: var(--run-easy-bg);  border-color: var(--run-easy-border);  color: var(--run-easy-txt); }
+.run-long  { background: var(--run-long-bg);  border-color: var(--run-long-border);  color: var(--run-long-txt); }
+.gym-upper { background: var(--gym-upper-bg); border-color: var(--gym-upper-border); color: var(--gym-upper-txt); }
+.gym-legs  { background: var(--gym-legs-bg);  border-color: var(--gym-legs-border);  color: var(--gym-legs-txt); }
+.recovery  { background: var(--recovery-bg);  border-color: var(--recovery-border);  color: var(--recovery-txt); }
+.rest      { background: var(--rest-bg);      border-color: var(--rest-border);      color: var(--rest-txt); }
+.race-day  { background: var(--race-bg);      border-color: var(--race-bg);          color: var(--race-txt); }
+.speed     { background: var(--speed-bg);     border-color: var(--speed-border);     color: var(--speed-txt); }
+
+/* RUN LOG */
+.run-log { margin-top: 2rem; }
+.run-log h2 { font-family: 'DM Serif Display', serif; font-size: 20px; margin-bottom: 0.5rem; }
+.run-log p { font-size: 13px; color: var(--muted); margin-bottom: 1rem; }
+.log-entry {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 10px;
+}
+.log-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; flex-wrap: wrap; gap: 6px; }
+.log-date { font-size: 13px; font-weight: 500; }
+.log-stats { display: flex; gap: 8px; flex-wrap: wrap; }
+.log-stat { font-size: 11px; padding: 2px 8px; border-radius: 12px; background: var(--bg); border: 1px solid var(--border-med); color: var(--text); }
+.log-analysis { font-size: 12px; color: var(--muted); line-height: 1.6; padding: 8px 10px; background: var(--bg); border-radius: 8px; border-left: 2px solid var(--border-med); margin-top: 8px; }
+.log-analysis strong { color: var(--text); font-weight: 500; }
+.splits-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+.split-pill {
+  font-size: 11px; padding: 3px 8px; border-radius: 6px;
+  border: 1px solid var(--border-med); background: var(--surface);
+  color: var(--muted);
+}
+.split-pill.fast { background: var(--speed-bg); border-color: var(--speed-border); color: var(--speed-txt); }
+.split-pill.slow { background: var(--run-long-bg); border-color: var(--run-long-border); color: var(--run-long-txt); }
+.split-pill.ok { background: var(--run-easy-bg); border-color: var(--run-easy-border); color: var(--run-easy-txt); }
+
+/* LEGEND */
+.legend { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 1.5rem; }
+.legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
+.legend-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; border: 1px solid; }
+
+/* GUIDE TABS */
+.guide-tabs {
+  display: flex; gap: 6px; margin-bottom: 1.5rem; flex-wrap: wrap;
+}
+.guide-tab {
+  padding: 7px 14px; border-radius: 8px;
+  border: 1px solid var(--border-med);
+  font-size: 13px; cursor: pointer;
+  background: var(--surface); color: var(--muted);
+  transition: all 0.15s;
+}
+.guide-tab:hover { border-color: var(--text); color: var(--text); }
+.guide-tab.active { background: var(--text); color: var(--bg); border-color: var(--text); }
+.guide-section { display: none; }
+.guide-section.active { display: block; }
+
+/* LOG ENTRY TYPE VARIANTS */
+.log-entry { position: relative; }
+.log-entry-type {
+  display: inline-block;
+  font-size: 10px; font-weight: 500; letter-spacing: 0.06em;
+  padding: 2px 8px; border-radius: 4px; margin-bottom: 8px;
+  text-transform: uppercase;
+}
+.log-run { border-left: 3px solid var(--run-easy-border); }
+.log-run .log-entry-type { background: var(--run-easy-bg); color: var(--run-easy-txt); }
+.log-long { border-left: 3px solid var(--run-long-border); }
+.log-long .log-entry-type { background: var(--run-long-bg); color: var(--run-long-txt); }
+.log-gym { border-left: 3px solid var(--gym-upper-border); }
+.log-gym .log-entry-type { background: var(--gym-upper-bg); color: var(--gym-upper-txt); }
+.log-rest { border-left: 3px solid var(--recovery-border); }
+.log-rest .log-entry-type { background: var(--recovery-bg); color: var(--recovery-txt); }
+
+/* PHASE + WEEK HEADERS IN LOG */
+.log-phase-header {
+  font-family: 'DM Serif Display', serif;
+  font-size: 18px; color: var(--text);
+  padding: 1.5rem 0 0.4rem;
+  border-bottom: 1px solid var(--border-med);
+  margin-bottom: 1rem;
+}
+.log-week-header {
+  font-size: 12px; font-weight: 500; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 0.07em;
+  margin: 1.25rem 0 0.6rem;
+}
+
+/* LOG ENTRY SPACING */
+.run-log .log-entry { margin-bottom: 10px; }
+
+/* GUIDE PAGE */
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 1.5rem;
+}
+.guide-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+.guide-card h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 17px; margin-bottom: 0.75rem;
+  display: flex; align-items: center; gap: 8px;
+}
+.guide-card h3 .icon {
+  width: 28px; height: 28px; border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; flex-shrink: 0;
+}
+.guide-card p, .guide-card li {
+  font-size: 13px; color: var(--muted); line-height: 1.65;
+}
+.guide-card ul { padding-left: 1rem; }
+.guide-card li { margin-bottom: 4px; }
+.guide-card .highlight {
+  background: var(--bg); border-radius: 8px;
+  padding: 8px 10px; margin-top: 10px;
+  font-size: 12px; color: var(--text);
+  border-left: 2px solid var(--border-med);
+}
+.guide-card .highlight strong { font-weight: 500; }
+
+.guide-page-hero {
+  padding: 2rem 0 1.5rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1.5rem;
+}
+.guide-page-hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(24px,3.5vw,36px); margin-bottom: 0.4rem;
+}
+.guide-page-hero p { font-size: 14px; color: var(--muted); }
+
+/* icon colors */
+.ic-blue  { background: var(--run-easy-bg); }
+.ic-purple{ background: var(--run-long-bg); }
+.ic-amber { background: var(--gym-upper-bg); }
+.ic-coral { background: var(--gym-legs-bg); }
+.ic-teal  { background: var(--recovery-bg); }
+
+@media (max-width: 600px) {
+  .day-sub { display: none; }
+  nav { padding: 0 1rem; gap: 1rem; }
+  .nav-badge { display: none; }
+  .page { padding: 1rem; }
+  .phase-banner { grid-template-columns: 1fr; }
+  .phase-stats { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">Rupesh &nbsp;<span>SF Marathon · Jul 26</span></div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showPage('dashboard',this)">Dashboard</button>
+    <button class="nav-tab" onclick="showPage('calendar',this)">Calendar</button>
+    <button class="nav-tab" onclick="showPage('log',this)">Train Log</button>
+    <button class="nav-tab" onclick="showPage('guide',this)">Guide</button>
+    <button class="nav-tab" onclick="showPage('faq',this)">FAQ</button>
+  </div>
+  <div class="nav-badge">16 weeks · Apr 6 → Jul 26</div>
+</nav>
+
+<!-- CALENDAR PAGE -->
+<div id="page-calendar" class="page">
+  <div class="hero">
+    <h1>16-Week <em>Marathon</em> Training Plan</h1>
+    <p>Apr 6 – Jul 26 · Built for your base: comfortable 5K, longest run 11.5K, gym 3×/wk, 30-min daily bike commute, left knee warmup pain.</p>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--recovery-bg);border-color:var(--recovery-border)"></div>Mon — Recovery + mobility</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--run-easy-bg);border-color:var(--run-easy-border)"></div>Easy run</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--gym-upper-bg);border-color:var(--gym-upper-border)"></div>Gym upper + core</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--gym-legs-bg);border-color:var(--gym-legs-border)"></div>Thu — Gym legs / knee rehab</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--run-long-bg);border-color:var(--run-long-border)"></div>Sun — Long run</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--rest-bg);border-color:var(--rest-border)"></div>Fri — Rest</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--race-bg);border-color:var(--race-bg)"></div>Race day</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--speed-bg);border-color:var(--speed-border)"></div>Speed / strides (Phase 2–3 Tue)</div>
+  </div>
+
+  <div class="phase-tabs" id="phase-tabs">
+    <button class="phase-tab active" onclick="showPhase(0)">Phase 1 — Base (wk 1–5)</button>
+    <button class="phase-tab" onclick="showPhase(1)">Phase 2 — Build (wk 6–10)</button>
+    <button class="phase-tab" onclick="showPhase(2)">Phase 3 — Peak (wk 11–13)</button>
+    <button class="phase-tab" onclick="showPhase(3)">Phase 4 — Taper (wk 14–16)</button>
+  </div>
+
+  <div id="phase-content"></div>
+
+</div>
+
+<!-- GUIDE PAGE -->
+<div id="page-guide" class="page">
+  <div class="guide-page-hero">
+    <h1>Training Guide & Science</h1>
+    <p>Everything you need to know — running technique, fueling, hydration, warmup, recovery, gear, and race day. Adapted to your case.</p>
+  </div>
+
+  <div class="guide-tabs">
+    <button class="guide-tab active" onclick="showGuide('plan',this)">The Plan</button>
+    <button class="guide-tab" onclick="showGuide('technique',this)">Running Technique</button>
+    <button class="guide-tab" onclick="showGuide('warmup',this)">Warmup & Recovery</button>
+    <button class="guide-tab" onclick="showGuide('nutrition',this)">Nutrition & Hydration</button>
+    <button class="guide-tab" onclick="showGuide('strength',this)">Strength & Calisthenics</button>
+    <button class="guide-tab" onclick="showGuide('speed',this)">Speed Work</button>
+    <button class="guide-tab" onclick="showGuide('raceday',this)">Race Day</button>
+  </div>
+
+  <!-- THE PLAN -->
+  <div id="guide-plan" class="guide-section active">
+    <div class="guide-grid">
+      <div class="guide-card">
+        <h3><span class="icon ic-teal">🚴</span> Your daily bike commute</h3>
+        <p>30 min/day of cycling (15 min each way) is Zone 1–2 active recovery — it builds aerobic base without joint impact. Coffey & Hawley (2017) showed low-intensity concurrent training complements running adaptation when it doesn't accumulate fatigue.</p>
+        <div class="highlight"><strong>Accounted for in this plan:</strong> Monday recovery and Friday rest are lighter because your commute adds ~150 min/week of aerobic work. Don't count it as training but don't ignore it — in peak weeks it contributes real fatigue. On very high mileage weeks consider biking slower.</div>
+      </div>
+      <div class="guide-card">
+        <h3><span class="icon ic-blue">🦵</span> Your left knee pain</h3>
+        <p>Warmup pain that fades after 1K is classic patellofemoral pain syndrome or IT band irritation — both from weak glutes and VMO failing to track the kneecap. A 2016 BJSM meta-analysis found hip and glute strengthening reduces runner's knee 60–80% within 6–8 weeks.</p>
+        <div class="highlight"><strong>In this plan:</strong> Thursday is fully dedicated to glute/VMO/hip stability. Non-negotiable — skip it and the knee gets worse. Pain should largely resolve by Week 6–7 if you do the activation before every run.</div>
+      </div>
+      <div class="guide-card">
+        <h3><span class="icon ic-amber">📈</span> How running capacity builds</h3>
+        <p>VO2 max and aerobic efficiency improve through consistent Zone 2 work over weeks, not through running fast. The 10% weekly mileage rule (Macera et al., AJSM) is the research-backed ceiling for volume increases without injury risk spike. Your Sunday long run is the most important session — it drives mitochondrial density, fat oxidation, and glycogen storage.</p>
+        <div class="highlight"><strong>Talk test:</strong> If you can't speak in full sentences, you're too fast. 80% of all runs should be easy. Two slow easy runs build more than one hard run for marathon prep.</div>
+      </div>
+      <div class="guide-card">
+        <h3><span class="icon ic-blue">🔄</span> Deload weeks — why they exist</h3>
+        <p>Every 4th week, volume drops ~30%. Supercompensation theory (Zatsiorsky & Kraemer) shows fitness gains peak 10–14 days after a training block, not during it. Deload weeks reduce cortisol, allow hormonal recovery, and let your connective tissue catch up to muscle adaptation.</p>
+        <div class="highlight"><strong>During deload:</strong> Keep the exact same schedule — just shorten runs 25–30%. Don't skip the long run, just make it easier. Gym stays identical. You should feel almost bored. That's correct.</div>
+      </div>
+      <div class="guide-card">
+        <h3><span class="icon ic-teal">⚠️</span> Knee red flags</h3>
+        <p>Know the difference between normal adaptation discomfort and actual injury signals.</p>
+        <div class="highlight">
+          <strong>Monitor and continue:</strong> warmup pain that clears within 1K<br><br>
+          <strong>Reduce 50% mileage:</strong> pain persisting past 3K, or aching next morning<br><br>
+          <strong>Stop run immediately:</strong> sharp stabbing pain, or pain that worsens while running<br><br>
+          <strong>See physio:</strong> pain 3+ days in a row, swelling, or any popping sensation<br><br>
+          A 2-week rest at week 8 is fully recoverable. A stress fracture at week 12 ends the race.
+        </div>
+      </div>
+      <div class="guide-card">
+        <h3><span class="icon ic-coral">📊</span> Realistic race prediction</h3>
+        <p>Your 10K in 60 min = 6:00/km pace. Marathon pace is typically 1–1.5 min/km slower than 10K pace due to the aerobic ceiling shift at distance. McMillan Calculator projects 5:00–5:30 finish with solid training.</p>
+        <div class="highlight"><strong>Target: 5:15 finish.</strong> That's 7:28/km average. Start at 7:30–8:00/km for the first 10K — it will feel embarrassingly slow. That is correct. Most first-timers blow up by going out at 6:30/km and dying at km 30. Negative split (faster second half) is the goal.</div>
+      </div>
+
+      <div class="guide-card" style="grid-column: 1/-1;">
+        <h3><span class="icon ic-blue">📋</span> SF Marathon official plan — what applies to you</h3>
+        <p style="margin-bottom:10px;">The SFM provided a 26-week official plan (Run365 coaches). You only have 16 weeks, so their weeks 1–10 (Jan 26 – Apr 5) are irrelevant — you start where their Week 11 picks up. Here's the honest comparison and what I've adopted from it.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;">
+          <div class="highlight">
+            <strong>✅ Adopted — Speed work on Tuesdays</strong><br>
+            The SFM plan includes "Speed Workout OR Run" every Tuesday from the start. This is legitimate — speed work improves running economy and VO2 max even for beginners. I've added this from Week 6 (Phase 2) after your base is established. Doing speed work in Phase 1 with your knee history is risky.
+          </div>
+          <div class="highlight">
+            <strong>✅ Adopted — Cross-training Thursdays</strong><br>
+            Their Thursday is "Cross Train OR Run." My Thursday is already no-running (leg/knee gym day) — this is consistent. Cross-training = anything non-impact: cycling, swimming, yoga. Your bike commute qualifies.
+          </div>
+          <div class="highlight">
+            <strong>⚖️ Modified — Long run day</strong><br>
+            SFM puts the long run on Saturday with Sunday as active recovery. My plan keeps it Sunday with Monday recovery. Sunday long run → Monday off is scientifically superior for recovery because you get a full rest day immediately after. I'm keeping Sunday.
+          </div>
+          <div class="highlight">
+            <strong>❌ Not adopted — Their peak distance</strong><br>
+            SFM's plan peaks at 22 miles (~35K) in Week 22 of their 26-week plan. For your 16-week window, 32K peak is the right ceiling. Going to 35K in your timeline would require skipping deload weeks, which is how knee injuries happen.
+          </div>
+          <div class="highlight">
+            <strong>❌ Not adopted — No strength work</strong><br>
+            The SFM plan has zero gym or strength sessions. For your knee situation, this would be a serious mistake. Thursday leg day is non-negotiable in your plan — the SFM plan is designed for runners who already have strong stabilizers.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RUNNING TECHNIQUE -->
+  <div id="guide-technique" class="guide-section">
+    <div class="guide-grid">
+      <div class="guide-card" style="grid-column: 1/-1;">
+        <h3><span class="icon ic-blue">🏃</span> Pace, heart rate zones, and the talk test</h3>
+        <p style="margin-bottom:10px;">Your max heart rate at 25 is approximately 195 bpm (220 minus age). Every "easy run" in this plan should stay in Zone 2. Most beginners run their easy days 60–90 sec/km too fast — this is the single most common training mistake.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;">
+          <div class="highlight"><strong>Zone 1 — Recovery (55–65%)</strong><br>117–127 bpm · Very easy walk/jog · Bike commute zone · Active recovery days</div>
+          <div class="highlight"><strong>Zone 2 — Aerobic (65–75%) ← all easy runs</strong><br>127–146 bpm · Can hold full conversation · Feels almost too easy · This is where your aerobic engine is built</div>
+          <div class="highlight"><strong>Zone 3 — Tempo (75–85%)</strong><br>146–166 bpm · Can speak in short phrases · Long run late miles may drift here · OK, don't start here</div>
+          <div class="highlight"><strong>Zone 4–5 — Hard (85%+)</strong><br>166+ bpm · Not used in this plan · Only during strides at end of some runs · Never on long run day</div>
+        </div>
+      </div>
+
+      <div class="guide-card">
+        <h3><span class="icon ic-purple">👣</span> Cadence — the most impactful fix for your knee</h3>
+        <p>Overstriding (foot landing in front of your center of mass) acts as a braking force and dramatically increases knee joint load. Heiderscheit et al. (J Orthop Sports Phys Ther, 2011) found a 5–10% cadence increase reduced knee joint loading by 20%. This directly applies to your knee situation.</p>
+        <div class="highlight"><strong>Target: 170–180 steps/min.</strong> Count your steps for 15 sec, multiply by 4. Under 160 = you're overstriding. Fix: shorten your stride, land with foot under your hip not in front of it. Quick light steps, not big bounding ones. Most fitness watches track cadence. BPM-matched playlists at 170–180 BPM subconsciously pull your rate up.</div>
+      </div>
+
+      <div class="guide-card">
+        <h3><span class="icon ic-coral">🫁</span> Breathing technique</h3>
+        <p>Breathe through both nose and mouth simultaneously — don't restrict to nose-only, you need maximum airflow. Belly breathing (diaphragmatic) is more efficient than shallow chest breathing and reduces side stitches.</p>
+        <div class="highlight"><strong>Rhythm:</strong> 2-count inhale (2 steps) → 2-count exhale (2 steps) at easy pace. At harder efforts try 2-in, 1-out. If you get a side stitch — exhale forcefully when your left foot strikes, press two fingers into the stitch, and slow down briefly. Stitches are caused by breathing shallowly and going out too fast.</div>
+      </div>
+
+      <div class="guide-card">
+        <h3><span class="icon ic-amber">💪</span> Arm drive and upper body form</h3>
+        <p>Arms drive your legs — better arm mechanics = less leg fatigue. Research shows efficient arm drive reduces oxygen cost of running by 3–4% at marathon distance, meaningful over 5 hours.</p>
+        <div class="highlight">
+          <strong>Correct:</strong> Elbows at ~90°, swing forward-back (not crossing midline), hands relaxed (imagine holding a potato chip without breaking it), shoulders low and relaxed.<br><br>
+          <strong>Common mistakes:</strong> Crossing arms over midline wastes energy and causes trunk rotation that tires your core by km 25. Hunching shoulders — happens naturally when fatigued, consciously drop them every 5 min. Clenching fists — tightness travels up the arm and into the shoulders.
+        </div>
+      </div>
+
+      <div class="guide-card">
+        <h3><span class="icon ic-teal">🧍</span> Posture and foot strike</h3>
+        <p>Running posture deteriorates after 20K as core fatigue sets in — this is when most injuries occur. Your calisthenics background (core strength from L-sits, hollow body) is a real advantage here.</p>
+        <div class="highlight">
+          <strong>Head:</strong> Eyes forward 10–15m ahead, not looking down at feet. Head down = hunched spine = restricted breathing.<br><br>
+          <strong>Trunk:</strong> Slight forward lean from ankles (not waist). Upright is fine, leaning back wastes energy.<br><br>
+          <strong>Foot strike:</strong> Mid-foot landing under your hip is ideal. Heel striking is fine if cadence is correct. Forefoot striking at easy pace causes calf fatigue. Don't obsess — cadence fixes most foot strike issues automatically.
+        </div>
+      </div>
+
+      <div class="guide-card">
+        <h3><span class="icon ic-blue">⏸️</span> Walk breaks — strategy, not failure</h3>
+        <p>Jeff Galloway's run-walk method has finished 500,000+ first-time marathoners. Planned walk breaks reduce muscle glycogen depletion and can result in a faster overall finish than running continuously and blowing up at km 32.</p>
+        <div class="highlight">
+          <strong>Training runs under 15K:</strong> Try to run continuously, but walk if HR spikes or breathing labors. Resume when settled.<br><br>
+          <strong>Long runs 15K+:</strong> Walk 60 sec at every water/fuel stop. This is strategic, not weakness.<br><br>
+          <strong>Never:</strong> Stop abruptly after running. Always walk 2–3 min to let HR come down. Stopping dead pools blood in legs, causes lightheadedness, and worsens DOMS the next day.
+        </div>
+      </div>
+
+      <div class="guide-card">
+        <h3><span class="icon ic-coral">🏔️</span> Treadmill vs road vs trail</h3>
+        <p>All three work, but they train slightly different things. SF marathon course is road with real hills and camber — your body needs some outdoor preparation.</p>
+        <div class="highlight">
+          <strong>Treadmill:</strong> Set to 1% incline to compensate for belt assist. Great for easy weekday runs (Tue/Wed) when weather or time is an issue. Doesn't train stabilizers or prepare feet for uneven ground.<br><br>
+          <strong>Road/path:</strong> Best for long runs — mimics race conditions. American River Parkway (Sacramento) is ideal: flat, paved, car-free. Do all long runs outside from Week 6 onward.<br><br>
+          <strong>Trail:</strong> Adds ankle stability and mental variety. Fine for easy runs. Avoid for long runs in training — uneven terrain adds fatigue and injury risk when volume is high.
+        </div>
+      </div>
+
+      <div class="guide-card">
+        <h3><span class="icon ic-blue">🔬</span> Running drills — 2×/week</h3>
+        <p>Drills improve neuromuscular coordination and running economy. A 2019 IJSPP study found 2×/week drills over 8 weeks improved running economy by 4–6% — meaningful over 5 hours of racing.</p>
+        <div class="highlight">
+          <strong>High knees:</strong> 2 × 20 sec — drive knees to hip height, quick turnover. Improves hip flexor activation and cadence.<br><br>
+          <strong>Butt kicks:</strong> 2 × 20 sec — kick heels to glutes rapidly. Improves hamstring activation and stride mechanics.<br><br>
+          <strong>A-skip:</strong> Skip forward driving knee up then pawing foot down. Teaches correct foot landing position.<br><br>
+          <strong>When:</strong> After activation warmup, before Tuesday and Wednesday runs in Phase 1–2. Tuesday only in Phase 3.
+        </div>
+      </div>
+
+      <div class="guide-card">
+        <h3><span class="icon ic-purple">🧠</span> The mental wall at 25–30K</h3>
+        <p>At some point past 20K everything feels heavy and your brain screams to stop. This is normal. Your body physically has the fitness to continue — it's your brain being conservative to protect glycogen reserves. This is a trainable skill.</p>
+        <div class="highlight">
+          <strong>Break distance into segments:</strong> Never think about total remaining distance. "Just to that lamppost." "Just 2 more km." One chunk at a time.<br><br>
+          <strong>The actual wall (physiological):</strong> Glycogen depletion around km 30–35 if unfueled. Fueling every 45 min from km 16 onward prevents this entirely. If you've practiced in training, race day wall is manageable.<br><br>
+          <strong>Mantra:</strong> Pick one short phrase before the race. Repeat it when it gets hard. Sounds silly, works scientifically (distraction reduces perceived exertion).
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WARMUP & RECOVERY -->
+  <div id="guide-warmup" class="guide-section">
+    <div class="guide-grid">
+      <div class="guide-card" style="grid-column: 1/-1;">
+        <h3><span class="icon ic-coral">🔥</span> Pre-run activation — 10–12 min (non-negotiable before every run)</h3>
+        <p style="margin-bottom:10px;">Your first km feels bad because your glutes are cold and inactive, forcing your knees to absorb load they shouldn't. Shelburne et al. (J Orthop Sports Phys Ther, 2005) confirmed pre-activation of hip abductors reduces patellofemoral joint stress by up to 45%. This is the direct fix for your knee pattern.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;">
+          <div class="highlight"><strong>Step 1 — Raise temperature (2–3 min)</strong><br>Brisk walk or march in place. Body temp must rise before tissue will stretch safely. Never skip even on "quick" runs.</div>
+          <div class="highlight"><strong>Step 2 — Dynamic mobility (3–4 min)</strong><br>Leg swings front/back × 10 each leg<br>Leg swings side/side × 10 each leg<br>Hip circles × 10 each direction<br>Ankle rolls × 10 each foot<br>These directly reduce the tight knee feeling at run start.</div>
+          <div class="highlight"><strong>Step 3 — Glute activation (4–5 min) ← most important</strong><br>Glute bridges 2 × 12 (squeeze 2 sec at top)<br>Bodyweight squats 2 × 10 (slow)<br>Reverse lunges 1 × 8 each leg<br>Optional: clamshells or band walks<br>Inactive glutes = knee absorbs the load.</div>
+          <div class="highlight"><strong>Step 4 — Run start</strong><br>First 1K at embarrassingly slow pace — almost a shuffle. Your body needs 5–8 min to fully shift to aerobic metabolism. Fighting this is exactly why your knee hurts at the start.</div>
+        </div>
+      </div>
+
+      <div class="guide-card">
+        <h3><span class="icon ic-amber">⚡</span> 5-min emergency warmup</h3>
+        <p>For busy days. Never skip entirely — even 5 min is dramatically better than zero. Skipping warmup on a cold day with your knee history is how week 4 injuries happen.</p>
+        <div class="highlight">
+          2 min brisk walk<br>
+          Leg swings × 10 each direction, each leg<br>
+          10 glute bridges (squeeze at top)<br>
+          First 2 min of run at slow shuffle<br><br>
+          Total: 5 min. Do this even on easy 5K days.
+        </div>
+      </div>
+
+      <div class="guide-card">
+        <h3><span class="icon ic-blue">🏃</span> Running drills (add 2×/week)</h3>
+        <p>After activation, before the run starts. Improves stride mechanics and running economy over 3–4 weeks.</p>
+        <div class="highlight">
+          <strong>High knees:</strong> 2 × 20 sec<br>
+          <strong>Butt kicks:</strong> 2 × 20 sec<br>
+          <strong>A-skip:</strong> 2 × 15m<br>
+          <strong>Lateral shuffle:</strong> 2 × 10m each direction — hip stability directly helps your knee<br><br>
+          Do on Tue + Wed in Phase 1–2. Tuesday only in Phase 3.
+        </div>
+      </div>
+
+      <div class="guide-card" style="grid-column: 1/-1;">
+        <h3><span class="icon ic-teal">🧊</span> Post-run recovery — 8–12 min immediately after every run</h3>
+        <p style="margin-bottom:10px;">Static stretching after running (not before) increases flexibility. Pearcey et al. (2015) showed foam rolling post-run reduces DOMS by ~30% and restores range of motion faster. Never stop running and immediately sit down.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;">
+          <div class="highlight"><strong>Step 1 — Walk 2–3 min</strong><br>Gradual HR drop prevents blood pooling in legs and lightheadedness. Non-negotiable after any run over 5K.</div>
+          <div class="highlight"><strong>Step 2 — Static stretches (20–30 sec each)</strong><br>Quads: pull heel to glutes<br>Hamstrings: hinge forward<br>Calves: wall stretch<br>Hip flexors: deep lunge hold<br>These 4 are non-negotiable for your knee.</div>
+          <div class="highlight"><strong>Step 3 — Foam rolling (3–5 min)</strong><br>Quads (front of thigh)<br>IT band (outer thigh — go slow, very tender)<br>Glutes / piriformis<br>Calves<br>IT band tightness directly pulls kneecap laterally — roll it every session.</div>
+          <div class="highlight"><strong>Step 4 — After long runs only</strong><br>Cold water on knees (tap cold, not ice bath) for 5–10 min reduces inflammation. Elevate legs up a wall for 10 min. Eat within 30 min (carbs + protein — see nutrition tab).</div>
+        </div>
+      </div>
+
+      <div class="guide-card">
+        <h3><span class="icon ic-purple">💤</span> Sleep — the most underrated recovery tool</h3>
+        <p>Walker (Why We Sleep, 2017) shows sleep deprivation below 7h increases injury risk by 1.7× in athletes and reduces performance by 10–30%. During deep sleep, growth hormone peaks — this is when your muscles and connective tissue actually rebuild.</p>
+        <div class="highlight"><strong>Target:</strong> 8h minimum during Phases 2–3. In peak weeks (wk 11–13), treat 8.5h sleep as seriously as the training itself. If you're sleeping under 7h consistently, no amount of training fixes that deficit. Go to bed 30 min earlier before every long run day.</div>
+      </div>
+
+      <div class="guide-card">
+        <h3><span class="icon ic-teal">🔄</span> Monday recovery protocol</h3>
+        <p>Monday is your most important recovery day — it's when Sunday's long run adaptation sets in. How well you recover Monday directly determines how well you train Tuesday through Sunday.</p>
+        <div class="highlight">
+          Morning: 10 min foam roll (quads, IT band, calves, glutes)<br>
+          Hip flexor stretch: 60 sec each side<br>
+          Slow calf raises: 3 × 15 (strengthens achilles)<br>
+          Afternoon: bike commute at easier pace than usual<br>
+          Evening: legs elevated 10 min, early sleep<br><br>
+          Total active work: ~20 min. This halves Tuesday soreness.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NUTRITION & HYDRATION -->
+  <div id="guide-nutrition" class="guide-section">
+    <div class="guide-grid">
+
+      <div class="guide-card" style="grid-column: 1/-1;">
+        <h3><span class="icon ic-amber">🍽️</span> Daily nutrition — what to eat as a marathon runner</h3>
+        <p style="margin-bottom:10px;">Your daily diet needs to shift as mileage increases. At peak training (50+ km/week) you need significantly more carbohydrates than a normal active person. Burke et al. (J Sports Sci, 2011) recommend 5–7g carbs/kg/day for endurance athletes in moderate training, rising to 7–10g/kg in peak weeks. At 61 kg, that's 305–610g carbs/day at peak — far more than most people eat.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;">
+          <div class="highlight"><strong>Carbohydrates (primary fuel)</strong><br>Rice, oats, roti, sweet potato, banana, pasta, bread. Eat these at every main meal during training. Your muscles store glycogen from carbs — this is what you run on. Don't fear carbs during marathon training.</div>
+          <div class="highlight"><strong>Protein (repair and recovery)</strong><br>~1.6–1.8g/kg/day = ~98–110g/day for you. Eggs, dal, paneer, chicken, Greek yogurt, lentils. Prioritize within 30 min post-run for muscle protein synthesis. Don't overdo it — protein beyond 2g/kg adds no benefit and replaces carb calories you need.</div>
+          <div class="highlight"><strong>Fats (hormones + joint health)</strong><br>Don't cut fat during marathon training. Nuts, seeds (your roasted almonds count), avocado, ghee in moderation. Omega-3s (walnuts, flaxseed) reduce inflammation and help your knee specifically.</div>
+          <div class="highlight"><strong>Micronutrients that matter most</strong><br>Iron (fatigue, oxygen transport — dal, spinach, meat)<br>Magnesium (muscle cramps — nuts, seeds, leafy greens)<br>Vitamin D (bone stress fracture prevention — sun or supplement)<br>Calcium (bone density — dairy, tofu, fortified foods)</div>
+        </div>
+      </div>
+
+      <div class="guide-card">
+        <h3><span class="icon ic-coral">⏰</span> When to eat — daily timing</h3>
+        <p>Nutrient timing around runs matters as much as what you eat. Your body uses fuel differently before, during, and after exercise.</p>
+        <div class="highlight">
+          <strong>Pre-run (2–3 hrs before):</strong> Full meal — rice + dal, oats, or roti + egg. Complex carbs + moderate protein. No high fat, no high fiber (causes GI issues during running).<br><br>
+          <strong>Pre-run (30–60 min before):</strong> Light snack only if needed — banana, a few dates, white toast. Avoid if your stomach is already settled from the earlier meal.<br><br>
+          <strong>Post-run (within 30 min):</strong> 3:1 carb-to-protein ratio. Rice + lentils, banana + Greek yogurt, chocolate milk (actually research-backed recovery drink). This is the "golden window" for glycogen replenishment and muscle repair.<br><br>
+          <strong>Easy run days:</strong> Normal eating. No special timing needed for runs under 60 min.
+        </div>
+      </div>
+
+      <div class="guide-card">
+        <h3><span class="icon ic-teal">💧</span> Hydration — daily baseline</h3>
+        <p>You lose ~0.5–1.5L/hour running depending on temperature and sweat rate. Sacramento in April–June can get warm — dehydration of just 2% body weight reduces performance by 10–20% (Cheuvront & Haymes, 2001).</p>
+        <div class="highlight">
+          <strong>Daily baseline:</strong> 3–3.5L water/day during training weeks. Urine should be pale yellow — dark yellow = dehydrated, clear = overhydrated (also bad).<br><br>
+          <strong>Before runs:</strong> Drink 400–600ml in the 2 hours before. Don't chug right before — sip steadily.<br><br>
+          <strong>After runs:</strong> 1.5× whatever you lost. Weigh yourself before/after a long run — every 1kg lost = ~1L to replace.<br><br>
+          <strong>Signs of dehydration during a run:</strong> headache, dark urine post-run, cramping, elevated HR for same pace, dizziness.
+        </div>
+      </div>
+
+      <div class="guide-card">
+        <h3><span class="icon ic-blue">🧂</span> Electrolytes — why they matter</h3>
+        <p>Sweat contains sodium, potassium, magnesium, and chloride — not just water. Replacing water without electrolytes during long runs causes hyponatremia (dangerously low sodium), which has hospitalized runners. This is especially relevant for runs over 2 hours.</p>
+        <div class="highlight">
+          <strong>Sodium:</strong> Most important. Lost heavily in sweat. Add a pinch of salt to your water bottle on runs over 90 min. Or use electrolyte tabs (Nuun, SIS Go Hydro).<br><br>
+          <strong>Potassium:</strong> Banana before/during long runs. Helps prevent cramping.<br><br>
+          <strong>Magnesium:</strong> Your roasted nuts and seeds actually help here. Cramping that isn't fixed by hydration is often magnesium deficiency.<br><br>
+          <strong>Simple rule:</strong> For runs under 75 min — water only. Over 75 min — electrolytes every 45–60 min alongside water.
+        </div>
+      </div>
+
+      <div class="guide-card" style="grid-column: 1/-1;">
+        <h3><span class="icon ic-purple">⚡</span> Mid-run fueling — gels, real food, and the glycogen clock</h3>
+        <p style="margin-bottom:10px;">Your muscles store ~90 min worth of glycogen at easy running pace. After that, without external fuel, performance degrades rapidly — this is "the wall." You need 30–60g of carbohydrates per hour for runs over 75 min, consumed every 30–45 min (Jeukendrup, Sports Med 2011). The key is to start fueling before you feel hungry — hunger during a run means you're already depleted.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;">
+          <div class="highlight"><strong>Real food options (start with these in training)</strong><br>Dates (2–3 = ~20g carbs, easy to carry)<br>Half a banana (13g carbs)<br>Boiled/salted potatoes (popular in ultras)<br>Raisins or dried mango<br>White bread with honey<br>These are gentler on the stomach than gels.</div>
+          <div class="highlight"><strong>Energy gels (introduce Week 9+)</strong><br>GU, Maurten, SIS, Clif Bloks. ~22–25g carbs each. Take with water — never dry. Easy to carry, fast absorption. Test every gel brand in training before using on race day. Some cause GI distress (especially fructose-heavy gels).<br>Maurten is the most stomach-friendly, also most expensive.</div>
+          <div class="highlight"><strong>When to take fuel</strong><br>First fuel: at 45 min into any run over 75 min<br>Subsequent: every 30–45 min after<br>With water: always take 100–200ml water alongside fuel<br>Race day: take gel at km 10, 20, 28, 35, 40<br>Start fueling before you're hungry — always.</div>
+          <div class="highlight"><strong>GI issues during running</strong><br>Very common — called "runner's gut." Caused by: too much fiber pre-run, trying new foods, gels without water, dehydration, going out too fast. Fix: low-fiber pre-run meal, nothing new on race day, always water with gels, start slower.</div>
+        </div>
+      </div>
+
+      <div class="guide-card">
+        <h3><span class="icon ic-amber">🍚</span> Drinking during a run — how and when</h3>
+        <p>Drinking strategy matters — both when you drink and how much. Overdrinking is also a real risk (hyponatremia).</p>
+        <div class="highlight">
+          <strong>Short runs under 60 min:</strong> No water needed if you're well hydrated going in. Bring water in hot weather (Sacramento summer).<br><br>
+          <strong>Runs 60–90 min:</strong> 150–200ml every 20 min. Sip — don't chug. Chugging causes a stitch.<br><br>
+          <strong>Long runs 90+ min:</strong> 150–250ml every 15–20 min + electrolytes every 45 min.<br><br>
+          <strong>How to drink while running:</strong> Slow to an easy jog, don't stop completely. Pinch the cup into a tube shape (at aid stations), tilt head slightly back. Takes practice — do it at least 3 times in training.
+        </div>
+      </div>
+
+      <div class="guide-card">
+        <h3><span class="icon ic-teal">🌙</span> Night before long run and race day eating</h3>
+        <p>Carb loading the night before maximizes glycogen stores. You don't need to eat a massive pasta dinner — just ensure your dinner is carb-heavy and low fat/fiber, eaten 10–12 hours before the run.</p>
+        <div class="highlight">
+          <strong>Night before long run (16K+):</strong> Rice + mild dal or curry, roti, pasta with light sauce. Avoid: heavy fat (slows digestion), lots of vegetables/fiber (GI risk), alcohol (dehydrates, disrupts sleep).<br><br>
+          <strong>Race week (Thu–Sat):</strong> Increase carbs ~20%, reduce fiber, keep fat moderate. This fills glycogen stores completely.<br><br>
+          <strong>Race morning (2–3 hrs before):</strong> Oats with banana, white rice with egg, or toast with peanut butter + banana. Eat something you've tested in training — race day is never the time to try new food.
+        </div>
+      </div>
+
+      <div class="guide-card">
+        <h3><span class="icon ic-coral">☕</span> Caffeine — legitimate performance tool</h3>
+        <p>Caffeine is the most well-researched legal performance enhancer in endurance sport. Spriet (Sports Med, 2014) found 3–6mg/kg improves endurance performance by 2–4% and reduces perceived effort significantly.</p>
+        <div class="highlight">
+          <strong>For you at 61kg:</strong> 180–360mg caffeine = 1–2 cups of coffee or 1–2 caffeine gels.<br><br>
+          <strong>Race day timing:</strong> 45–60 min before start. Don't try caffeine gels for the first time on race day.<br><br>
+          <strong>Training use:</strong> Can take before long runs if you normally drink coffee. Don't add it if you don't already use caffeine — the GI risk isn't worth it for training runs.<br><br>
+          <strong>Caution:</strong> Caffeine is a diuretic — increase water intake. Don't use if it causes GI issues.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- STRENGTH & CALISTHENICS -->
+  <div id="guide-strength" class="guide-section">
+    <div class="guide-grid">
+      <div class="guide-card">
+        <h3><span class="icon ic-coral">🏋️</span> Why strength training matters for marathons</h3>
+        <p>Strength training reduces running injury risk by ~50% (Lauersen et al., BJSM 2018). For marathons specifically, strength determines how well you hold form in the final 10K when everything is failing. Your calisthenics base is a genuine advantage most beginners don't have.</p>
+        <div class="highlight"><strong>Priority muscles for your marathon:</strong><br>
+        Glutes (hip extension + knee tracking — your #1 priority given the knee)<br>
+        Hip abductors (lateral stability, IT band protection)<br>
+        VMO/inner quad (kneecap stabilization)<br>
+        Calves + achilles (propulsion, impact absorption)<br>
+        Core (posture maintenance at mile 20+)<br>
+        Hamstrings (deceleration, injury prevention)</div>
+      </div>
+
+      <div class="guide-card">
+        <h3><span class="icon ic-amber">🦵</span> Thursday leg day — the knee rehab session</h3>
+        <p>This is the highest-priority session in your entire plan. More important than any single run. The knee pain you have is directly caused by weak glutes and VMO. These exercises fix it.</p>
+        <div class="highlight">
+          <strong>Phase 1–2 (wk 1–10):</strong><br>
+          Hip thrusts: 3 × 12 (squeeze hard at top)<br>
+          Bulgarian split squat: 3 × 8 each leg<br>
+          Single-leg RDL: 3 × 10 each leg<br>
+          Clamshells: 3 × 15 each side (with band if available)<br>
+          Terminal knee extensions: 3 × 15 (band around knee, straighten leg)<br>
+          Step-ups: 3 × 10 each leg<br><br>
+          <strong>Phase 3 (wk 11–13):</strong><br>
+          Core only — planks, dead bugs, hollow body<br>
+          Protect legs for long runs
+        </div>
+      </div>
+
+      <div class="guide-card">
+        <h3><span class="icon ic-blue">💪</span> Tuesday upper body + core (at home)</h3>
+        <p>Upper body training helps running posture, arm drive, and core stability. You don't need a gym — your pull-up bar and bands cover everything that matters for marathon prep.</p>
+        <div class="highlight">
+          <strong>Pull-ups:</strong> 3–4 sets to 80% failure. Best back exercise — builds the lats and rear delts that maintain upright posture at km 35.<br><br>
+          <strong>Dips:</strong> 3 × max-2. Chest + tricep strength supports arm drive.<br><br>
+          <strong>Face pulls (band):</strong> 3 × 15. Rear delts + rotator cuff — prevents the shoulder hunching that appears when fatigued at mile 20.<br><br>
+          <strong>Hollow body hold:</strong> 3 × 20–30 sec. Core endurance for late-race posture.<br><br>
+          <strong>Dead bugs:</strong> 3 × 10 each side. Anti-rotation core strength — reduces energy-wasting trunk twist while running.
+        </div>
+      </div>
+
+      <div class="guide-card">
+        <h3><span class="icon ic-purple">🤸</span> Calisthenics — keep or drop?</h3>
+        <p>Your pull-ups, dips, and L-sits are an asset, not a conflict. Upper body calisthenics don't fatigue your running legs. The question is volume and timing.</p>
+        <div class="highlight">
+          <strong>Weeks 1–10 (Phase 1–2):</strong><br>
+          Keep Saturday calisthenics after shakeout run. Normal volume. This is compatible with marathon training and keeps your skills progressing.<br><br>
+          <strong>Weeks 11–13 (Phase 3 peak):</strong><br>
+          Calisthenics on Tuesday only, 2 sets max. Saturday is shakeout run only — legs need to be fresh for Sunday 24–32K. Handstand practice is fine (minimal leg load).<br><br>
+          <strong>Weeks 14–16 (Taper):</strong><br>
+          No calisthenics. Your body is consolidating. Don't add any new stimulus.
+        </div>
+      </div>
+
+      <div class="guide-card">
+        <h3><span class="icon ic-teal">⚖️</span> Run first or gym first on Tuesday?</h3>
+        <p>Run first, then home gym. Your Tuesday run is easy (5–10K) and serves as an extended warmup. Gym first with pre-fatigued legs from lifting would degrade your running form — especially important while fixing the knee.</p>
+        <div class="highlight">
+          <strong>Tuesday sequence:</strong><br>
+          Activation warmup (10 min)<br>
+          Easy run 5–10K<br>
+          Walk cooldown + stretch (10 min)<br>
+          Upper body + core at home (30–35 min)<br><br>
+          Total: ~75–90 min. The run warms you up for the upper body work, not the other way around. Running after a heavy upper session is never recommended — fatigued arms = poor form = knee risk.
+        </div>
+      </div>
+
+      <div class="guide-card">
+        <h3><span class="icon ic-coral">📉</span> Will I lose muscle during marathon training?</h3>
+        <p>Muscle catabolism from running only becomes significant under extreme conditions — prolonged fasting, very high mileage, and zero protein intake simultaneously. Your situation doesn't come close to that threshold.</p>
+        <div class="highlight">
+          <strong>What actually happens:</strong> You may lose a small amount of upper body muscle mass during peak weeks (1–2 kg at most) because caloric demand is high and recovery is focused on legs. This reverses naturally after the race.<br><br>
+          <strong>How to minimize it:</strong> Hit your protein target (1.6–1.8g/kg/day), do Tuesday upper body consistently, don't run fasted on long run days.<br><br>
+          <strong>Bottom line:</strong> You won't look like a different person. Your calisthenics strength will be mostly maintained if you keep Tuesday sessions.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPEED WORK -->
+  <div id="guide-speed" class="guide-section">
+    <div class="guide-grid">
+
+      <div class="guide-card" style="grid-column:1/-1;">
+        <h3><span class="icon ic-purple">⚡</span> Why speed work — and why NOT in Phase 1</h3>
+        <p style="margin-bottom:10px;">The SFM official plan includes speed sessions every Tuesday. Speed work (strides, fartlek, tempo) improves running economy — meaning you use less oxygen at the same pace. Billat et al. (Med Sci Sports Exerc, 2001) showed even low-volume speed work improves marathon performance by 2–4% in recreational runners. For a 5:15 target, 2% is ~6 minutes.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;">
+          <div class="highlight"><strong>Why not Phase 1 (wk 1–5)</strong><br>Your knee is still being fixed. Speed work increases impact forces by 2–3× compared to easy running. Adding speed before your glutes and VMO are properly strengthened is the fastest route to injury. 5 weeks of easy running to build the foundation first is non-negotiable.</div>
+          <div class="highlight"><strong>Why Phase 2 is the right time (wk 6+)</strong><br>By week 6, your knee activation protocol should be working, glutes are stronger, and you have 5 weeks of consistent running mileage. Your aerobic base can now support a quality session without falling apart. The SFM plan starts speed earlier — ignore that, their plan doesn't account for your knee.</div>
+          <div class="highlight"><strong>The one hard rule</strong><br>Speed work happens on Tuesday ONLY — never the day before or after a long run. Sunday long run → Monday recovery → Tuesday speed → Wednesday easy is the only safe sequence. Speed work on Saturday = your Sunday long run will suffer and injury risk spikes.</div>
+        </div>
+      </div>
+
+      <div class="guide-card">
+        <h3><span class="icon ic-purple">🏃</span> Strides — start here (wk 6–7)</h3>
+        <p>Strides are short accelerations of 20–30 seconds at a comfortably fast pace — not a sprint. They teach your legs to turn over quickly without the fatigue of a full speed session. Perfect introduction to speed work.</p>
+        <div class="highlight">
+          <strong>How to do them:</strong><br>
+          After an easy 5–6K warm-up run, do 6–8 × 30-second accelerations with 90 sec easy jog/walk between each. Accelerate gradually over 10 sec, hold for 10 sec, decelerate for 10 sec. Never a dead sprint — maybe 85% effort max.<br><br>
+          <strong>What you'll feel:</strong> Legs feel snappy, stride opens up, rhythm improves. After 2–3 weeks, your easy pace gets faster without trying.
+        </div>
+      </div>
+
+      <div class="guide-card">
+        <h3><span class="icon ic-purple">🌪️</span> Fartlek — the main speed tool (wk 7–12)</h3>
+        <p>Fartlek is Swedish for "speed play" — alternating fast and easy segments during a continuous run. It's unstructured and forgiving, making it ideal for beginners adding speed work. The SFM plan's "speed workout" is essentially fartlek.</p>
+        <div class="highlight">
+          <strong>Basic fartlek (wk 7–9):</strong><br>
+          Easy warm-up 10 min → 5 × (2 min faster / 2 min easy) → easy cool-down 10 min<br><br>
+          <strong>"Faster" means:</strong> Comfortably hard — you can speak 3–4 word fragments, not full sentences. About 5:00–5:30/km for you. NOT a sprint.<br><br>
+          <strong>Progress to (wk 10–12):</strong><br>
+          6–8 × (2 min fast / 90 sec easy), or landmark-based: sprint to that tree, recover to the bench.<br><br>
+          <strong>If knee flares:</strong> Drop speed work immediately that week. Return to easy runs only.
+        </div>
+      </div>
+
+      <div class="guide-card">
+        <h3><span class="icon ic-purple">⏱️</span> Tempo runs — advanced (wk 11–12 only)</h3>
+        <p>A tempo run is a sustained effort at "comfortably hard" pace for 15–30 min — harder than fartlek, not as hard as a race. Research by Jack Daniels shows tempo running raises your lactate threshold, the pace at which lactic acid accumulates — critical for holding pace in the marathon's second half.</p>
+        <div class="highlight">
+          <strong>Your tempo pace:</strong> ~5:30–6:00/km — about 1 min/km faster than your easy pace. You can still speak in short phrases, but it's uncomfortable.<br><br>
+          <strong>Structure (wk 11–12):</strong><br>
+          Easy 2K warm-up → 3–4 × 1K at tempo pace (90 sec easy between) → easy 2K cool-down<br><br>
+          <strong>Never tempo the week before a long run of 28K+.</strong> Week 13 (peak week) goes back to strides only — tempo + 32K long run in the same week is too much.
+        </div>
+      </div>
+
+      <div class="guide-card">
+        <h3><span class="icon ic-coral">🚫</span> What speed work is NOT</h3>
+        <p>The biggest beginner mistake with speed work is misunderstanding what "fast" means in this context. Getting this wrong is the most common cause of training injuries in weeks 6–10.</p>
+        <div class="highlight">
+          <strong>NOT sprinting.</strong> A 100m sprint is not speed work for marathon training. Max-effort sprints stress your hamstrings and achilles in ways your body isn't prepared for.<br><br>
+          <strong>NOT racing your training partner.</strong> Ego-pace in a speed session = injury within 2 weeks.<br><br>
+          <strong>NOT filming yourself and going harder.</strong> (Looking at you, Week 1.) The camera doesn't change your physiology. Km 3 at 5:24 during an easy run was your "filming effect." Speed work sessions are structured — not free improvisation.<br><br>
+          <strong>NOT on tired legs.</strong> Speed work after a long run day or a hard gym session accomplishes nothing useful.
+        </div>
+      </div>
+
+      <div class="guide-card">
+        <h3><span class="icon ic-amber">📅</span> Speed work schedule by week</h3>
+        <p>Quick reference for what speed session to do on each Tuesday in Phase 2–3.</p>
+        <div class="highlight">
+          <strong>Wk 6:</strong> 6 × 30s strides after easy 5K<br>
+          <strong>Wk 7:</strong> 5 × 2min fartlek / 2min easy<br>
+          <strong>Wk 8:</strong> Deload — easy run only, no speed<br>
+          <strong>Wk 9:</strong> 6 × 2min fartlek / 90s easy<br>
+          <strong>Wk 10:</strong> 8 × 30s strides after easy 6K<br>
+          <strong>Wk 11:</strong> 4 × 1K tempo / 90s easy<br>
+          <strong>Wk 12:</strong> 3 × 1.5K tempo / 90s easy<br>
+          <strong>Wk 13 (peak):</strong> 6 × 30s strides only — protect legs for 32K<br>
+          <strong>Wk 14–16 (taper):</strong> No speed work
+        </div>
+      </div>
+
+      <div class="guide-card">
+        <h3><span class="icon ic-teal">🩺</span> Speed work and your knee — specific protocol</h3>
+        <p>Speed work increases patellofemoral joint stress. Given your knee history, follow these rules exactly.</p>
+        <div class="highlight">
+          <strong>Always do the full activation warmup before speed sessions</strong> — not the 5-min emergency version. The full 10–12 min protocol. Speed work on cold glutes = knee problem.<br><br>
+          <strong>Monitor km 1 of every speed session.</strong> If warmup knee pain doesn't clear by the end of your easy warm-up jog, skip the fast segments and just do an easy run.<br><br>
+          <strong>First speed session (wk 6):</strong> Do only 3 strides, not 6. See how the knee responds the next day. If fine, progress normally.<br><br>
+          <strong>If knee pain spikes during a fast segment:</strong> Stop. Walk. Don't try to "run through it" — speed work is not the session to push through discomfort.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RACE DAY -->
+  <div id="guide-raceday" class="guide-section">
+    <div class="guide-grid">
+      <div class="guide-card" style="grid-column: 1/-1;">
+        <h3><span class="icon ic-purple">🏁</span> Race week timeline — what to do each day</h3>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;">
+          <div class="highlight"><strong>Mon Jul 21</strong><br>Rest. Walk only. No running. Light mobility.</div>
+          <div class="highlight"><strong>Tue Jul 22</strong><br>Easy 5K — feel your legs. No gym. Sleep early.</div>
+          <div class="highlight"><strong>Wed Jul 23</strong><br>Easy 4K — very easy. Start carb loading. Reduce fiber in meals.</div>
+          <div class="highlight"><strong>Thu Jul 24</strong><br>Rest. Carb loading in earnest — rice, oats, pasta, bread. No heavy fat. No alcohol.</div>
+          <div class="highlight"><strong>Fri Jul 25</strong><br>Rest. Carb load continues. Lay out all gear. Check race bib. Early dinner 6–7pm. In bed by 9:30pm.</div>
+          <div class="highlight"><strong>Sat Jul 26 — RACE</strong><br>Wake 4:30–5am. Eat by 5am. At start 90 min early. Run your race.</div>
+        </div>
+      </div>
+
+      <div class="guide-card">
+        <h3><span class="icon ic-amber">🌅</span> Race morning protocol</h3>
+        <p>Everything on race morning should be practiced at least twice in training. No surprises.</p>
+        <div class="highlight">
+          <strong>Wake up:</strong> 4:30–5am (race starts ~7:30am typically for SF Marathon)<br><br>
+          <strong>Breakfast (5am):</strong> Oats + banana + honey, or white rice + egg, or toast + peanut butter. Something you've eaten before long runs. 500–700 cal, mostly carbs.<br><br>
+          <strong>Hydration:</strong> 500ml water with breakfast. Sip 200ml 30 min before start.<br><br>
+          <strong>Caffeine:</strong> If you use it — coffee or caffeine gel 45 min before start.<br><br>
+          <strong>Warmup at race:</strong> 10 min easy walk + full activation routine. Don't skip because of race excitement.
+        </div>
+      </div>
+
+      <div class="guide-card">
+        <h3><span class="icon ic-teal">🎽</span> Gear checklist</h3>
+        <p>Nothing new on race day. Every piece of kit should have been worn and tested on a long run.</p>
+        <div class="highlight">
+          <strong>Shoes:</strong> Your training shoes, not new ones. Wear them for at least 3 long runs before race day. New shoes = blisters guaranteed.<br><br>
+          <strong>Socks:</strong> Anti-blister running socks (Balega, Drymax). Cotton socks cause blisters on 42K.<br><br>
+          <strong>Shorts/tights:</strong> No chafing risk — test on your longest training runs.<br><br>
+          <strong>Anti-chafe:</strong> Body Glide or Vaseline on inner thighs, armpits, nipples (yes, nipples — extremely common painful issue for men at marathon distance).<br><br>
+          <strong>Fuel:</strong> Gels or dates in pockets — your tested brands only.<br><br>
+          <strong>Watch:</strong> Pace + HR monitoring. Don't run by feel alone on race day.
+        </div>
+      </div>
+
+      <div class="guide-card">
+        <h3><span class="icon ic-blue">📍</span> Race pacing strategy</h3>
+        <p>Pacing is where most first-timers lose 30–60 min. Race day adrenaline makes everything feel easy — it's not. Your aerobic ceiling hasn't changed because of excitement.</p>
+        <div class="highlight">
+          <strong>Target: 5:15 finish = 7:28/km average</strong><br><br>
+          <strong>Km 0–10:</strong> 7:30–8:00/km. Embarrassingly slow. You will be passed by hundreds of people. That's correct. They will be walking at km 32.<br><br>
+          <strong>Km 10–21:</strong> 7:15–7:30/km. Settling in. Should feel controlled and comfortable.<br><br>
+          <strong>Km 21–32:</strong> 7:30/km. Maintain. Fuel and hydrate consistently. The wall is coming — don't panic when it does.<br><br>
+          <strong>Km 32–42:</strong> Whatever you have left. Walk aid stations. Dig deep. Short segments only in your head.
+        </div>
+      </div>
+
+      <div class="guide-card">
+        <h3><span class="icon ic-coral">🗺️</span> SF Marathon course specifics</h3>
+        <p>The San Francisco Marathon is not a flat course. Knowing what's coming prevents panicking on race day.</p>
+        <div class="highlight">
+          <strong>Golden Gate Bridge (km ~13–19):</strong> The highlight of the course — and it has wind. Dress in layers you can tie around your waist. The bridge deck is slightly uphill going out, downhill returning.<br><br>
+          <strong>Hills:</strong> The course has moderate elevation change. Don't fight hills — shorten your stride and slow your pace. Running hills at same effort, not same pace, is the rule.<br><br>
+          <strong>Weather:</strong> SF in late July is typically 12–18°C at start, potentially foggy. Wear a throwaway layer at the start line you can discard after km 5 when you warm up.<br><br>
+          <strong>Aid stations:</strong> Approximately every 2–3 km. Walk every single one. Drink water + electrolytes.
+        </div>
+      </div>
+
+      <div class="guide-card">
+        <h3><span class="icon ic-teal">🏥</span> Post-race recovery</h3>
+        <p>Your immune system is suppressed for 24–72 hours after a marathon (the "open window" effect). Your legs will have micro-tears throughout. This is normal — it's why you trained for 16 weeks.</p>
+        <div class="highlight">
+          <strong>Immediately after:</strong> Keep walking 10 min, don't sit immediately. Eat within 30 min (banana + anything). Drink electrolytes not just water.<br><br>
+          <strong>Days 1–3:</strong> Walk only. Stairs will hurt. This is fine. Sleep as much as possible. Eat well, especially protein.<br><br>
+          <strong>Days 4–7:</strong> Easy 20 min walk if legs allow. No running.<br><br>
+          <strong>Week 2–3:</strong> Easy runs only if you feel ready. No mileage targets.<br><br>
+          <strong>Full return to training:</strong> 3–4 weeks minimum. Your tendons and connective tissue take longer to recover than your muscles — the 2-week post-marathon injury window is real.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- LOG & COACH PAGE -->
+<div id="page-log" class="page">
+  <div style="padding:1.5rem 0 1rem;border-bottom:1px solid var(--border);margin-bottom:1.25rem">
+    <h1 style="font-family:'DM Serif Display',serif;font-size:clamp(20px,3vw,28px)">Train Log</h1>
+    <p style="font-size:13px;color:var(--muted);margin-top:4px">Every session logged with feedback. Paste new snippets to add entries.</p>
+  </div>
+
+  <!--<div class="guide-tabs" id="log-tabs">-->
+  <!--  <button class="guide-tab active" onclick="showLog('all',this)">Training Log</button>-->
+  <!--</div>-->
+
+  <!-- ============================================================
+       TRAINING LOG — all sessions in one chronological feed
+       Color coding:
+         .log-run    = blue  (easy/medium run)
+         .log-long   = purple (long run)
+         .log-gym    = amber  (gym / leg day / upper body)
+         .log-rest   = green  (rest / recovery day)
+       ============================================================ -->
+       
+<!-- ── TRAINING LOG — color coding:
+       .log-run = blue · .log-long = purple · .log-gym = amber · .log-rest = green ── -->
+  <div id="log-all" style="display:block">
+             
+
+    <div class="run-log">
+
+      <!-- ── PHASE 1 HEADER ── -->
+      <div class="log-phase-header">Phase 1 — Base &amp; Knee Fix &nbsp;·&nbsp; Apr 6 – May 10</div>
+
+      <!-- ── WEEK 1 HEADER ── -->
+      <div class="log-week-header">Week 1 &nbsp;·&nbsp; Apr 6–12</div>
+
+      <!-- DAY 1 · Run -->
+      <div class="log-entry log-run">
+        <div class="log-entry-type">RUN · Easy</div>
+        <div class="log-header">
+          <div class="log-date">Day 1 · Mon Apr 7 · Easy Run</div>
+          <div class="log-stats">
+            <span class="log-stat">5.33 km</span>
+            <span class="log-stat">33:13</span>
+            <span class="log-stat">6:14/km avg</span>
+            <span class="log-stat">165 bpm avg</span>
+            <span class="log-stat">182 bpm max</span>
+            <span class="log-stat">Nike Pegasus 41</span>
+          </div>
+        </div>
+        <div class="splits-row">
+          <span class="split-pill ok">km1 — 6:20 · 147bpm</span>
+          <span class="split-pill fast">km2 — 5:55 · 158bpm ↑</span>
+          <span class="split-pill fast">km3 — 5:24 · 173bpm ⚡ too fast</span>
+          <span class="split-pill ok">km4 — 6:08 · 165bpm</span>
+          <span class="split-pill slow">km5 — 6:34 · 176bpm</span>
+          <span class="split-pill ok">0.4K — 6:16 · 179bpm</span>
+        </div>
+        <div class="log-analysis">
+          <strong>Overall:</strong> Solid first run. Target distance hit, knee held — good sign.<br><br>
+          <strong>HR:</strong> 165 bpm avg is Zone 4. Zone 2 ceiling is 146 bpm. Km 1 started okay at 147 but km 2 onward was too hard — filming effect caused km 3 to spike to 5:24/173bpm which is Zone 4. Body couldn't sustain it, walk breaks in second half followed directly.<br><br>
+          <strong>Fix:</strong> Zone 2 easy pace = 6:30–7:00/km. Stay there regardless of the camera. Start full activation warmup from next run.
+        </div>
+      </div>
+
+      <!-- DAY 2 · Run -->
+      <div class="log-entry log-run">
+        <div class="log-entry-type">RUN · Easy</div>
+        <div class="log-header">
+          <div class="log-date">Day 2 · Wed Apr 8 · Easy Run</div>
+          <div class="log-stats">
+            <span class="log-stat">5.66 km</span>
+            <span class="log-stat">36:23</span>
+            <span class="log-stat">6:26/km avg</span>
+            <span class="log-stat">167 bpm avg</span>
+            <span class="log-stat">184 bpm max</span>
+            <span class="log-stat">Nike Pegasus 41</span>
+          </div>
+        </div>
+        <div class="splits-row">
+          <span class="split-pill ok">km1 — 6:35 · 140bpm ✓</span>
+          <span class="split-pill fast">km2 — 6:09 · 158bpm ↑</span>
+          <span class="split-pill fast">km3 — 6:10 · 173bpm ⚠️</span>
+          <span class="split-pill fast">km4 — 5:50 · 176bpm 🚨</span>
+          <span class="split-pill slow">km5 — 6:43 · 177bpm (walk breaks)</span>
+          <span class="split-pill slow">km6 — 6:57 · 181bpm (fading)</span>
+        </div>
+        <div class="log-analysis">
+          <strong>Pace:</strong> ✅ Correctly slowed down from Day 1. Right instinct.<br><br>
+          <strong>Heart rate — the core issue:</strong> 167 bpm average is Zone 4. Zone 2 ceiling is 146 bpm. Only km 1 was correct. From km 2 onward you were at 81–94% of max HR. This is why the walk breaks happened — cardiovascular overload, not fitness failure.<br><br>
+          <strong>The fix going forward:</strong> Set Apple Watch HR alert at 150 bpm. The moment it beeps, slow to a shuffle even if that means 8:00/km. Ignore pace for 3 weeks. Run by HR only. Your true Zone 2 pace right now is probably 7:00–7:30/km.<br><br>
+          <strong>Next-day bilateral knee soreness:</strong> Both knees aching after sitting = glutes weren't absorbing load, knees compensated during km 4–5 when form degraded from fatigue. Not structural damage — fatigue-induced form breakdown.<br><br>
+          <strong>Nutrition was good:</strong> Banana + pumpkin seeds + mandarin pre-run fine. Post-run whey + creatine timing perfect. Dinner (chicken + dal + rice) solid recovery meal. Add electrolytes — at 167 bpm avg you lost meaningful sodium. Pinch of salt in post-run water.<br><br>
+          <strong>Sleep:</strong> 10:45pm–6:30am with brief wakeup — acceptable. Push to 10pm bedtime as mileage increases.<br><br>
+          <strong>Shoes:</strong> Nike Pegasus 41 — correct choice, good neutral trainer for marathon training.
+        </div>
+      </div>
+
+      <!-- DAY 3 · Gym -->
+      <div class="log-entry log-gym">
+        <div class="log-entry-type">GYM · Legs</div>
+        <div class="log-header">
+          <div class="log-date">Day 3 · Thu Apr 9 · Leg Day (Week 1)</div>
+          <div class="log-stats">
+            <span class="log-stat">Hip abduction</span>
+            <span class="log-stat">Hip adduction</span>
+            <span class="log-stat">Hip thrusts 3×15 @ 35lb/side</span>
+            <span class="log-stat">Step-ups 2×15 + 1×11 @ 27.5lb</span>
+          </div>
+        </div>
+        <div class="log-analysis">
+          <strong>Order and structure:</strong> Good — abduction/adduction first, then hip thrusts. Correct priority sequencing for your glute medius and knee valgus issues.<br><br>
+          <strong>Hip thrusts 3×15 at 35lb each side with 1–2 sec pause at top:</strong> ✅ Exactly right. This is the most important exercise in your program. The pause and squeeze are what make it work.<br><br>
+          <strong>Step-ups at 27.5lb — felt in shins and hips, not glutes:</strong> Weight is too heavy. Heavy step-ups shift the work to hip flexors and tibialis anterior (shin) rather than the glute. Fix: drop to bodyweight, place full foot on box, lean slightly forward from the hip, drive through the heel. Feel the glute fire before adding any weight.<br><br>
+          <strong>Skipped TKEs:</strong> Do these at home with bands — 3×15 each leg. Most targeted fix for your patellar tracking / knee warmup pain.<br><br>
+          <strong>Nutrition timing:</strong> 2 bananas + pumpkin seeds + mandarin before gym — good. Protein + creatine immediately after — perfect timing. Dinner 1 hour later — solid.<br><br>
+          <strong>Next session additions:</strong> Start with 2×15 glute bridges as activation before the abduction machine. Add clamshells 3×15 with band. This primes the neural pathway so abduction and hip thrusts actually hit the right tissue.
+        </div>
+      </div>
+
+      <!-- DAY 4 · Rest -->
+      <div class="log-entry log-rest">
+        <div class="log-entry-type">REST</div>
+        <div class="log-header">
+          <div class="log-date">Day 4 · Fri Apr 10 · Rest Day</div>
+        </div>
+        <div class="log-analysis">Planned rest. Full rest or light walk + stretch only.</div>
+      </div>
+
+      <!-- DAY 5 · Run -->
+      <div class="log-entry log-run">
+        <div class="log-entry-type">RUN · Easy</div>
+        <div class="log-header">
+          <div class="log-date">Day 5 · Sat Apr 11 · Morning Run</div>
+          <div class="log-stats">
+            <span class="log-stat">4.29 km</span>
+            <span class="log-stat">26:32</span>
+            <span class="log-stat">6:10/km avg</span>
+            <span class="log-stat">164 bpm avg</span>
+            <span class="log-stat">174 bpm max</span>
+          </div>
+        </div>
+        <div class="splits-row">
+          <span class="split-pill fast">km1 — 5:37 · 153bpm 🚨</span>
+          <span class="split-pill fast">km2 — 6:25 · 167bpm</span>
+          <span class="split-pill fast">km3 — 6:17 · 167bpm</span>
+          <span class="split-pill fast">km4 — 6:23 · 167bpm</span>
+          <span class="split-pill fast">0.2K — 6:09 · 163bpm</span>
+        </div>
+        <div class="log-analysis">
+          <strong>HR still Zone 4</strong> — km 1 at 5:37 put you in Zone 4 immediately. Same pattern as Day 1. Once HR locks at 167 from km 1, a short run can't bring it back down. Km 2–4 pace was closer to correct but too late.<br><br>
+          <strong>Distance short (4.29K vs 5K):</strong> Fine — total weekly volume is what matters.
+        </div>
+      </div>
+
+      <!-- DAY 6 · Long Run — BREAKTHROUGH -->
+      <div class="log-entry log-long">
+        <div class="log-entry-type">RUN · Long ⭐</div>
+        <div class="log-header">
+          <div class="log-date">Day 6 · Sun Apr 12 · Long Run — BREAKTHROUGH</div>
+          <div class="log-stats">
+            <span class="log-stat">8.25 km</span>
+            <span class="log-stat">1:01:07</span>
+            <span class="log-stat">7:24/km avg</span>
+            <span class="log-stat">147 bpm avg ✅</span>
+            <span class="log-stat">157 bpm max ✅</span>
+            <span class="log-stat">Zero stops</span>
+          </div>
+        </div>
+        <div class="splits-row">
+          <span class="split-pill ok">km1 — 6:53 · 146 ✓</span>
+          <span class="split-pill ok">km2 — 6:28 · 150</span>
+          <span class="split-pill ok">km3 — 7:02 · 151</span>
+          <span class="split-pill ok">km4 — 7:15 · 151</span>
+          <span class="split-pill ok">km5 — 7:49 · 146</span>
+          <span class="split-pill ok">km6 — 7:56 · 140</span>
+          <span class="split-pill ok">km7 — 8:01 · 145</span>
+          <span class="split-pill ok">km8 — 7:45 · 149</span>
+          <span class="split-pill ok">0.2K — 7:58 · 145</span>
+        </div>
+        <div class="log-analysis">
+          <strong>First proper Zone 2 run.</strong> 147 bpm avg vs target ceiling of 146 — essentially perfect. HR graph = flat band 140–155 the whole way. Zero stops for 61 minutes. 8.25K beats Week 1 target of 8K.<br><br>
+          <strong>Progressive slowing km 5–8 is correct</strong> — aerobic drift as glycogen slightly depletes. HR stays flat while pace slows = healthy physiology, not fatigue.<br><br>
+          <strong>HR progression this week:</strong> Day 2: 167 → Day 5: 164 → Day 6: 147. Adaptation already underway.
+        </div>
+      </div>
+
+
+      <!-- ══════════════════════════════════════════════════
+           PASTE NEW WEEK 2 ENTRIES BELOW THIS LINE
+           Use the snippet format your coach provides.
+           ══════════════════════════════════════════════════ -->
+      <!-- ADD WEEK 2 ENTRIES HERE -->
+      
+      
+      <!-- ── WEEK 2 HEADER ── -->
+<div class="log-week-header">Week 2 &nbsp;·&nbsp; Apr 13–19</div>
+      
+      
+      <!-- DAY 7 · Gym -->
+      <div class="log-entry log-gym">
+        <div class="log-entry-type">GYM · Upper</div>
+        <div class="log-header">
+          <div class="log-date">Day 7 · Mon Apr 13 · Upper Body + Calisthenics</div>
+          <div class="log-stats">
+            <span class="log-stat">Pull-ups</span>
+            <span class="log-stat">Knee holds (parallettes)</span>
+            <span class="log-stat">L-sit</span>
+            <span class="log-stat">Lat pulldown</span>
+            <span class="log-stat">Chest fly</span>
+            <span class="log-stat">Cable fly</span>
+          </div>
+        </div>
+        <div class="log-analysis">
+          Upper body only — correct day after long run. Knee holds + L-sit build hip flexor and core endurance which supports late-race posture.<br><br>
+          <strong>Note:</strong> Monday is recovery day in the plan. This was light enough to be fine, but as mileage grows in Phase 2–3, Monday must become true rest. Foam roller — still needed. Buy before Week 5.
+        </div>
+      </div>
+      
+      
+   
+      
+
+
+<!-- DAY 8 · Run -->
+<div class="log-entry log-run">
+  <div class="log-entry-type">RUN · Easy</div>
+  <div class="log-header">
+    <div class="log-date">Day 8 · Tue Apr 14 · Easy Run — hot day</div>
+    <div class="log-stats">
+      <span class="log-stat">6.44 km</span>
+      <span class="log-stat">45:02</span>
+      <span class="log-stat">6:59/km avg</span>
+      <span class="log-stat">149 bpm avg ✅</span>
+      <span class="log-stat">161 bpm max</span>
+      <span class="log-stat">Pegasus 41</span>
+    </div>
+  </div>
+  <div class="splits-row">
+    <span class="split-pill ok">km1 — 6:57 · 137</span>
+    <span class="split-pill ok">km2 — 7:02 · 148</span>
+    <span class="split-pill ok">km3 — 7:09 · 147</span>
+    <span class="split-pill ok">km4 — 6:58 · 149</span>
+    <span class="split-pill fast">km5 — 6:38 · 154</span>
+    <span class="split-pill ok">km6 — 7:06 · 158</span>
+    <span class="split-pill ok">0.4K — 7:15 · 147</span>
+  </div>
+  <div class="log-analysis">
+    <strong>Solid Zone 2 run.</strong> 149 bpm avg is right at ceiling — correct. Consistent splits, zero stops despite fatigue and heat. That's the mental toughness the marathon needs.<br><br>
+    <strong>Heat adjustment:</strong> At high temperature HR runs 5–10 bpm higher for the same effort. Your effective Zone 2 was ~140–145 bpm yesterday — you were actually running correctly. The fatigue was real, not weakness.<br><br>
+    <strong>Km 5 at 6:38/154 bpm:</strong> Minor Zone 3 spike — not a problem in isolation. Watch it doesn't become a habit in the middle km.<br><br>
+    <strong>Nutrition note:</strong> Two bananas + mandarin + pumpkin seeds + cake before run = slightly too full. Cake adds fat/sugar that sits heavy. Stick to bananas + seeds pre-run, no cake.
+  </div>
+</div>
+
+<!-- DAY 9 · Run -->
+<div class="log-entry log-run">
+  <div class="log-entry-type">RUN · Easy</div>
+  <div class="log-header">
+    <div class="log-date">Day 9 · Wed Apr 15 · Easy Run — too fast</div>
+    <div class="log-stats">
+      <span class="log-stat">6.44 km</span>
+      <span class="log-stat">42:15</span>
+      <span class="log-stat">6:33/km avg</span>
+      <span class="log-stat">157 bpm avg ⚠️</span>
+      <span class="log-stat">162 bpm max</span>
+      <span class="log-stat">Infinity RN 4</span>
+    </div>
+  </div>
+  <div class="splits-row">
+    <span class="split-pill ok">km1 — 6:57 · 155 ✓</span>
+    <span class="split-pill fast">km2 — 6:23 · 157</span>
+    <span class="split-pill fast">km3 — 6:32 · 157</span>
+    <span class="split-pill fast">km4 — 6:20 · 157</span>
+    <span class="split-pill fast">km5 — 6:16 · 160 🚨</span>
+    <span class="split-pill fast">km6 — 6:47 · 156</span>
+    <span class="split-pill fast">0.4K — 6:40 · 157</span>
+  </div>
+  <div class="log-analysis">
+    <strong>Same route, 26 sec/km faster, 8 bpm higher HR.</strong> 157 bpm avg = Zone 3. HR graph shows a flat band at 155–160 the whole run — you held Zone 3 steadily, not accidentally drifted there.<br><br>
+    <strong>What happened:</strong> Cooler weather + better shoes = felt easier, ran faster without noticing. "Feeling good" on an easy run is the signal to slow down, not hold pace. The Infinity RN 4 feeling springier tricked you into a faster effort.<br><br>
+    <strong>Km 1 was correct</strong> at 6:57 — the problem crept in from km 2 onward. HR alert at 150 bpm either wasn't set or got overridden.<br><br>
+    <strong>Fix:</strong> On easy days, target 7:00–7:30/km regardless of conditions or shoe feel. Reset the Apple Watch HR alert to 150 bpm and respect it from km 1. Good conditions = same pace target, not faster.<br><br>
+    <strong>Shoe verdict:</strong> Infinity RN 4 for long runs ✅. Pegasus 41 for easy weekday runs is fine — the thinner sole keeps you honest on pace.
+  </div>
+</div>
+      
+
+
+<!-- DAY 9 · COPY -->
+<!--<div class="log-entry log-run">-->
+<!--  <div class="log-entry-type">RUN · Easy</div>-->
+<!--  <div class="log-header">-->
+<!--    <div class="log-date">Day 9 copy · Wed Apr 15 · Easy Run — too fast</div>-->
+<!--    <div class="log-stats">-->
+<!--      <span class="log-stat">6.44 km</span>-->
+<!--      <span class="log-stat">42:15</span>-->
+<!--      <span class="log-stat">6:33/km avg</span>-->
+<!--      <span class="log-stat">157 bpm avg ⚠️</span>-->
+<!--      <span class="log-stat">162 bpm max</span>-->
+<!--      <span class="log-stat">Infinity RN 4</span>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="splits-row">-->
+<!--    <span class="split-pill ok">km1 — 6:57 · 155 ✓</span>-->
+<!--    <span class="split-pill fast">km2 — 6:23 · 157</span>-->
+<!--    <span class="split-pill fast">km3 — 6:32 · 157</span>-->
+<!--    <span class="split-pill fast">km4 — 6:20 · 157</span>-->
+<!--    <span class="split-pill fast">km5 — 6:16 · 160 🚨</span>-->
+<!--    <span class="split-pill fast">km6 — 6:47 · 156</span>-->
+<!--    <span class="split-pill fast">0.4K — 6:40 · 157</span>-->
+<!--  </div>-->
+<!--  <div class="log-analysis">-->
+<!--    <strong>Same route, 26 sec/km faster, 8 bpm higher HR.</strong> 157 bpm avg = Zone 3. HR graph shows a flat band at 155–160 the whole run — you held Zone 3 steadily, not accidentally drifted there.<br><br>-->
+<!--    <strong>What happened:</strong> Cooler weather + better shoes = felt easier, ran faster without noticing. "Feeling good" on an easy run is the signal to slow down, not hold pace. The Infinity RN 4 feeling springier tricked you into a faster effort.<br><br>-->
+<!--    <strong>Km 1 was correct</strong> at 6:57 — the problem crept in from km 2 onward. HR alert at 150 bpm either wasn't set or got overridden.<br><br>-->
+<!--    <strong>Fix:</strong> On easy days, target 7:00–7:30/km regardless of conditions or shoe feel. Reset the Apple Watch HR alert to 150 bpm and respect it from km 1. Good conditions = same pace target, not faster.<br><br>-->
+<!--    <strong>Shoe verdict:</strong> Infinity RN 4 for long runs ✅. Pegasus 41 for easy weekday runs is fine — the thinner sole keeps you honest on pace.-->
+<!--  </div>-->
+<!--</div>-->
+
+
+
+    </div>
+  </div>
+
+
+</div>
+<!-- FAQ PAGE -->
+<div id="page-faq" class="page">
+  <div class="hero">
+    <h1>FAQ <em>&amp;</em> Coach Q&amp;A</h1>
+    <p>Questions asked during training — answered with research and context specific to your case.</p>
+  </div>
+  <div class="run-log">
+
+    <div class="log-entry">
+      <div class="log-header"><div class="log-date">1. Does creatine help for running?</div></div>
+      <div class="log-analysis">
+        Mostly no &mdash; creatine benefits explosive efforts under ~10 seconds (sprints, heavy lifts) via phosphocreatine replenishment. For aerobic endurance running (oxidative metabolism), no significant benefit. A 2003 meta-analysis found no endurance performance improvement from creatine.<br><br>
+        <strong>Indirect benefit:</strong> Helps recover from gym sessions faster, so Thursday leg day quality may marginally improve. Keep taking it for that reason.<br><br>
+        <strong>Watch for:</strong> Mild water retention of 1&ndash;2kg &mdash; normal, not a problem.
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-header"><div class="log-date">2. Knee popping sounds &mdash; should I be worried?</div></div>
+      <div class="log-analysis">
+        Almost certainly benign crepitus. Popping when straightening from bent position or after prolonged sitting = gas bubbles in synovial fluid (harmless) or patella tracking slightly off-center over femur (caused by weak VMO + glutes).<br><br>
+        <strong>The rule:</strong> Sound without pain = monitor and continue. Sound with pain = stop and investigate.<br><br>
+        <strong>Fix:</strong> The Thursday VMO strengthening (terminal knee extensions) and hip abductor work directly improves patellar tracking. Most crepitus from poor tracking resolves within 4&ndash;6 weeks of consistent strengthening. Your bilateral knee ache after Day 2 run is more significant than the popping.
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-header"><div class="log-date">3. Should I take fish oil?</div></div>
+      <div class="log-analysis">
+        Yes &mdash; specifically relevant to your situation. Omega-3s (EPA + DHA) reduce joint inflammation via prostaglandin E2 and leukotriene B4 pathways (Calder, British J Clinical Pharmacology, 2013). For someone with active knee irritation and increasing running volume, this is meaningful, not generic wellness advice.<br><br>
+        <strong>Dose:</strong> 2&ndash;3g combined EPA+DHA per day. Nature Made 1200mg (360mg omega-3 per capsule): 4 capsules/day with food = ~1.2g EPA+DHA. Upgrade to higher-concentration product next purchase (Nordic Naturals, Thorne &mdash; 1g+ EPA+DHA per capsule).<br><br>
+        <strong>Timeline:</strong> 4&ndash;6 weeks to show effects &mdash; cumulative, not acute.<br><br>
+        <strong>Alternative:</strong> Algae oil for plant-based EPA+DHA &mdash; same benefit, no fish source. Look for a higher-concentration product — something like 1000mg+ EPA+DHA per capsule (Nordic Naturals Ultimate Omega, Carlson Very Finest, or Thorne Omega-3). These let you hit 2–3g in just 2 capsules. More economical long-term.
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-header"><div class="log-date">4. Other things to consider for the marathon?</div></div>
+      <div class="log-analysis">
+        <strong>Shoes:</strong> Nike Pegasus 41 is correct. Check current mileage &mdash; shoes lose cushioning after 600&ndash;800km. If yours have significant km already, plan a second pair for race day (worn in for 3+ long runs first).<br><br>
+        <strong>Chafing:</strong> From 16K+ onward, inner thigh and nipple chafing become real issues for men. Get Body Glide or Vaseline before first 15K+ run. Apply inner thighs, armpits, nipples before every long run.<br><br>
+        <strong>Toenails:</strong> Cut short before long runs. Black toenails from repeated impact are common from 20K+ if nails are long.<br><br>
+        <strong>Sunscreen:</strong> SPF 50 before every outdoor run. Sacramento summer is real.<br><br>
+        <strong>Stress load:</strong> In peak weeks (11&ndash;13), high work stress + poor sleep directly competes with adaptation and raises injury risk. Protect sleep before long runs.<br><br>
+        <strong>Strava or similar:</strong> Track weekly km totals to stay within the 10% mileage rule automatically.
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-header"><div class="log-date">5. Weak glutes &mdash; why, and what to do?</div></div>
+      <div class="log-analysis">
+        <strong>Why your glutes are underdeveloped:</strong> Prolonged desk sitting at 90&deg; hip flexion neurologically inhibits glute activation (gluteal amnesia / dead butt syndrome). Hip flexors adaptively shorten, glutes adaptively lengthen and go quiet. Your defined quads compensated for running and biking, but glutes stayed dormant.<br><br>
+        The femur-on-bench discomfort from years ago = almost zero gluteal padding from chronic inhibition and underdevelopment. The slight improvement in 2 months of gym confirms the muscle responds &mdash; it&rsquo;s just slow due to poor neural activation.<br><br>
+        <strong>Why glutes grow slower than quads:</strong> Poor mind-muscle connection (most gym movements default to quad dominance), possible neural inhibition meaning hamstrings do most of hip thrust work, and insufficient volume/frequency.<br><br>
+        <strong>Desk fix:</strong> Stand every 45&ndash;60 min. Do seated glute squeezes 10&times;5sec throughout the day &mdash; contracts the muscle, maintains neural activation between sessions. Posterior pelvic tilt when sitting.<br><br>
+        <strong>Training fix:</strong> Do 10 glute bridge reps as hard activation before every glute exercise. Without this primer, body defaults to quad/hamstring patterns. Hip thrusts at top of session with 2-sec squeeze. Higher reps (12&ndash;20) and frequency (2&ndash;3&times;/week) over heavy low-rep work.<br><br>
+        <strong>Timeline:</strong> Noticeable soreness after sessions (muscle actually working) = 2&ndash;3 weeks. Running-specific benefit (knee pain reducing, running easier) = 4&ndash;6 weeks. Visible development = 8&ndash;12 weeks.
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-header"><div class="log-date">6. Full Thursday leg day &mdash; what exercises and why?</div></div>
+      <div class="log-analysis">
+        <strong>Block 1 &mdash; Activation (always first):</strong> Glute bridges 2&times;15 bodyweight + clamshells 2&times;15 with band. Primes neural pathway so heavier exercises actually hit the right muscle.<br><br>
+        <strong>Block 2 &mdash; Primary glute/hip:</strong> Hip thrusts 3&times;12 weighted (2-sec hold top) &rarr; Single-leg RDL 3&times;10 each leg light &rarr; Bulgarian split squat 3&times;8 each leg.<br><br>
+        <strong>Block 3 &mdash; Abduction/adduction (trainer was right):</strong> Hip abduction 3&times;15 (cable or machine) &rarr; Hip adduction 3&times;15 &rarr; Lateral band walks 2&times;15 steps each direction. Abduction trains glute medius that prevents knee valgus (the inward wobble during running). Adduction stabilizes pelvis from the medial side.<br><br>
+        <strong>Block 4 &mdash; Knee specific:</strong> Terminal knee extensions 3&times;15 each leg (VMO isolation, most targeted fix for your patellar tracking) &rarr; Step-ups 3&times;10 each leg (bodyweight until you feel it in the glute) &rarr; Calf raises 3&times;20 slow full range.<br><br>
+        <strong>Block 5 &mdash; Posterior chain (once RDL form is clean):</strong> RDL 3&times;8.<br><br>
+        <strong>What to skip for now:</strong> Leg press (quad-dominant, lower priority), heavy bilateral squats (same reason), lunges at end of session.<br><br>
+        <strong>Volume ramp:</strong> Weeks 1&ndash;2: Blocks 1+2 only. Week 3: Add Block 3. Week 5+: Add Block 5 when RDL form is clean. Total session = 50&ndash;60 min.
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-header"><div class="log-date">7. Step-ups not felt in glutes. Do glutes fix knees by default?</div></div>
+      <div class="log-analysis">
+        <strong>Step-up fix:</strong> 27.5lb is too heavy. Heavy step-ups shift work to hip flexors and tibialis anterior (shin). Fix: drop to bodyweight, place full foot on box, lean slightly forward from hip, drive through heel of elevated leg. Feel the glute fire before adding any weight at all.<br><br>
+        <strong>Glutes &rarr; knees &mdash; yes, mostly by default:</strong> Glute max controls hip extension and prevents trunk collapse when fatigued. Glute medius controls hip abduction and prevents knee caving inward (valgus) on each stride. VMO controls patellar tracking. These three together are responsible for almost all recreational runner knee pain.<br><br>
+        <strong>Two knee-specific things glutes don&rsquo;t fully cover:</strong><br>
+        Terminal knee extensions &mdash; VMO isolation, direct patellar tracking fix. Do these with bands at home.<br>
+        Eccentric calf raises (slow heel drops off a step) &mdash; loads patellar and achilles tendons eccentrically, the most evidence-backed intervention for tendon resilience at marathon distance.<br><br>
+        <strong>Home recovery session (bands only):</strong> TKEs 3&times;15 each leg &rarr; Clamshells 3&times;15 each side &rarr; Glute bridges 2&times;20 &rarr; Eccentric calf drops 3&times;15. 15&ndash;20 min, low fatigue, use to practice mind-muscle connection.
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-header"><div class="log-date">8. Why do I have to run so slowly? I can run 5K at 5:00&ndash;5:30/km.</div></div>
+      <div class="log-analysis">
+        <strong>Your 5K pace and your marathon pace are completely different physiological events.</strong> Running 5K at 5:00&ndash;5:30/km is an anaerobic-dominant effort &mdash; you&rsquo;re burning glycogen fast, your HR is high, and your body can sustain it for 20&ndash;25 minutes because it&rsquo;s a short sprint by endurance standards. A marathon is 42.2km. At that distance, you&rsquo;re on your feet for 5+ hours. The energy system that powers you there is aerobic fat oxidation, not glycogen &mdash; and that system only operates efficiently at lower intensities (Zone 2, below 146 bpm for you right now).<br><br>
+        <strong>Why does your HR spike so fast?</strong> Two reasons. First, you&rsquo;re aerobically undertrained &mdash; your heart and mitochondria haven&rsquo;t yet adapted to sustained low-intensity output. Your cardiovascular system is efficient at short bursts but hasn&rsquo;t built the aerobic base needed to maintain 6:00/km comfortably. This is not a permanent state &mdash; it&rsquo;s exactly what these 16 weeks are fixing. Second, you&rsquo;re simply new to volume. Running 5K once is very different from running 5K every day, then 8K, then 15K. The cumulative load is new to your body.<br><br>
+        <strong>Why can Africans run under 2 hours?</strong> Eliud Kipchoge runs a marathon at ~2:50/km &mdash; faster than most people can sprint 100m. This is the result of 20+ years of high-altitude training from age 14, exceptional VO2 max (85+ ml/kg/min vs ~50 for a fit recreational runner), extremely high mitochondrial density, and biomechanics refined over a lifetime. Their Zone 2 &mdash; the pace where fat oxidation is efficient &mdash; is roughly 3:30/km. Yours right now is about 7:15/km. The difference isn&rsquo;t that you&rsquo;re unfit &mdash; it&rsquo;s that you&rsquo;re untrained for aerobic endurance specifically. A world-class 100m sprinter couldn&rsquo;t run a sub-2 marathon either.<br><br>
+        <strong>What happens when you train Zone 2 consistently?</strong> Over 8&ndash;16 weeks, your mitochondria multiply (mitochondrial biogenesis), your heart stroke volume increases (more blood per beat), your body&rsquo;s fat oxidation efficiency improves, and your lactate threshold rises. The result: in 8 weeks, your Zone 2 pace will naturally drop from 7:15/km toward 6:30/km &mdash; without you ever trying to run faster. You&rsquo;ll feel the same effort but cover more ground. This is aerobic adaptation, and it only happens through patient low-intensity work.<br><br>
+        <strong>The short answer:</strong> You have to run slowly now so that in 12 weeks you can run the same pace at a lower HR &mdash; and then sustain it for 42km. Running fast in training right now just burns matches you need for race day and delays the adaptation. The slow runs are the training.
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-header"><div class="log-date">9. What is VO2 Max? How do I calculate it without a lab? Does it matter for marathon?</div></div>
+      <div class="log-analysis">
+        <strong>What VO2 Max actually is:</strong> VO2 Max is the maximum volume of oxygen your body can consume per minute per kilogram of bodyweight, measured in ml/kg/min. It&rsquo;s essentially the size of your aerobic engine &mdash; how much oxygen your heart can pump, your lungs can absorb, and your muscles can use simultaneously at maximum effort. A higher VO2 Max means your body can sustain faster paces aerobically before switching to anaerobic (glycogen-burning, fatigue-producing) metabolism.<br><br>
+        <strong>No, you don&rsquo;t need an oxygen meter.</strong> A pulse oximeter (the finger clip device) measures blood oxygen saturation (SpO2), which stays at 95&ndash;99% in nearly everyone regardless of fitness &mdash; it doesn&rsquo;t measure VO2 Max at all. True VO2 Max requires a lab treadmill test with a face mask measuring exhaled gases. However, there are accurate field estimates you can calculate from data you already have.<br><br>
+        <strong>How to estimate your VO2 Max from your running data:</strong> The most validated field method is the Cooper 12-minute test formula. Run as far as possible in exactly 12 minutes (flat surface, all-out effort), then: <em>VO2 Max = (distance in metres &minus; 504.9) &divide; 44.73</em>. For example, if you cover 2,200m in 12 min: (2200 &minus; 504.9) &divide; 44.73 &asymp; 37.9 ml/kg/min.<br><br>
+        A second method uses your recent 5K time. With your ~5:00&ndash;5:30/km 5K pace (25&ndash;27 min), the Daniels/Gilbert formula estimates your VO2 Max at roughly <strong>40&ndash;45 ml/kg/min</strong>. This puts you in the &ldquo;average to above average&rdquo; range for a 25-year-old male (average is ~42, trained recreational runners are 50&ndash;60, elite marathoners are 70&ndash;85).<br><br>
+        <strong>Apple Watch SE limitation:</strong> The SE does not calculate VO2 Max (only the Apple Watch Series 3+ with GPS does, using outdoor runs with GPS pace data). You can use Strava or any GPS run with pace + HR data to plug into the formula above, or just do the Cooper test on a flat path.<br><br>
+        <strong>VO2 Max by sport &mdash; how relevant is it?</strong><br><br>
+        <em>Marathon:</em> Moderately important but not the deciding factor. You race at 75&ndash;85% of VO2 Max, so lactate threshold and fat oxidation efficiency matter more. Kipchoge&rsquo;s VO2 Max is ~85, but his lactate threshold is at 92% of that &mdash; meaning he can sustain near-maximum aerobic output for hours. Your aerobic base (Zone 2 training) raises both.<br><br>
+        <em>Half marathon and 10K:</em> More important. You&rsquo;re racing at 85&ndash;95% of VO2 Max, so a higher ceiling directly raises your race pace ceiling.<br><br>
+        <em>5K:</em> Highly important. A 5K at full effort taxes ~95&ndash;100% of VO2 Max. This is why your 5K pace feels sustainable but your HR rockets &mdash; you&rsquo;re near your aerobic ceiling.<br><br>
+        <em>Sprints (100m&ndash;400m):</em> VO2 Max is almost irrelevant. Sprinting is purely anaerobic (phosphocreatine and glycolysis). Elite sprinters often have lower VO2 Max than elite distance runners.<br><br>
+        <em>HIIT:</em> Very relevant. HIIT works by repeatedly pushing you to 90&ndash;100% VO2 Max in short bursts, which over time raises the ceiling. This is why HIIT improves aerobic fitness quickly &mdash; it stresses the system at its upper limit.<br><br>
+        <strong>How Zone 2 training raises VO2 Max:</strong> Consistent Zone 2 running triggers mitochondrial biogenesis &mdash; your muscle cells grow more mitochondria (the organelles that consume oxygen to produce energy). More mitochondria = more oxygen processed per minute = higher VO2 Max. This process takes 8&ndash;16 weeks of consistent work. The speed work you add from Week 6 then teaches your body to use that expanded engine at higher intensities.<br><br>
+        <strong>Your practical target:</strong> Getting from ~42 to ~50 ml/kg/min over this 16-week cycle is realistic with consistent Zone 2 + speed work. That improvement alone would drop your natural easy pace from 7:15/km to around 6:30/km at the same heart rate. Re-run the Cooper test at Week 8 and Week 16 to track it.
+      </div>
+    </div>
+    
+    
+    <div class="log-entry">
+      <div class="log-header"><div class="log-date">10. What is aerobic vs anaerobic? What does it actually mean in running and gym context?</div></div>
+      <div class="log-analysis">
+        <strong>The core difference is where your body gets its energy from.</strong> Every movement you make requires ATP (adenosine triphosphate) &mdash; the universal energy currency of cells. Your body has three systems to produce it, and which one dominates depends entirely on how hard and how long you&rsquo;re working.<br><br>
+        <strong>Aerobic = &ldquo;with oxygen.&rdquo;</strong> When your effort is low-to-moderate and sustained, your body uses oxygen to burn fat and glucose in your mitochondria. This process is slow to start but enormously efficient &mdash; one molecule of glucose produces ~36 ATP aerobically. The byproducts are just CO2 (you breathe it out) and water. This is why you can jog for an hour without stopping &mdash; the system is clean, sustainable, and self-regulating. Your Zone 2 runs (HR 127&ndash;146 bpm) are entirely aerobic. Your long runs are aerobic. Your bike commute is aerobic.<br><br>
+        <strong>Anaerobic = &ldquo;without oxygen.&rdquo;</strong> When effort spikes above your aerobic threshold &mdash; a hard sprint, a heavy squat, a fast km split &mdash; your muscles need ATP faster than the aerobic system can deliver it. Your body switches to glycolysis, breaking down glucose without oxygen. This is fast but inefficient: one glucose molecule produces only 2 ATP, and the byproduct is lactic acid (which dissociates into lactate + hydrogen ions). The hydrogen ions are what create the burning, heavy-leg sensation. This system has a short runway &mdash; 1&ndash;3 minutes at maximum anaerobic effort before the acid buildup forces you to slow down.<br><br>
+        <strong>The third system you should know:</strong> For pure explosive effort under ~10 seconds (100m sprint, a maximal jump, a 1-rep max lift), your body uses the phosphocreatine system &mdash; no oxygen, no glycolysis, just stored phosphocreatine molecules instantly donating energy. It&rsquo;s the fastest system but depletes in seconds. This is exactly why creatine supplementation helps for gym work &mdash; it replenishes this pool &mdash; but does almost nothing for running where you&rsquo;re never in pure phosphocreatine territory for more than a stride.<br><br>
+        <strong>In your running, concretely:</strong><br>
+        Your Zone 2 easy runs (7:00&ndash;7:30/km, HR &lt;146) = fully aerobic &mdash; fat + glucose + oxygen, sustainable indefinitely with fueling.<br>
+        Your km 3 at 5:24 on Day 1 (HR 173) = anaerobic threshold crossed. Lactate accumulating faster than it can clear. This is why you hit the wall shortly after and needed walk breaks.<br>
+        A full sprint = phosphocreatine + anaerobic glycolysis. You can hold it for 20&ndash;30 seconds maximum.<br><br>
+        <strong>The lactate threshold is the key number:</strong> This is the exact intensity at which lactate production equals lactate clearance &mdash; the highest sustainable aerobic pace. For untrained people it sits around 55&ndash;65% of VO2 Max. For elite marathoners it sits at 85&ndash;92% of VO2 Max &mdash; meaning they can run near their aerobic ceiling without accumulating debt. The entire goal of Zone 2 training is to push this threshold higher. When your lactate threshold rises, your aerobic &ldquo;speed limit&rdquo; rises with it &mdash; you can run faster before crossing into anaerobic territory.<br><br>
+        <strong>In the gym:</strong><br>
+        A set of 15 hip thrusts = mostly anaerobic glycolysis (30&ndash;45 seconds of effort, glucose-powered).<br>
+        Your L-sits and pull-up holds = anaerobic + phosphocreatine depending on duration.<br>
+        A 20-minute light bike warmup = aerobic.<br>
+        HIIT = deliberately alternating aerobic and anaerobic to stress both systems and raise VO2 Max.<br><br>
+        <strong>Why this matters for your marathon specifically:</strong> The wall at km 30&ndash;35 that most first-time marathoners hit is not a fitness failure &mdash; it&rsquo;s a fuel failure. Your glycogen stores (the anaerobic fuel) are depleted after roughly 90 minutes of running. If you&rsquo;ve been running aerobically and fueling correctly, your body smoothly transitions to fat oxidation. If you&rsquo;ve been running too fast (partly anaerobic), you drain glycogen faster, hit the wall earlier, and your body can&rsquo;t switch fuel sources efficiently because the aerobic fat-burning machinery was never properly trained. Every boring slow Zone 2 run is literally training your body to use fat as fuel at race pace &mdash; which is what keeps you moving past km 30.
+      </div>
+    </div>
+    
+    
+    <div class="log-entry">
+      <div class="log-header"><div class="log-date">11. Thursday leg day — complete guide for my case. What exercises, what weight, how to feel it?</div></div>
+      <div class="log-analysis">
+        <strong>The governing principle for your case:</strong> You need glute strength for running mechanics, knee stability, and injury prevention — not bodybuilding hypertrophy. This means the goal of every exercise is to feel the target muscle working, not to move the most weight. Form + activation + squeeze beats heavy + sloppy every single time. If you can&rsquo;t feel your glute during a hip thrust, the weight is irrelevant.<br><br>
+        <strong>On weight selection — the honest answer:</strong> Use the heaviest weight where you can still (1) complete the full range of motion, (2) pause and squeeze at the peak, and (3) feel it in the correct muscle. The moment you can&rsquo;t do all three, the weight is too heavy. For hip thrusts specifically, this is usually heavier than people expect because the glute is a large powerful muscle. For step-ups and split squats, lighter than people expect because balance and glute isolation require more control. Start at &ldquo;comfortably challenging&rdquo; — the last 3 reps of each set should require effort but not compromise form. Add weight only when all reps feel smooth and you can genuinely feel the squeeze throughout.<br><br>
+        <strong>When you had knee pain last Thursday:</strong> You did the right thing going light. Any time knee pain is present, drop all loaded knee-dominant movements (squats, lunges, step-ups) and focus only on hip-dominant work (hip thrusts, clamshells, bridges) and the TKE band work which directly treats the knee. This is not regression — it&rsquo;s intelligent programming.<br><br>
+        <strong>THE FULL THURSDAY SESSION — in order:</strong><br><br>
+        <strong>Block 1 — Activation (always first, non-negotiable, 5 min)</strong><br>
+        These prime the neural pathway so your glutes actually fire during the heavier work. Skip this and your quads and hamstrings take over everything.<br>
+        &bull; Glute bridges: 2 &times; 15 reps, bodyweight only. Lie on your back, feet flat, drive hips up, squeeze HARD at the top for 2 full seconds. You should feel your glutes cramping slightly. If you feel your hamstrings doing the work, move feet closer to your body.<br>
+        &bull; Clamshells: 2 &times; 15 each side, short resistance band above the knees. On your side, knees bent, feet together — open the top knee like a clam. Feel the outer glute (gluteus medius) burning. Go slow.<br><br>
+        <strong>Block 2 — Primary glute strength (main work, 15&ndash;20 min)</strong><br>
+        &bull; Hip thrusts: 3 &times; 12. Use the machine or barbell. Weight: start at 35lb each side (your current level), add 5–10lb when 12 reps feel easy with a pause. Drive through both heels, chin tucked, shins vertical at the top. Squeeze for 2 seconds at the top — if you skip the squeeze, you lose 40% of the benefit. You should feel this almost exclusively in your glutes, not your lower back.<br>
+        &bull; Bulgarian split squat: 3 &times; 8 each leg. Rear foot elevated on a bench, front foot forward enough that your shin stays vertical. Hold dumbbells or go bodyweight. Drive through the heel of the front foot. Feel the front-leg glute loading on the way down. This is hard — expect it to be humbling. Start bodyweight until the balance pattern is solid.<br>
+        &bull; Single-leg Romanian deadlift: 3 &times; 10 each leg, light dumbbell. Hinge at the hip, send the free leg back, keep your back flat. Feel the hamstring and glute of the standing leg loading like a rubber band. This also trains balance and single-leg stability which directly improves your running mechanics on every stride.<br><br>
+        <strong>Block 3 — Hip abductor and adductor work (10 min)</strong><br>
+        Directly prevents the knee valgus wobble your calisthenics trainer flagged.<br>
+        &bull; Machine hip abduction: 3 &times; 15. Controlled, squeeze at the widest point. Feel the outer hip and glute medius.<br>
+        &bull; Machine hip adduction: 3 &times; 15. Inner thigh engagement. Stabilizes your pelvis from the medial side during each running stride.<br>
+        &bull; Lateral band walks: 2 &times; 15 steps each direction. Short band above the knees, slight squat position. Steps should be deliberate — feel the outer glute resisting the band. This is one of the most functional running-specific movements you can do.<br><br>
+        <strong>Block 4 — Knee and lower leg (10 min)</strong><br>
+        &bull; Terminal knee extensions (TKE): 3 &times; 15 each leg. Long resistance band anchored to something fixed at knee height. Face away, loop behind the knee, stand with slight bend, then extend against the band resistance. You should feel the VMO (inner quad, just above and inside the kneecap) contracting. This is the most targeted fix for your patellar tracking and the knee warmup pain. Go slow.<br>
+        &bull; Step-ups: 3 &times; 10 each leg. Bodyweight until you consistently feel the glute — then add light dumbbells. Full foot on the box, lean slightly forward, push through the heel. If you feel your shin or quad, reset and go lighter.<br>
+        &bull; Calf raises: 3 &times; 20, slow and full range. Rise all the way up, lower all the way down past neutral. The bottom stretch is as important as the contraction. Your calves and achilles absorb impact on every running stride — this is injury prevention work.<br><br>
+        <strong>Block 5 — Posterior chain, add from Week 5 onward when RDL form is clean</strong><br>
+        &bull; Romanian deadlift (bilateral): 3 &times; 8 with barbell or dumbbells. Hip hinge, not a squat. Bar stays close to the legs, feel the hamstrings loading. If you feel it in your lower back, you&rsquo;re rounding — reduce weight and find the hip hinge position first.<br><br>
+        <strong>What to skip or deprioritize for your goals:</strong><br>
+        Leg press — quad dominant, lower priority when glutes are the weak link.<br>
+        Heavy bilateral squats — same reason, plus they load the knee more than you need right now.<br>
+        Lunges at end of session — move them earlier or replace with split squats; lunges after a full session = excessive DOMS that bleeds into your weekend runs.<br><br>
+        <strong>Volume ramp to avoid the Day 3 DOMS situation:</strong><br>
+        Weeks 1&ndash;2: Blocks 1 + 2 only (activation + primary glute work).<br>
+        Week 3: Add Block 3 (abductor/adductor).<br>
+        Week 4: Add Block 4 (knee/lower leg).<br>
+        Week 5+: Add Block 5 when RDL form is solid.<br>
+        Total session time: 50&ndash;60 min. If you&rsquo;re there for 90 minutes, your rest periods are too long &mdash; keep them to 60&ndash;90 seconds for this style of work.
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-header"><div class="log-date">12. Recovery days — what to do at home with bands, parallettes, foam roller, yoga mat?</div></div>
+      <div class="log-analysis">
+        <strong>Recovery is not rest from everything — it&rsquo;s rest from load.</strong> The goal of recovery days is to promote blood flow, reduce stiffness, maintain tissue quality, and build the neural activation habits that protect you from injury. With your equipment (short bands, long bands, floor parallettes, yoga mat, foam roller incoming) you have everything needed for a complete home recovery toolkit.<br><br>
+        <strong>MONDAY — Full recovery after Sunday long run (20&ndash;25 min)</strong><br>
+        This is the most important recovery session of the week. Sunday&rsquo;s long run creates micro-damage in your quads, IT band, and calves. Monday&rsquo;s work flushes that out and reduces Tuesday soreness significantly.<br>
+        &bull; Foam roller (when it arrives): Quads 60 sec each leg — roll slowly, pause on tender spots. IT band (outer thigh) 60 sec each side — this will be the most uncomfortable. Calves 45 sec each. Glutes and piriformis 45 sec each. Total: ~8 min. This alone cuts DOMS by ~30% per the research.<br>
+        &bull; Short band clamshells: 2 &times; 15 each side. Light band, slow and controlled. Keeps glute med active without loading.<br>
+        &bull; Hip flexor lunge stretch: 60 sec each side. Deep lunge, back knee on mat, sink hips forward. Your hip flexors shorten during running and sitting — this is non-negotiable.<br>
+        &bull; Supine hamstring stretch: 45 sec each leg. Leg straight up, hold with hands or long band looped around foot.<br>
+        &bull; Calf wall stretch: 45 sec each leg. Heel on floor, lean into wall. Straight leg then bent-knee version (hits soleus, important for achilles health).<br><br>
+        <strong>FRIDAY — Pre-weekend activation (15 min)</strong><br>
+        Friday is rest from running but the day before Saturday&rsquo;s shakeout run. A brief activation keeps your nervous system primed.<br>
+        &bull; Glute bridges: 2 &times; 20 bodyweight, 2-second squeeze at top.<br>
+        &bull; Short band lateral walks: 2 &times; 12 steps each direction.<br>
+        &bull; TKEs with long band: 2 &times; 15 each leg, slow.<br>
+        &bull; Ankle circles and calf raises: 2 &times; 15 slow.<br>
+        Total: 10&ndash;15 min. Low effort, just keeping the activation pattern warm.<br><br>
+        <strong>PARALLETTES — what to use them for in recovery context</strong><br>
+        Your floor parallettes are excellent for two things relevant to your training:<br>
+        &bull; L-sit holds: 3 &times; max hold. Builds hip flexor and core endurance that supports upright running posture in late-race fatigue. Even 5&ndash;10 second holds are effective. Progress toward longer holds weekly.<br>
+        &bull; Knee tuck holds (progression toward L-sit): 3 &times; max. Same benefit, lower demand. Your parallettes let you do this with full shoulder depression which teaches the scapular stability that improves your arm drive during running.<br>
+        &bull; Push-up variations on parallettes: Greater range of motion than floor push-ups. On recovery days keep reps comfortable &mdash; this is not a hard session.<br>
+        Do parallette work on Tuesday (after easy run) or Saturday (after shakeout) &mdash; not on Thursday legs day or the day before a long run.<br><br>
+        <strong>BANDS — daily micro-work you can do at your desk</strong><br>
+        The seated glute squeeze habit mentioned earlier gets even better with a short band. Loop the short band just above your knees while sitting at your desk. Every 45&ndash;60 min, push both knees outward against the band for 10 reps of 5-second holds. This maintains glute medius activation throughout the day and directly counteracts the inhibition from sitting. Takes 60 seconds, does it invisibly at your workstation.<br><br>
+        <strong>FOAM ROLLER — once it arrives, priority order for you:</strong><br>
+        1. IT band (outer thigh) — tightest structure related to your knee pain. Roll slowly, don&rsquo;t rush over tender spots.<br>
+        2. Quads — second most important. Tight quads increase patellofemoral compression (your knee issue).<br>
+        3. Calves and achilles — impact absorption. Important as mileage increases.<br>
+        4. Glutes and piriformis — the piriformis can compress the sciatic nerve when tight, causing hip/lower back discomfort common in new runners.<br>
+        5. Upper back (thoracic spine) — do this on run days. Improves thoracic extension and therefore your upright running posture and breathing capacity.<br><br>
+        <strong>What NOT to foam roll:</strong> Never roll directly on the IT band attachment points (the hip bone or the outside of the knee), never roll the lower back (lumbar spine), never roll a joint. Roll the muscle belly only.<br><br>
+        <strong>YOGA MAT — stretching protocol after every run</strong><br>
+        Post-run on the mat: Hip flexor lunge stretch 60 sec each &rarr; Quad stretch 45 sec each &rarr; Hamstring forward fold 45 sec &rarr; Pigeon pose 60 sec each side (opens the hip external rotators, reduces glute tightness) &rarr; Calf wall stretch 45 sec each &rarr; Supine IT band cross-body stretch 45 sec each. Total: ~10 min. Do this every time you run, without exception. The cumulative benefit over 16 weeks is enormous — athletes who stretch consistently after runs have significantly lower injury rates than those who skip it.
+      </div>
+    </div>
+    
+    
+    
+    <!-- ADD NEW FAQ ENTRIES HERE -->
+    
+
+  </div>
+</div>
+
+<script>
+const DAYS = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+
+// type, label, distance (shown if not null), sub-note
+function d(type, label, dist, sub) {
+  return { type, label, dist: dist || null, sub: sub || '' };
+}
+
+const phases = [
+  {
+    title: 'Phase 1 — Base & Knee Fix',
+    desc: 'Establish the running habit and fix the knee. Runs feel easy — that\'s intentional. Glute/VMO work on Thursday is the highest-priority session of the week. Your daily 30-min bike commute counts as Zone 1 active recovery. Saturday: keep calisthenics after a short shakeout run.',
+    stats: ['Wk 1–5', '~22–30 km/wk', 'Long run: 8→14K', 'Gym 2×/wk'],
+    weeks: [
+      { label:'Week 1', meta:'~22 km total · Apr 6–12', days:[
+        d('recovery','Recovery + mobility',null,'Foam roll, hip flexors, leg swings'),
+        d('run-easy','Easy run + Gym','5K','Upper body + core'),
+        d('run-easy','Easy run','5K','Conversational pace'),
+        d('gym-legs','Leg day',null,'Hip thrusts, clamshells, VMO squats'),
+        d('rest','Rest',null,'Stretch only'),
+        d('run-easy','Shakeout + Calis','4K','Pull-ups, dips after run'),
+        d('run-long','Long run','8K','Easy — talk test'),
+      ]},
+      { label:'Week 2', meta:'~26 km total · Apr 13–19', days:[
+        d('recovery','Recovery + mobility',null,'IT band + calf foam roll'),
+        d('run-easy','Easy run + Gym','6K','Push/pull + planks'),
+        d('run-easy','Easy run','6K','Comfortable'),
+        d('gym-legs','Leg day',null,'Single-leg squats, bridges, step-ups'),
+        d('rest','Rest',null,'Full rest'),
+        d('run-easy','Shakeout + Calis','4K','Pull-ups, dips'),
+        d('run-long','Long run','10K','Easy pace'),
+      ]},
+      { label:'Week 3', meta:'~29 km total · Apr 20–26', days:[
+        d('recovery','Recovery',null,'Hip flexor stretch, glute activation'),
+        d('run-easy','Easy run + Gym','7K','Upper + core'),
+        d('run-easy','Easy run','7K','+ 3×30s strides at end'),
+        d('gym-legs','Leg day',null,'Bulgarian split squat, RDL, clamshells'),
+        d('rest','Rest',null,'Full rest'),
+        d('run-easy','Shakeout + Calis','4K','Reduce calis if tired'),
+        d('run-long','Long run','12K','Easy pace'),
+      ]},
+      { label:'Week 4 — Deload', meta:'~20 km total · Apr 27–May 3', days:[
+        d('recovery','Recovery',null,'Full mobility routine'),
+        d('run-easy','Easy run + Gym','5K','Light upper'),
+        d('run-easy','Easy run','5K','Very easy'),
+        d('gym-legs','Leg day',null,'Light — mobility focus only'),
+        d('rest','Rest',null,'Full rest'),
+        d('run-easy','Shakeout + Calis','4K','Easy calis'),
+        d('run-long','Long run','10K','Recovery long run'),
+      ]},
+      { label:'Week 5', meta:'~32 km total · May 4–10', days:[
+        d('recovery','Recovery',null,'Foam roll quads + calves'),
+        d('run-easy','Easy run + Gym','8K','Upper + core'),
+        d('run-easy','Easy run','8K','Comfortable'),
+        d('gym-legs','Leg day',null,'Hip thrusts, split squats, step-ups'),
+        d('rest','Rest',null,'Full rest'),
+        d('run-easy','Shakeout + Calis','4K','Pull-ups, dips'),
+        d('run-long','Long run','14K','Easy — knee should feel better now'),
+      ]},
+    ]
+  },
+  {
+    title: 'Phase 2 — Build to Half Marathon',
+    desc: 'Long runs build smoothly from 15K to 21K. Tuesday introduces speed work (strides or fartlek) from Week 6 — aligned with the official SFM training plan which adds speed sessions at this stage. Speed work is optional on deload weeks. Wednesday grows into a proper mid-week medium run. Saturday calisthenics: keep but cap at 2 sets.',
+    stats: ['Wk 6–10', '~34–46 km/wk', 'Long run: 15→21K', 'Speed from wk 6'],
+    weeks: [
+      { label:'Week 6', meta:'~34 km total · May 11–17', days:[
+        d('recovery','Recovery',null,'IT band + hip flexors'),
+        d('speed','Speed + Gym','7K','6×30s strides + easy jog + upper/core'),
+        d('run-easy','Med run','8K','Comfortable'),
+        d('gym-legs','Leg day',null,'Glutes + stability focus'),
+        d('rest','Rest',null,'Full rest'),
+        d('run-easy','Shakeout + Calis','5K','Reduced calis — 2 sets'),
+        d('run-long','Long run','15K','First fueling run — eat at 45 min'),
+      ]},
+      { label:'Week 7', meta:'~37 km total · May 18–24', days:[
+        d('recovery','Recovery',null,'Full foam roll session'),
+        d('speed','Speed + Gym','8K','Fartlek: 5×2 min fast / 2 min easy + upper/core'),
+        d('run-easy','Med run','9K','Comfortable'),
+        d('gym-legs','Leg day',null,'Single-leg RDL, hip thrusts, clamshells'),
+        d('rest','Rest',null,'Full rest'),
+        d('run-easy','Shakeout + Calis','5K','Pull-ups, dips — 2 sets'),
+        d('run-long','Long run','17K','Bring water + 2 snacks'),
+      ]},
+      { label:'Week 8 — Deload', meta:'~27 km total · May 25–31', days:[
+        d('recovery','Recovery',null,'Light walk + stretch'),
+        d('run-easy','Easy run + Gym','6K','Easy — no speed this week'),
+        d('run-easy','Easy run','7K','Very easy'),
+        d('gym-legs','Leg day',null,'Light — no DOMS'),
+        d('rest','Rest',null,'Full rest'),
+        d('run-easy','Shakeout + Calis','5K','Normal calis'),
+        d('run-long','Long run','13K','Recovery long run — easy effort'),
+      ]},
+      { label:'Week 9', meta:'~41 km total · Jun 1–7', days:[
+        d('recovery','Recovery',null,'Foam roll everything'),
+        d('speed','Speed + Gym','9K','Fartlek: 6×2 min fast / 90s easy + upper/core'),
+        d('run-easy','Med run','10K','Comfortable'),
+        d('gym-legs','Leg day',null,'Glutes, step-ups, terminal knee ext.'),
+        d('rest','Rest',null,'Full rest'),
+        d('run-easy','Shakeout + Calis','5K','2 sets pull-ups, dips'),
+        d('run-long','Long run','19K','Fuel every 45 min'),
+      ]},
+      { label:'Week 10 — Half Marathon', meta:'~46 km total · Jun 8–14', days:[
+        d('recovery','Recovery',null,'Full mobility protocol'),
+        d('speed','Speed + Gym','9K','8×30s strides after easy 6K warm-up + upper/core'),
+        d('run-easy','Med run','11K','Steady effort'),
+        d('gym-legs','Leg day',null,'Glutes + hip stability'),
+        d('rest','Rest',null,'Full rest'),
+        d('run-easy','Shakeout','5K','No calis this week'),
+        d('run-long','Long run — 21K','21K','You\'re halfway there'),
+      ]},
+    ]
+  },
+  {
+    title: 'Phase 3 — Peak',
+    desc: 'Hardest block. Long runs build to 32K by Week 13 — the furthest you\'ll go. Peaking at week 13 gives 3 weeks of taper, which research shows optimizes supercompensation for first-time marathoners. Gym legs becomes core-only when cumulative fatigue is high. Drop Saturday calisthenics from Week 11. Sleep 8h minimum. Carb intake matters now.',
+    stats: ['Wk 11–13', '~48–54 km/wk', 'Long run: 24→32K', 'Gym 2×/wk'],
+    weeks: [
+      { label:'Week 11', meta:'~48 km total · Jun 15–21', days:[
+        d('recovery','Recovery',null,'Ice knees if needed, full foam roll'),
+        d('speed','Speed + Gym','10K','4×1km at tempo pace + easy warm/cool + upper/core'),
+        d('run-easy','Med run','11K','Easy'),
+        d('gym-legs','Leg day',null,'Core + glutes — light'),
+        d('rest','Rest',null,'Full rest'),
+        d('run-easy','Shakeout','5K','No calisthenics from here'),
+        d('run-long','Long run','24K','Fuel every 45 min — practice plan'),
+      ]},
+      { label:'Week 12', meta:'~52 km total · Jun 22–28', days:[
+        d('recovery','Recovery',null,'Foam roll everything'),
+        d('speed','Speed + Gym','10K','3×1.5km tempo + easy warm/cool + upper/core'),
+        d('run-easy','Med run','12K','Easy'),
+        d('gym-legs','Leg day',null,'Core only — protect legs'),
+        d('rest','Rest',null,'Full rest'),
+        d('run-easy','Shakeout','5K','Easy'),
+        d('run-long','Long run','28K','Race nutrition rehearsal'),
+      ]},
+      { label:'Week 13 — PEAK', meta:'~54 km total · Jun 29–Jul 5', days:[
+        d('recovery','Recovery',null,'Full recovery — extra sleep'),
+        d('speed','Speed + Gym','10K','6×30s strides only — legs need to be fresh + upper/core'),
+        d('run-easy','Med run','11K','Easy'),
+        d('gym-legs','Leg day',null,'Core only'),
+        d('rest','Rest',null,'Full rest'),
+        d('run-easy','Shakeout','5K','Easy'),
+        d('run-long','Long run — PEAK','32K','Last 5K at goal pace. You\'ve done it.'),
+      ]},
+    ]
+  },
+  {
+    title: 'Phase 4 — Taper (3 weeks)',
+    desc: '3-week taper gives your body full supercompensation time — research by Mujika & Padilla (Med Sci Sports Exerc, 2003) shows 2–3 week tapers produce the best race-day performance for endurance athletes. Volume drops ~40% week 14, ~50% week 15. Race week is minimal movement + carb loading. Legs will feel heavy then suddenly springy — both are normal.',
+    stats: ['Wk 14–16', '~10–25 km/wk', 'Race: Jul 26', 'No gym wk 16'],
+    weeks: [
+      { label:'Week 14 — Taper 1', meta:'~25 km total · Jul 6–12', days:[
+        d('recovery','Recovery',null,'Full mobility + light walk'),
+        d('run-easy','Easy run','8K','Easy — no gym this phase'),
+        d('run-easy','Easy run','7K','Easy'),
+        d('rest','Rest',null,'Walk only'),
+        d('rest','Rest',null,'Full rest'),
+        d('run-easy','Easy run','6K','Easy'),
+        d('run-long','Med run','22K','Easy effort — controlled'),
+      ]},
+      { label:'Week 15 — Taper 2', meta:'~15 km total · Jul 13–19', days:[
+        d('recovery','Recovery',null,'Light walk + full stretch'),
+        d('run-easy','Easy run','5K','Easy'),
+        d('run-easy','Easy run','5K','Easy'),
+        d('rest','Rest',null,'Walk only'),
+        d('rest','Rest',null,'Full rest'),
+        d('run-easy','Easy run','4K','Easy'),
+        d('run-long','Easy run','14K','Last medium run — enjoy it'),
+      ]},
+      { label:'Week 16 — Race Week', meta:'Race Jul 26', days:[
+        d('rest','Rest',null,'Walk + stretch'),
+        d('run-easy','Easy run','5K','Easy — feel fresh'),
+        d('run-easy','Easy run','4K','Very easy'),
+        d('rest','Rest',null,'Carb load begins — rice, oats'),
+        d('rest','Rest',null,'Carb load + prep gear'),
+        d('run-easy','Shakeout','3K','+ 4×100m light strides'),
+        d('race-day','RACE DAY','42.2K','San Francisco · Jul 26'),
+      ]},
+    ]
+  }
+];
+
+function showLog(section, btn) {
+  document.querySelectorAll('#log-tabs .guide-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('#page-log .guide-section').forEach(s => s.classList.remove('active'));
+  document.getElementById('log-' + section).classList.add('active');
+  if (btn) btn.classList.add('active');
+}
+
+function showGuide(section, btn) {
+  document.querySelectorAll('.guide-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.guide-section').forEach(s => s.classList.remove('active'));
+  document.getElementById('guide-' + section).classList.add('active');
+  if (btn) btn.classList.add('active');
+}
+
+function showPage(p, btn) {
+  document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('page-' + p).classList.add('active');
+  if (btn) btn.classList.add('active');
+  if (p === 'dashboard') buildDashboard();
+}
+
+function startCountdown() {
+  function tick() {
+    var race = new Date(2026, 6, 26, 5, 15, 0);
+    var now = new Date();
+    var diff = race - now;
+    if (diff <= 0) {
+      var el = document.getElementById('db-countdown');
+      if (el) el.innerHTML = '<span style="font-size:14px;font-weight:500">RACE DAY!</span>';
+      return;
+    }
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor((diff % 86400000) / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+    var cd = document.getElementById('cd-d');
+    var ch = document.getElementById('cd-h');
+    var cm = document.getElementById('cd-m');
+    var cs = document.getElementById('cd-s');
+    if (cd) cd.textContent = d;
+    if (ch) ch.textContent = pad(h);
+    if (cm) cm.textContent = pad(m);
+    if (cs) cs.textContent = pad(s);
+  }
+  tick();
+  setInterval(tick, 1000);
+}
+
+function dbToggleTable(btn) {
+  var wrap = document.getElementById('db-tbl-wrap');
+  if (!wrap) return;
+  if (wrap.style.maxHeight === 'none' || wrap.style.maxHeight === '9999px') {
+    wrap.style.maxHeight = '240px';
+    wrap.style.overflowY = 'hidden';
+    btn.innerHTML = '&#8964;';
+    btn.title = 'Show all';
+  } else {
+    wrap.style.maxHeight = '9999px';
+    wrap.style.overflowY = 'auto';
+    btn.innerHTML = '&#8963;';
+    btn.title = 'Collapse';
+  }
+}
+
+
+function showPhase(idx) {
+  document.querySelectorAll('.phase-tab').forEach((t,i) => t.classList.toggle('active', i===idx));
+  const ph = phases[idx];
+  let html = `<div class="phase-banner">
+    <div>
+      <h2>${ph.title}</h2>
+      <p>${ph.desc}</p>
+    </div>
+    <div class="phase-stats">
+      ${ph.stats.map(s => `<div class="stat-pill">${s}</div>`).join('')}
+    </div>
+  </div>`;
+
+  ph.weeks.forEach(w => {
+    html += `<div class="week-card">
+      <div class="week-header">
+        <div class="week-label">${w.label}</div>
+        <div class="week-meta">${w.meta}</div>
+      </div>
+      <div class="days-grid">`;
+    w.days.forEach((day, i) => {
+      html += `<div class="day ${day.type}">
+        <div class="day-name">${DAYS[i]}</div>
+        <div class="day-label">${day.label}</div>
+        ${day.dist ? `<div class="day-dist">${day.dist}</div>` : ''}
+        <div class="day-sub">${day.sub}</div>
+      </div>`;
+    });
+    html += `</div></div>`;
+  });
+
+  document.getElementById('phase-content').innerHTML = html;
+}
+
+showPhase(0);
+window.addEventListener('DOMContentLoaded', function() { buildDashboard(); startCountdown(); });
+</script>
+
+
+
+
+<!-- DASHBOARD PAGE -->
+<div id="page-dashboard" class="page active"></div>
+
+<style>
+.db-wrap{padding:1.5rem 2rem 3rem;max-width:1100px;margin:0 auto}
+.db-hero{display:flex;align-items:flex-start;justify-content:space-between;padding:2rem 0 1.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem}
+.db-title{font-family:'DM Serif Display',serif;font-size:clamp(22px,3vw,34px);line-height:1.1}
+.db-sub{font-size:13px;color:var(--muted);margin-top:4px}
+.db-race-pill{background:var(--text);color:var(--bg);border-radius:12px;padding:12px 20px;text-align:center;flex-shrink:0}
+.db-race-days{display:block;font-family:'DM Serif Display',serif;font-size:30px;line-height:1}
+.db-race-label{font-size:11px;opacity:.7;letter-spacing:.05em}
+.db-kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:10px;margin-bottom:14px}
+.db-kpi{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:.9rem 1rem}
+.db-kpi-lbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}
+.db-kpi-val{font-family:'DM Serif Display',serif;font-size:24px;line-height:1.1;color:var(--text)}
+.db-kpi-unit{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:400;color:var(--muted);margin-left:2px}
+.db-kpi-sub{font-size:10px;color:#9e9c97;margin-top:2px}
+.db-charts-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-bottom:12px}
+.db-chart-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1rem 1.1rem;overflow:hidden}
+.db-span2{grid-column:span 2}
+.db-chart-title{font-size:14px;font-weight:500;margin-bottom:3px;display:flex;align-items:center;gap:8px}
+.db-badge{font-size:10px;padding:2px 7px;border-radius:10px;font-weight:500}
+.db-chart-sub{font-size:11px;color:var(--muted);margin-bottom:8px}
+.db-xlbls{display:flex;justify-content:space-between;margin-top:4px}
+.db-xlbls span{font-size:9px;color:var(--muted)}
+.db-tbl{width:100%;border-collapse:collapse;font-size:12px}
+.db-tbl th{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:4px 8px;border-bottom:1px solid var(--border);text-align:left;white-space:nowrap}
+.db-tbl td{padding:7px 8px;border-bottom:.5px solid var(--border)}
+.db-tbl tbody tr:last-child td{border-bottom:none}
+.db-tbl tbody tr:hover{background:var(--bg)}
+.db-footer{font-size:11px;color:#9e9c97;text-align:center;padding-top:1rem;border-top:1px solid var(--border);margin-top:.5rem}
+.db-countdown-wrap{display:flex;align-items:baseline;justify-content:center;gap:2px;margin-bottom:4px}
+.db-cd-num{font-family:"DM Serif Display",serif;font-size:22px;line-height:1;min-width:26px;text-align:center}
+.db-cd-lbl{font-size:9px;opacity:.7;letter-spacing:.05em;margin-right:2px}
+.db-cd-sep{font-size:18px;opacity:.5;margin:0 1px;line-height:1}
+@media(max-width:640px){.db-wrap{padding:1rem}.db-span2{grid-column:span 1}.db-tbl th:nth-child(n+6),.db-tbl td:nth-child(n+6){display:none}.db-charts-row{grid-template-columns:1fr!important}.db-kpi-row{grid-template-columns:repeat(2,1fr)!important}}
+</style>
+
+<script>
+const DB_ZONE2 = 146;
+const DB_RACE = new Date(2026, 6, 26);
+const DB_START = new Date(2026, 3, 6);
+
+function dbDay(s) {
+  var m = s.match(/Day\s*(\d+)/i);
+  return m ? parseInt(m[1]) : null;
+}
+function dbDist(s) {
+  var m = s.match(/([\d.]+)\s*km/i);
+  return (m && !s.includes('/km')) ? parseFloat(m[1]) : null;
+}
+function dbPaceStr(s) {
+  return s.indexOf('/km') >= 0 ? s : null;
+}
+function dbPaceNum(s) {
+  if (!s) return null;
+  var m = s.match(/(\d+):(\d+)/);
+  return m ? parseInt(m[1]) + parseInt(m[2]) / 60 : null;
+}
+function dbHRAvg(s) {
+  if (s.toLowerCase().indexOf('avg') < 0) return null;
+  if (s.toLowerCase().indexOf('bpm') < 0) return null;
+  var m = s.match(/(\d{2,3})\s*bpm/i);
+  return m ? parseInt(m[1]) : null;
+}
+function dbHRMax(s) {
+  if (s.toLowerCase().indexOf('max') < 0) return null;
+  if (s.toLowerCase().indexOf('bpm') < 0) return null;
+  var m = s.match(/(\d{2,3})\s*bpm/i);
+  return m ? parseInt(m[1]) : null;
+}
+function dbTime(s) {
+  var m3 = s.match(/^(\d+):(\d+):(\d+)$/);
+  var m2 = s.match(/^(\d+):(\d+)$/);
+  if (m3) return parseInt(m3[1]) * 60 + parseInt(m3[2]) + parseInt(m3[3]) / 60;
+  if (m2) return parseInt(m2[1]) + parseInt(m2[2]) / 60;
+  return null;
+}
+function dbFmt(p) {
+  if (!p) return '—';
+  var m = Math.floor(p), s = Math.round((p - m) * 60);
+  return m + ':' + (s < 10 ? '0' : '') + s;
+}
+function dbHRC(b) {
+  if (!b) return '#888780';
+  if (b <= 146) return '#1d9e75';
+  if (b <= 160) return '#e8b966';
+  return '#e07070';
+}
+function dbPC(p) {
+  if (!p) return '#888780';
+  if (p >= 7.0) return '#1d9e75';
+  if (p >= 6.4) return '#e8b966';
+  return '#e07070';
+}
+function dbDTR() {
+  var t = new Date(); var today = new Date(t.getFullYear(), t.getMonth(), t.getDate());
+  return Math.round((DB_RACE - today) / 86400000);
+}
+function dbWK() { return Math.max(1, Math.ceil((new Date() - DB_START) / 604800000)); }
+
+function dbGetRuns() {
+  var els = document.querySelectorAll('#log-all .log-entry.log-run, #log-all .log-entry.log-long');
+  var runs = [];
+  for (var i = 0; i < els.length; i++) {
+    var entry = els[i];
+    var dateEl = entry.querySelector('.log-date');
+    if (!dateEl) continue;
+    var label = dateEl.textContent.trim();
+    var statEls = entry.querySelectorAll('.log-stat');
+    var stats = [];
+    for (var j = 0; j < statEls.length; j++) stats.push(statEls[j].textContent.trim());
+    var isLong = entry.classList.contains('log-long');
+    var dayNum = dbDay(label);
+    var dist = null, time = null, pace = null, hrAvg = null, hrMax = null;
+    for (var k = 0; k < stats.length; k++) {
+      var t = stats[k];
+      if (!dist) { var dd = dbDist(t); if (dd) dist = dd; }
+      if (!time && !t.includes('/km') && !t.includes('bpm')) { var tt = dbTime(t); if (tt) time = tt; }
+      if (!pace && dbPaceStr(t)) pace = dbPaceNum(t);
+      if (!hrAvg) { var ha = dbHRAvg(t); if (ha) hrAvg = ha; }
+      if (!hrMax) { var hm = dbHRMax(t); if (hm) hrMax = hm; }
+    }
+    if (!pace && dist && time) pace = time / dist;
+    var z2ok = hrAvg ? (hrAvg - DB_ZONE2) <= 3 : null;
+    runs.push({label: label, dayNum: dayNum, dist: dist, pace: pace, hrAvg: hrAvg, hrMax: hrMax, z2ok: z2ok, isLong: isLong});
+  }
+  runs.sort(function(a, b) { return (a.dayNum || 0) - (b.dayNum || 0); });
+  return runs;
+}
+
+function dbMini(val, max, color) {
+  var pct = Math.min(100, Math.round(val / max * 100));
+  return '<div style="height:5px;border-radius:3px;background:rgba(0,0,0,0.08);margin-top:6px"><div style="height:5px;border-radius:3px;background:' + color + ';width:' + pct + '%"></div></div>';
+}
+
+function dbTrend(arr, key, lower) {
+  if (arr.length < 2) return '';
+  var last = arr[arr.length - 1][key], prev = arr[arr.length - 2][key];
+  if (last == null || prev == null) return '';
+  var better = lower ? last < prev : last > prev;
+  return better ? ' <span style="color:#1d9e75">↓</span>' : ' <span style="color:#e07070">↑</span>';
+}
+
+function dbSpark(pts, W, H, color, yMin, yMax) {
+  if (pts.length < 2) return '<svg width="' + W + '" height="' + H + '"></svg>';
+  var pad = 8, range = (yMax - yMin) || 1;
+  var xs = pts.map(function(_, i) { return pad + i / (pts.length - 1) * (W - pad * 2); });
+  var ys = pts.map(function(v) { return H - pad - (v - yMin) / range * (H - pad * 2); });
+  var ln = xs.map(function(x, i) { return (i ? 'L' : 'M') + x.toFixed(1) + ',' + ys[i].toFixed(1); }).join(' ');
+  var ar = 'M' + xs[0].toFixed(1) + ',' + H + ' ' + xs.map(function(x, i) { return 'L' + x.toFixed(1) + ',' + ys[i].toFixed(1); }).join(' ') + ' L' + xs[xs.length - 1].toFixed(1) + ',' + H + ' Z';
+  var gid = 'dbg' + Date.now() + Math.floor(Math.random() * 9999);
+  var dots = xs.map(function(x, i) { return '<circle cx="' + x.toFixed(1) + '" cy="' + ys[i].toFixed(1) + '" r="4" fill="' + color + '" stroke="white" stroke-width="2"/>'; }).join('');
+  return '<svg width="' + W + '" height="' + H + '" style="width:100%;height:auto;overflow:visible">' +
+    '<defs><linearGradient id="' + gid + '" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="' + color + '" stop-opacity="0.2"/><stop offset="100%" stop-color="' + color + '" stop-opacity="0.02"/></linearGradient></defs>' +
+    '<path d="' + ar + '" fill="url(#' + gid + ')"/>' +
+    '<path d="' + ln + '" fill="none" stroke="' + color + '" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+    dots + '</svg>';
+}
+
+function dbBars(labels, values, colors, W, H) {
+  var pl = 38, pr = 8, pt = 14, pb = 28, cw = W - pl - pr, ch = H - pt - pb;
+  var filtered = values.filter(function(v) { return v > 0; });
+  var max = filtered.length ? Math.max.apply(null, filtered) * 1.15 : 1;
+  var bw = Math.max(10, cw / values.length * 0.52);
+  var gap = cw / values.length;
+  var svg = '<svg width="' + W + '" height="' + H + '" style="width:100%;height:auto;overflow:visible">';
+  var ticks = [0, 0.25, 0.5, 0.75, 1];
+  for (var ti = 0; ti < ticks.length; ti++) {
+    var f = ticks[ti], v = (max * f).toFixed(1), y = pt + ch - f * ch;
+    svg += '<line x1="' + pl + '" x2="' + (pl + cw) + '" y1="' + y + '" y2="' + y + '" stroke="rgba(0,0,0,0.07)" stroke-width="0.5"/>';
+    svg += '<text x="' + (pl - 3) + '" y="' + (y + 3) + '" font-size="9" fill="#888" text-anchor="end">' + v + '</text>';
+  }
+  for (var i = 0; i < values.length; i++) {
+    var val = values[i];
+    if (!val) continue;
+    var bh = (val / max) * ch, x = pl + i * gap + gap / 2 - bw / 2, y2 = pt + ch - bh;
+    svg += '<rect x="' + x.toFixed(1) + '" y="' + y2.toFixed(1) + '" width="' + bw + '" height="' + bh.toFixed(1) + '" rx="3" fill="' + colors[i] + '" opacity="0.88"/>';
+    svg += '<text x="' + (x + bw / 2).toFixed(1) + '" y="' + (pt + ch + 16) + '" font-size="9" fill="#888" text-anchor="middle">' + labels[i] + '</text>';
+    svg += '<text x="' + (x + bw / 2).toFixed(1) + '" y="' + (y2 - 4).toFixed(1) + '" font-size="9" font-weight="500" fill="' + colors[i] + '" text-anchor="middle">' + val + '</text>';
+  }
+  svg += '</svg>';
+  return svg;
+}
+
+function dbPredict(runs) {
+  var r = runs.slice(-3).filter(function(x) { return x.pace && x.hrAvg; });
+  if (!r.length) return null;
+  var ap = r.reduce(function(s, x) { return s + x.pace; }, 0) / r.length;
+  return ap * 1.18 * 42.195;
+}
+
+function buildDashboard() {
+  var runs = dbGetRuns();
+  var el = document.getElementById('page-dashboard');
+  if (!runs.length) {
+    el.innerHTML = '<div style="padding:3rem 2rem;text-align:center;color:#6b6860;font-family:DM Sans,sans-serif">No run data yet — runs logged in the Training Log appear here automatically.</div>';
+    return;
+  }
+
+  var totalKm = 0;
+  for (var i = 0; i < runs.length; i++) totalKm += (runs[i].dist || 0);
+
+  var hrRuns = runs.filter(function(r) { return r.hrAvg; });
+  var paceRuns = runs.filter(function(r) { return r.pace; });
+  var avgHR = hrRuns.length ? Math.round(hrRuns.reduce(function(s, r) { return s + r.hrAvg; }, 0) / hrRuns.length) : null;
+  var avgPace = paceRuns.length ? paceRuns.reduce(function(s, r) { return s + r.pace; }, 0) / paceRuns.length : null;
+  var z2runs = hrRuns.filter(function(r) { return r.z2ok; }).length;
+  var z2pct = hrRuns.length ? Math.round(z2runs / hrRuns.length * 100) : 0;
+  var pred = dbPredict(runs);
+  var predStr = pred ? (Math.floor(pred / 60) + 'h ' + Math.round(pred % 60) + 'm') : '—';
+  var dtr = dbDTR();
+  var wk = dbWK();
+
+  var best = paceRuns[0];
+  for (var i = 1; i < paceRuns.length; i++) { if (paceRuns[i].pace < best.pace) best = paceRuns[i]; }
+  var longest = runs[0];
+  for (var i = 1; i < runs.length; i++) { if ((runs[i].dist || 0) > (longest.dist || 0)) longest = runs[i]; }
+  var lowestHR = hrRuns[0];
+  for (var i = 1; i < hrRuns.length; i++) { if (hrRuns[i].hrAvg < lowestHR.hrAvg) lowestHR = hrRuns[i]; }
+
+  var hrPts = hrRuns.map(function(r) { return r.hrAvg; });
+  var pacePts = paceRuns.map(function(r) { return r.pace; });
+  var distPts = runs.map(function(r) { return r.dist || 0; });
+  var dayLbls = runs.map(function(r) { return 'D' + (r.dayNum || '?'); });
+  var hrMin = Math.min.apply(null, hrPts) - 6, hrMax = Math.max.apply(null, hrPts) + 8;
+  var pMin = Math.min.apply(null, pacePts) - 0.35, pMax = Math.max.apply(null, pacePts) + 0.35;
+
+  var z2Color = z2pct >= 70 ? '#1d9e75' : z2pct >= 50 ? '#e8b966' : '#e07070';
+  var predBorder = pred ? (pred <= 315 ? '#6dcfaa' : pred <= 345 ? '#e8b966' : '#e07070') : 'rgba(0,0,0,0.08)';
+  var coachMsg = z2pct >= 70 ? 'Zone 2 improving — keep the pace discipline.' : z2pct >= 50 ? 'Pace still too high on easy days. Trust the slow.' : 'Running too hard. Slow down — burning future gains.';
+
+  var z2LineBot = Math.round(((DB_ZONE2 - hrMin) / (hrMax - hrMin)) * 130);
+  var pRefBot = Math.round(((7.0 - pMin) / (pMax - pMin)) * 110);
+
+  var tableRows = '';
+  for (var i = 0; i < runs.length; i++) {
+    var r = runs[i];
+    var shortLabel = r.label.replace(/Day \d+ \u00b7 /, '').replace(/Week \d+ \u00b7 /, '');
+    var typeBg = r.isLong ? 'var(--run-long-bg)' : 'var(--run-easy-bg)';
+    var typeTxt = r.isLong ? 'var(--run-long-txt)' : 'var(--run-easy-txt)';
+    var z2cell = r.z2ok === null ? '<span style="color:#888">—</span>' : r.z2ok ? '<span style="color:#1d9e75;font-weight:500">✓</span>' : '<span style="color:#e07070;font-weight:500">✗</span>';
+    tableRows += '<tr>' +
+      '<td><strong>D' + (r.dayNum || '?') + '</strong></td>' +
+      '<td style="color:#6b6860;font-size:11px;max-width:140px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">' + shortLabel + '</td>' +
+      '<td><span style="font-size:9px;padding:2px 6px;border-radius:4px;font-weight:500;background:' + typeBg + ';color:' + typeTxt + '">' + (r.isLong ? 'Long' : 'Easy') + '</span></td>' +
+      '<td><strong>' + (r.dist ? r.dist.toFixed(2) : '—') + '</strong> km</td>' +
+      '<td style="color:' + dbPC(r.pace) + ';font-weight:500">' + dbFmt(r.pace) + '</td>' +
+      '<td style="color:' + dbHRC(r.hrAvg) + ';font-weight:500">' + (r.hrAvg || '—') + '</td>' +
+      '<td style="color:' + dbHRC(r.hrMax) + '">' + (r.hrMax || '—') + '</td>' +
+      '<td>' + z2cell + '</td>' +
+    '</tr>';
+  }
+
+  el.innerHTML =
+    '<div class="db-wrap">' +
+      '<div class="db-hero">' +
+        '<div><div class="db-title">Training Dashboard</div>' +
+        '<div class="db-sub">Auto-synced from Training Log &middot; ' + runs.length + ' runs &middot; Week ' + wk + ' of 16</div></div>' +
+        '<div class="db-race-pill"><div style="display:flex;align-items:baseline;justify-content:center;gap:2px;margin-bottom:3px" id="db-countdown"><span style="font-family:DM Serif Display,serif;font-size:20px;line-height:1;min-width:24px;text-align:center" id="cd-d">--</span><span style="font-size:9px;opacity:.7;margin-right:1px">d</span><span style="font-size:16px;opacity:.5">:</span><span style="font-family:DM Serif Display,serif;font-size:20px;line-height:1;min-width:22px;text-align:center" id="cd-h">--</span><span style="font-size:9px;opacity:.7;margin-right:1px">h</span><span style="font-size:16px;opacity:.5">:</span><span style="font-family:DM Serif Display,serif;font-size:20px;line-height:1;min-width:22px;text-align:center" id="cd-m">--</span><span style="font-size:9px;opacity:.7;margin-right:1px">m</span><span style="font-size:16px;opacity:.5">:</span><span style="font-family:DM Serif Display,serif;font-size:20px;line-height:1;min-width:22px;text-align:center" id="cd-s">--</span><span style="font-size:9px;opacity:.7">s</span></div><span class="db-race-label">until SF Marathon &middot; Jul 26 5:15am</span></div>' +
+      '</div>' +
+
+      '<div class="db-kpi-row">' +
+        '<div class="db-kpi"><div class="db-kpi-lbl">Total distance</div><div class="db-kpi-val">' + totalKm.toFixed(1) + '<span class="db-kpi-unit">km</span></div><div class="db-kpi-sub">of ~' + (wk * 22) + ' km target</div>' + dbMini(totalKm, wk * 22, '#378add') + '</div>' +
+        '<div class="db-kpi"><div class="db-kpi-lbl">Avg heart rate</div><div class="db-kpi-val" style="color:' + dbHRC(avgHR) + '">' + (avgHR || '—') + '<span class="db-kpi-unit">bpm</span>' + dbTrend(hrRuns, 'hrAvg', true) + '</div><div class="db-kpi-sub">Zone 2 ceiling &middot; 146 bpm</div>' + (avgHR ? dbMini(avgHR, 195, dbHRC(avgHR)) : '') + '</div>' +
+        '<div class="db-kpi"><div class="db-kpi-lbl">Avg easy pace</div><div class="db-kpi-val" style="color:' + dbPC(avgPace) + '">' + dbFmt(avgPace) + '<span class="db-kpi-unit">/km</span>' + dbTrend(paceRuns, 'pace', true) + '</div><div class="db-kpi-sub">Target &middot; 7:00&ndash;7:30/km</div>' + (avgPace ? dbMini(Math.max(0, 10 - avgPace), 3.5, dbPC(avgPace)) : '') + '</div>' +
+        '<div class="db-kpi"><div class="db-kpi-lbl">Zone 2 compliance</div><div class="db-kpi-val" style="color:' + z2Color + '">' + z2pct + '<span class="db-kpi-unit">%</span></div><div class="db-kpi-sub">' + z2runs + ' of ' + hrRuns.length + ' HR-tracked runs</div>' + dbMini(z2pct, 100, z2Color) + '</div>' +
+        '<div class="db-kpi" style="border-color:' + predBorder + '"><div class="db-kpi-lbl">Predicted finish</div><div class="db-kpi-val">' + predStr + '</div><div class="db-kpi-sub">Target 5:15 &middot; last 3 runs</div>' + (pred ? dbMini(Math.max(0, 390 - pred), 75, predBorder) : '') + '</div>' +
+      '</div>' +
+
+      '<div class="db-charts-row">' +
+        '<div class="db-chart-card db-span2">' +
+          '<div class="db-chart-title">Heart rate trend <span class="db-badge" style="background:' + (z2pct >= 70 ? '#d6f5ea' : '#fde0d4') + ';color:' + (z2pct >= 70 ? '#054030' : '#5a1a06') + '">' + z2pct + '% Zone 2</span></div>' +
+          '<div class="db-chart-sub">Dashed line = Zone 2 ceiling (146 bpm) &middot; downward trend = aerobic adaptation</div>' +
+          '<div style="position:relative">' + dbSpark(hrPts, 600, 130, '#e07070', hrMin, hrMax) +
+          '<div style="position:absolute;right:4px;bottom:' + z2LineBot + 'px;font-size:9px;color:#1d9e75;font-weight:600;border-top:1px dashed #1d9e75;padding-left:3px">Z2 146</div></div>' +
+          '<div class="db-xlbls">' + hrRuns.map(function(r) { return '<span>D' + (r.dayNum || '?') + '</span>'; }).join('') + '</div>' +
+        '</div>' +
+        '<div class="db-chart-card">' +
+          '<div class="db-chart-title">Pace per run' + dbTrend(paceRuns, 'pace', true) + '</div>' +
+          '<div class="db-chart-sub">Higher = slower. Target 7:00&ndash;7:30 on easy days.</div>' +
+          '<div style="position:relative">' + dbSpark(pacePts, 260, 110, '#378add', pMin, pMax) +
+          '<div style="position:absolute;right:4px;bottom:' + pRefBot + 'px;font-size:9px;color:#1d9e75;font-weight:600;border-top:1px dashed #1d9e75;padding-left:3px">7:00</div></div>' +
+          '<div class="db-xlbls">' + paceRuns.map(function(r) { return '<span>D' + (r.dayNum || '?') + '</span>'; }).join('') + '</div>' +
+        '</div>' +
+      '</div>' +
+
+      '<div class="db-charts-row">' +
+        '<div class="db-chart-card">' +
+          '<div class="db-chart-title">Distance per run</div>' +
+          '<div class="db-chart-sub">Purple = long run &middot; blue = easy &middot; building to 32K</div>' +
+          '<div style="overflow-x:auto;-webkit-overflow-scrolling:touch">' + dbBars(dayLbls, distPts, runs.map(function(r) { return r.isLong ? '#7f77dd' : '#85b7eb'; }), Math.max(250, runs.length * 30), 150) + '</div>' +
+        '</div>' +
+        '<div class="db-chart-card db-span2">' +
+          '<div class="db-chart-title">Full run log <button id="db-tbl-btn" onclick="dbToggleTbl()" style="margin-left:auto;background:none;border:none;cursor:pointer;font-size:18px;color:#888;line-height:1;padding:0 2px" title="expand">&#8964;</button></div>' +
+          '<div id="db-tbl-wrap" style="overflow-x:auto;overflow-y:hidden;max-height:250px;transition:max-height .3s"><table class="db-tbl"><thead><tr><th>Day</th><th>Session</th><th>Type</th><th>Dist</th><th>Pace</th><th>HR avg</th><th>HR max</th><th>Z2</th></tr></thead>' +
+          '<tbody>' + tableRows + '</tbody></table></div>' +
+        '</div>' +
+      '</div>' +
+
+      '<div class="db-kpi-row">' +
+        '<div class="db-kpi"><div class="db-kpi-lbl">&#127942; Best pace</div><div class="db-kpi-val" style="color:#378add">' + dbFmt(best.pace) + '<span class="db-kpi-unit">/km</span></div><div class="db-kpi-sub">Day ' + best.dayNum + ' &middot; ' + (best.dist || 0).toFixed(1) + 'km</div></div>' +
+        '<div class="db-kpi"><div class="db-kpi-lbl">&#128207; Longest run</div><div class="db-kpi-val" style="color:#7f77dd">' + (longest.dist || 0).toFixed(2) + '<span class="db-kpi-unit">km</span></div><div class="db-kpi-sub">Day ' + longest.dayNum + ' &middot; ' + dbFmt(longest.pace) + '/km</div></div>' +
+        '<div class="db-kpi"><div class="db-kpi-lbl">&#10084; Lowest HR</div><div class="db-kpi-val" style="color:#1d9e75">' + lowestHR.hrAvg + '<span class="db-kpi-unit">bpm</span></div><div class="db-kpi-sub">Day ' + lowestHR.dayNum + ' &middot; aerobic improvement</div></div>' +
+        '<div class="db-kpi"><div class="db-kpi-lbl">&#128197; Avg weekly km</div><div class="db-kpi-val">' + (totalKm / Math.max(1, wk)).toFixed(1) + '<span class="db-kpi-unit">km</span></div><div class="db-kpi-sub">Week ' + wk + ' of 16</div></div>' +
+        '<div class="db-kpi" style="border-color:' + (z2pct >= 60 ? '#6dcfaa' : '#e8b966') + '"><div class="db-kpi-lbl">' + (z2pct >= 70 ? '&#9989;' : '&#9888;&#65039;') + ' Coach signal</div><div style="font-size:12px;color:#6b6860;margin-top:4px;line-height:1.5">' + coachMsg + '</div></div>' +
+      '</div>' +
+
+      '<div class="db-footer">Auto-syncs from Training Log &middot; paste a new run snippet then click Dashboard &middot; ' + runs.length + ' runs &middot; ' + totalKm.toFixed(1) + ' km logged</div>' +
+    '</div>';
+}
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HydroHive — Rupesh Shrestha</title>
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+<style>
+:root {
+  --paper: #E8F5F0; --paper-warm: #D4EDE5; --paper-deep: #C0E5D9;
+  --ink: #1B3A35; --ink-mid: #2A4D47; --ink-soft: #456B63; --ink-mute: #6B8E86;
+  --accent: #4A9B84; --moss: #62B399; --gold: #E6B85C;
+  --rule: rgba(27,58,53,0.10); --rule-soft: rgba(27,58,53,0.06);
+  --r-md: 16px; 
+  --r-lg: 10px; /* 👈 THIS is what your image tiles are using */
+  --r-xl: 35px; /* 👈 this one for logo radius*/
+  --r-pill: 999px; 
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Inter Tight', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body); background: var(--paper); color: var(--ink);
+  line-height: 1.6; -webkit-font-smoothing: antialiased;
+}
+body::before {
+  content: ''; position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px; mix-blend-mode: multiply;
+}
+img { max-width: 100%; height: auto; display: block; }
+::selection { background: var(--accent); color: var(--paper); }
+
+/* Nav */
+nav {
+  position: fixed; top: 14px; left: 50%; transform: translateX(-50%); z-index: 100;
+  display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+  padding: 0 0.75rem 0 1.25rem; height: 52px; width: min(94%, 980px);
+  background: color-mix(in oklab, var(--paper) 80%, transparent);
+  backdrop-filter: blur(14px); border: 1px solid var(--rule);
+  border-radius: var(--r-pill); box-shadow: 0 10px 40px -20px rgba(28,26,23,0.2);
+  transition: transform 0.3s var(--ease), opacity 0.3s var(--ease);
+}
+nav.hide {
+  transform: translate(-50%, -80px);
+  opacity: 0;
+  pointer-events: none;
+}
+.logo {
+  font-family: var(--font-display); font-size: 1.05rem; font-weight: 500;
+  color: var(--ink); text-decoration: none; display: flex; align-items: center; gap: 0.55rem;
+}
+.logo .mono {
+  width: 28px; height: 28px; border-radius: 50%; background: var(--ink); color: var(--paper);
+  display: grid; place-items: center; font-size: 0.85rem; font-style: italic;
+}
+.logo em { color: var(--accent); font-style: italic; }
+.back {
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em;
+  color: var(--ink-soft); text-decoration: none; padding: 0.45rem 0.75rem;
+  border-radius: var(--r-pill); transition: all 0.25s;
+}
+.back:hover { color: var(--ink); background: var(--paper-deep); }
+
+/* Hero */
+.hero {
+  padding: 120px 5vw 4rem;
+  background: linear-gradient(180deg, var(--paper) 0%, var(--paper-warm) 100%);
+  position: relative;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 70% 25%, color-mix(in oklab, var(--moss) 15%, transparent), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 25% 80%, color-mix(in oklab, var(--accent) 12%, transparent), transparent 55%);
+}
+.hero-inner { 
+  max-width: 1200px; margin: 0 auto; position: relative; z-index: 2;
+  display: flex; align-items: center; gap: 3rem;
+}
+.hero-content { flex: 1; }
+.hero-logo {
+  width: 160px; height: 160px; flex-shrink: 0;
+  background: var(--paper); border-radius: var(--r-xl); padding: 1.8rem;
+  box-shadow: 0 25px 60px -25px rgba(28,26,23,0.3); border: 1px solid var(--rule);
+}
+.hero-logo img { width: 100%; height: 100%; object-fit: contain; }
+.hero-cat {
+  font-family: var(--font-mono); font-size: 0.76rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 1rem;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 300; line-height: 1.05; letter-spacing: -0.03em;
+  margin-bottom: 1.5rem; font-variation-settings: "SOFT" 90;
+}
+/*.hero-title .hydro { color: var(--moss); }*/
+/*.hero-title .hive { color: var(--accent); }*/
+.hero-tag {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+  font-style: italic; font-weight: 300; color: var(--moss);
+  line-height: 1.5; font-variation-settings: "SOFT" 80;
+}
+
+/* ═══ CONTROLLER: HydroHive Logo Text Colors ═══ */
+
+.hero-title .hydro { color: #0288D1; }  /* Water blue */
+.hero-title .hive { color: #66BB6A; }   /* Fresh green */
+
+
+
+/* Container - SPACING CONTROLLER */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 5vw; }
+.section { 
+  padding: 3rem 0; /* CONTROLLER: Vertical spacing between major sections - default: 6rem */
+}
+.section.dark {
+  background: var(--ink); color: var(--paper);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+/* Section headers - SPACING CONTROLLER: Change margin-bottom to adjust space below headers */
+.sec-head { 
+  text-align: center; 
+  margin-bottom: 2rem; /* CONTROLLER: Space below ALL section headers (Identify, Understand, Conceptualize, Realize, Showcase, Team, etc.) - default: 2.5rem */
+}
+.sec-num {
+  font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--accent); 
+  margin-bottom: 0.6rem; /* CONTROLLER: Space between phase number and title (e.g., "Phase 02" to "Understand") - default: 0.6rem */
+}
+.section.dark .sec-num { color: var(--gold); }
+.sec-title {
+  font-family: var(--font-display); 
+  font-size: clamp(2.2rem, 4vw, 3rem); /* CONTROLLER: Section title font size - default: clamp(2.2rem, 4vw, 3rem) */
+  font-weight: 400; line-height: 1.15; color: var(--ink);
+  font-variation-settings: "SOFT" 80;
+}
+.section.dark .sec-title { color: var(--paper); }
+.sec-title em { font-style: italic; color: var(--accent); }
+.section.dark .sec-title em { color: var(--gold); }
+
+/* Two column content */
+.cols {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+  align-items: center; margin-bottom: 6rem;
+}
+.cols:last-child { margin-bottom: 0; }
+.cols.rev { direction: rtl; }
+.cols.rev > * { direction: ltr; }
+.col-text h3 {
+  font-family: var(--font-display); font-size: 1.8rem; font-weight: 400;
+  color: var(--ink); margin-bottom: 1rem; font-variation-settings: "SOFT" 80;
+}
+.section.dark .col-text h3 { color: var(--paper); }
+.col-text .date {
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em;
+  color: var(--ink-mute); margin-bottom: 1.2rem; display: block;
+}
+.section.dark .col-text .date { color: rgba(247,241,232,0.4); }
+.col-text p {
+  font-size: 1.02rem; line-height: 1.75; color: var(--ink-mid);
+  margin-bottom: 1.4rem; text-align: justify;
+}
+.section.dark .col-text p { color: rgba(247,241,232,0.75); }
+.col-text .highlight {
+  color: var(--moss); font-style: italic; font-weight: 500;
+}
+.section.dark .col-text .highlight { color: var(--gold); }
+
+/* ═══ CONTROLLER: Image container styling ═══ */
+.col-img {
+  /* Removed: border-radius, overflow, box-shadow, border for transparent PNGs */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section.dark .col-img {
+  /* No border or shadow for transparent images */
+}
+
+.col-img img { 
+  width: 100%; 
+  max-width: 100%;
+  height: auto;
+  display: block; 
+  object-fit: contain; /* ═══ CONTROLLER: 'contain' for transparent PNGs, 'cover' for photos ═══ */
+}
+
+/* Stacked images column - SPACING CONTROLLER: Change gap value to adjust space between images */
+.col-imgs-stack {
+  display: flex; 
+  flex-direction: column; 
+  gap: 1.5rem; /* CONTROLLER: Adjust gap between stacked images (default: 1.5rem) */
+}
+.col-imgs-stack .col-img {
+  flex: 1;
+}
+
+/* Timeline */
+.timeline {
+  max-width: 880px; margin: 0 auto; position: relative; padding: 2rem 0;
+}
+.timeline::before {
+  content: ''; position: absolute; top: 0; bottom: 0; left: 0; width: 2px;
+  background: linear-gradient(to bottom, transparent, var(--gold) 8%, var(--gold) 92%, transparent);
+}
+.tl-item {
+  position: relative; padding-left: 3rem; margin-bottom: 2.8rem;
+}
+.tl-item:last-child { margin-bottom: 0; }
+.tl-dot {
+  position: absolute; left: -6px; top: 5px; width: 14px; height: 14px;
+  border-radius: 50%; background: var(--gold); border: 2px solid var(--ink);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--gold) 15%, transparent);
+}
+.tl-item h4 {
+  font-family: var(--font-display); font-size: 1.3rem; font-weight: 400;
+  color: var(--paper); margin-bottom: 0.5rem; font-variation-settings: "SOFT" 80;
+}
+.tl-item .meta {
+  font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.08em;
+  color: rgba(247,241,232,0.45); margin-bottom: 0.7rem; display: block;
+}
+.tl-item p {
+  font-size: 0.98rem; line-height: 1.7; color: rgba(247,241,232,0.7);
+}
+
+/* Modern gallery grid - SPACING CONTROLLER */
+.gallery-wrap { 
+  margin-top: 2.5rem; /* CONTROLLER: Space above gallery sections (Concept Sketches, Prototype Sketches, 3D Design, Prototype Pictures) - default: 2.5rem */
+}
+.gallery-wrap h3 {
+  font-family: var(--font-display); 
+  font-size: 1.9rem; /* CONTROLLER: Gallery section title font size (Concept Sketches, Prototype Sketches, etc.) - default: 1.9rem */
+  font-weight: 400;
+  text-align: center; color: var(--ink); 
+  margin-bottom: 2rem; /* CONTROLLER: Space below gallery titles - default: 2rem */
+  font-variation-settings: "SOFT" 80;
+}
+.section.dark .gallery-wrap h3 { color: var(--paper); }
+.gallery {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+/* Concept sketches - 5 columns with 4:5 aspect ratio */
+.gallery.concepts {
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.5rem;
+}
+.gallery.concepts .gal-item img {
+  aspect-ratio: 4/5;
+}
+.gal-item {
+  position: relative; border-radius: var(--r-lg); overflow: hidden;
+  background: var(--paper-warm); border: 1px solid var(--rule-soft);
+  transition: all 0.4s var(--ease);
+}
+.section.dark .gal-item {
+  background: color-mix(in oklab, var(--paper) 8%, var(--ink));
+  border-color: rgba(255,255,255,0.08);
+}
+.gal-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 35px 70px -30px rgba(28,26,23,0.4);
+}
+.gal-item img {
+  width: 100%; aspect-ratio: 4/3; object-fit: cover;
+  transition: transform 0.6s var(--ease);
+}
+.gal-item:hover img { transform: scale(1.08); }
+.gal-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(28,26,23,0.85) 100%);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 1.5rem; opacity: 0; transition: opacity 0.35s var(--ease);
+}
+.gal-item:hover .gal-overlay { opacity: 1; }
+.gal-overlay .cap {
+  font-family: var(--font-mono); font-size: 0.76rem; letter-spacing: 0.06em;
+  color: var(--paper); text-align: center;
+}
+.gal-cap {
+  padding: 1.2rem; font-family: var(--font-mono); font-size: 0.76rem;
+  letter-spacing: 0.06em; color: var(--ink-soft); text-align: center;
+  border-top: 1px solid var(--rule-soft);
+}
+.section.dark .gal-cap {
+  color: rgba(247,241,232,0.55); border-top-color: rgba(255,255,255,0.08);
+}
+
+/* Showcase large images - SPACING & SIZE CONTROLLERS */
+.showcase {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 3rem;
+  margin: 4rem 0;
+}
+.show-item {
+  text-align: center;
+}
+.show-img {
+  border-radius: var(--r-lg); overflow: hidden;
+  box-shadow: 0 30px 70px -30px rgba(28,26,23,0.35);
+  border: 1px solid var(--rule-soft);
+  margin-bottom: 1.2rem; /* CONTROLLER: Space between image and caption (Full Assembly, Poster) - default: 1.2rem */
+}
+.show-img img { width: 100%; display: block; }
+.show-cap {
+  font-family: var(--font-display); 
+  font-size: 1.1rem; /* CONTROLLER: Showcase caption font size (Full Assembly, Poster) - default: 1.1rem */
+  font-weight: 400;
+  letter-spacing: 0.01em; 
+  color: var(--ink-soft);
+  font-variation-settings: "SOFT" 80;
+}
+
+/* Video - SPACING CONTROLLER */
+.video-wrap {
+  margin: 4rem auto; text-align: center;
+}
+.video-wrap h3 {
+  font-family: var(--font-display); 
+  font-size: 1.9rem; /* CONTROLLER: Video title font size (3D Animation Video) - default: 1.9rem */
+  font-weight: 400;
+  color: var(--ink); 
+  margin-bottom: 2.5rem; /* CONTROLLER: Space below video title - default: 2.5rem */
+  font-variation-settings: "SOFT" 80;
+}
+.video-box {
+  max-width: 1000px; margin: 0 auto 2.5rem;
+  border-radius: var(--r-lg); overflow: hidden;
+  box-shadow: 0 35px 80px -35px rgba(28,26,23,0.4);
+  border: 1px solid var(--rule-soft);
+}
+.video-box iframe {
+  width: 100%; height: 600px; border: none; display: block;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 0.9rem 1.6rem; font-size: 0.88rem; font-weight: 500;
+  text-decoration: none; border-radius: var(--r-pill);
+  transition: all 0.3s var(--ease); border: 1.5px solid var(--rule);
+  background: transparent; color: var(--ink);
+}
+.btn:hover {
+  border-color: var(--ink); background: color-mix(in oklab, var(--paper-warm) 50%, white);
+  transform: translateY(-2px);
+}
+
+/* Team */
+.team {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem;
+  max-width: 1100px; margin: 0 auto;
+}
+
+.team-mem { text-align: center; }
+.team-av {
+  width: 180px; height: 180px; border-radius: 50%; margin: 0 auto 1.2rem;
+  overflow: hidden; border: 3px solid var(--rule);
+  box-shadow: 0 20px 50px -25px rgba(28,26,23,0.35);
+}
+.team-av img { width: 100%; height: 100%; object-fit: cover; }
+.team-name {
+  font-family: var(--font-display); font-size: 1.15rem; font-weight: 500;
+  color: var(--ink); margin-bottom: 0.4rem;
+}
+.team-role {
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em;
+  color: var(--ink-mute); margin-bottom: 0.3rem;
+}
+.team-org { font-size: 0.88rem; color: var(--ink-soft); }
+
+/* Other projects */
+.projects {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem;
+}
+.proj {
+  background: var(--paper-warm); border: 1px solid var(--rule);
+  border-radius: var(--r-lg); overflow: hidden;
+  transition: all 0.4s var(--ease);
+}
+.proj:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 35px 70px -30px rgba(28,26,23,0.35);
+  border-color: var(--accent);
+}
+.proj img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+.proj-body { padding: 1.8rem; }
+.proj-body h5 {
+  font-family: var(--font-display); font-size: 1.2rem; font-weight: 400;
+  color: var(--ink); margin-bottom: 1.2rem; font-variation-settings: "SOFT" 80;
+}
+
+/* Footer */
+footer {
+  padding: 5rem 5vw 3rem; background: var(--ink); color: var(--paper);
+  text-align: center;
+}
+.foot-link {
+  margin-bottom: 2rem;
+}
+.foot-link a {
+  color: var(--paper); text-decoration: none; font-family: var(--font-mono);
+  font-size: 0.8rem; letter-spacing: 0.08em; transition: color 0.25s;
+}
+.foot-link a:hover { color: var(--gold); }
+.socials {
+  display: flex; justify-content: center; gap: 0.7rem; margin-bottom: 2rem;
+}
+.socials a {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(255,255,255,0.1); display: grid; place-items: center;
+  color: var(--paper); text-decoration: none; transition: all 0.3s;
+}
+.socials a:hover {
+  background: var(--accent); transform: translateY(-3px);
+}
+.copy {
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em;
+  color: rgba(247,241,232,0.5);
+}
+.copy a { color: rgba(247,241,232,0.7); text-decoration: none; }
+.copy a:hover { color: var(--accent); }
+
+/* Back to top */
+.totop {
+  position: fixed; bottom: 35px; right: 35px; width: 52px; height: 52px;
+  background: var(--ink); color: var(--paper); border-radius: 50%;
+  display: none; place-items: center; text-decoration: none;
+  box-shadow: 0 20px 50px -20px rgba(28,26,23,0.5); z-index: 90;
+  transition: all 0.3s;
+}
+.totop.show { display: grid; }
+.totop:hover { background: var(--accent); transform: translateY(-4px); }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .cols { grid-template-columns: 1fr; gap: 3rem; }
+  .cols.rev { direction: ltr; }
+  .gallery { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .gallery.concepts { grid-template-columns: repeat(2, 1fr); }
+  .team { grid-template-columns: repeat(2, 1fr); }
+  .projects { grid-template-columns: 1fr; }
+  .showcase { grid-template-columns: 1fr; }
+  .hero-inner { flex-direction: column; text-align: center; }
+  .hero-logo { order: -1; }
+}
+@media (max-width: 600px) {
+  .hero { padding: 100px 1.5rem 3rem; }
+  .section { padding: 4rem 0; } /* CONTROLLER: Mobile section spacing */
+  .container { padding: 0 1.5rem; }
+  .hero-logo { width: 120px; height: 120px; }
+  .team { grid-template-columns: 1fr; }
+  .video-box iframe { height: 300px; }
+  .gallery.concepts { grid-template-columns: 1fr; }
+  nav { width: 90%; }
+}
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <a href="index.html" class="logo">
+    <span class="mono">R</span>
+    <span>Rupesh&nbsp;<em>Shrestha</em></span>
+  </a>
+  <a href="index.html#portfolio" class="back">← Back to portfolio</a>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-cat">UC Berkeley MEng Course Project · Fall 2023</div>
+      <h1 class="hero-title"><span class="hydro">Hydro</span><span class="hive">Hive</span></h1>
+      <p class="hero-tag">"Revolutionizing Urban Farming, One Drop at a Time"</p>
+    </div>
+    <div class="hero-logo">
+      <img src="img/logo.png" alt="HydroHive Logo">
+    </div>
+  </div>
+</div>
+
+<!-- Introduction -->
+<div class="section">
+  <div class="container">
+    <div class="cols">
+      <div class="col-text">
+        <h3>Introduction</h3>
+        <p>Hydroponic systems are a way to grow plants directly in water without using soil. Instead, the plant's roots get their nutrients from a water-based solution. This method can be more efficient than traditional soil farming, often leading to faster plant growth and bigger yields. There are different types of hydroponic systems, but they all share the common goal of providing plants with a balanced supply of water, nutrients, and oxygen. These systems are popular for growing vegetables, herbs, and other plants, especially indoors or in areas with poor soil quality.</p>
+        <p><strong>Note:</strong> This is a team project done as part of the course Human Centered Design (ME 292C), for the fall 2023, at the University of California, Berkeley as a part of the MEng program. This documentation provides brief information on the project and mostly about my contribution to the project.</p>
+      </div>
+      <div class="col-img">
+        <img src="img/elements/1.png" alt="Hydroponic system illustration">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Solution -->
+<div class="section">
+  <div class="container">
+    <div class="cols rev">
+      <div class="col-img">
+        <img src="img/hydrohive/solution.png" alt="HydroHive solution">
+      </div>
+      <div class="col-text">
+        <h3>Our Solution</h3>
+        <p>HydroHive's modular design adapts effortlessly to your needs, offering easy expansion and a hassle-free gardening experience for both enthusiasts and beginners. Customize and grow at your own pace – a perfect fit for any home. It features an external shell inspired by beehives. Slots and connectors enable users to connect multiple units together. The cups support the substrate and the roots of the plant. The tray supports the cup and covers the water. The container holds water with nutrients and supports the plant.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Timeline -->
+<div class="section dark">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-num">Process</div>
+      <h2 class="sec-title">Project <em>Timeline</em></h2>
+    </div>
+    <div class="cols" style="margin-bottom:0;">
+      <div class="col-img">
+        <img src="img/hydrohive/team.jpg" alt="Team photo">
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <h4>Phase 1: Identify</h4>
+          <span class="meta">Research | 8/24 - 9/26</span>
+          <p>Identifying Opportunities by Research on Product Opportunity Gaps</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <h4>Phase 2: Understand</h4>
+          <span class="meta">Research & Analyze | 9/28 - 10/20</span>
+          <p>Gathering data and in-depth Understanding conducting User Research</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <h4>Phase 3: Conceptualize</h4>
+          <span class="meta">Ideate | 10/24 - 11/8</span>
+          <p>Translation and Visualization by Concept Generation and Selection</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <h4>Phase 4: Realize</h4>
+          <span class="meta">Build & Communicate | 11/9 - 12/8</span>
+          <p>Bringing concept to life by using the Prototyping Plan and Showcase</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Phase 1 -->
+<div class="section">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-num">Phase 01</div>
+      <h2 class="sec-title">Identify</h2>
+    </div>
+    <div class="cols">
+      <div class="col-text">
+        <span class="date">Aug 24 — Sept 26</span>
+        <p>For phase 1, I came up with 15 Product Opportunity Gaps (POG) and as a team, we came up with 60 POGs. Through a peer-review process, the initial list was filtered down to 26 POGs. To refine their focus further, the team categorized these opportunities into six distinct categories. The final selection was made using a weighted matrix that assessed each POG against criteria such as cost, size, feasibility, and more. This quantitative evaluation led to the identification of a single POG:</p>
+        <p class="highlight">"How might we design an energy-efficient and resilient hydroponic system that minimizes electricity usage and promotes renewables for wider adoption?"</p>
+      </div>
+      <div class="col-img">
+        <img src="img/hydrohive/phase-1.jpg" alt="Phase 1 research">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Phase 2 -->
+<div class="section">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-num">Phase 02</div>
+      <h2 class="sec-title">Understand</h2>
+    </div>
+    <div class="cols rev">
+      <div class="col-imgs-stack">
+        <div class="col-img">
+          <img src="img/hydrohive/phase-2a.JPG" alt="Phase 2 research">
+        </div>
+        <div class="col-img">
+          <img src="img/hydrohive/phase-2b.jpg" alt="Phase 2 analysis">
+        </div>
+      </div>
+      <div class="col-text">
+        <span class="date">Sept 28 — Oct 20</span>
+        <p>During the in-depth phase 2 period of our project, we focused on user research. The research in this phase heavily involved learning from existing products, competitors, articles, research papers, and interviews which I and my teammates conducted. Interviews included discussions with Tina Wistrom, UC Berkeley Oxford facility manager, and Ivan Wang, president of the Vertical Farming at Berkeley club. These interviews were held during a visit to their facility and they offered valuable insights into the current status of hydroponics systems, either technological, economic, or social.</p>
+        <p>Following the user research, we redefined our POG and increased its scope to better accommodate other possible solutions:</p>
+        <p class="highlight">"How might we revise existing hydroponics systems in urban environments and optimize them for wider adoption?"</p>
+        <p>After learning more about hydroponic systems from the user research, we proceeded with the study of our market and the competition. Our research on existing competitors gave us deeper insights into the needs of the user and the hydroponics market dynamics. Based on my and my team's research, we found 3 direct competitors. Then, we used the categories to create a VOA (Value Opportunity Analysis) chart for our desired product, for the Kichgarden garden kit, and for the farmshelf vertical farming system, after defining all the features for VOA. It helped us determine the needs of our products which are to emphasize ease of use, scalability, and affordability while being aesthetically pleasing.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Phase 3 -->
+<div class="section">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-num">Phase 03</div>
+      <h2 class="sec-title">Conceptualize</h2>
+    </div>
+    <div class="cols">
+      <div class="col-text">
+        <span class="date">Oct 24 — Nov 8</span>
+        <p>In this phase, we embarked on a creative journey to transform our gathered insights into tangible concepts. We employed several ideation techniques like Lotus Blossom, Morphological Analysis, and SCAMPER to generate a diverse range of ideas. Each member of the team contributed unique perspectives, resulting in a rich pool of potential solutions.</p>
+        <p>After generating numerous concepts, we utilized a concept screening matrix and the Pugh chart to systematically evaluate each idea. This process helped us identify concepts that best aligned with our defined criteria, such as ease of use, scalability, affordability, and aesthetic appeal. The chosen concepts were then refined into detailed sketches and prototypes, setting the stage for the realization phase.</p>
+      </div>
+      <div class="col-imgs-stack">
+        <div class="col-img">
+          <img src="img/hydrohive/phase-30.jpg" alt="Phase 3 conceptualization">
+        </div>
+        <div class="col-img">
+          <img src="img/hydrohive/phase-31.jpg" alt="Phase 3 ideation">
+        </div>
+      </div>
+    </div>
+
+    <!-- Concept sketches -->
+    <div class="gallery-wrap">
+      <h3>Concept Sketches</h3>
+      <div class="gallery concepts">
+        <div class="gal-item">
+          <a href="img/hydrohive/phase-3a.jpg" data-lightbox="concepts">
+            <img src="img/hydrohive/phase-3a.jpg" alt="Concept sketch 1">
+            <div class="gal-overlay">
+              <span class="cap">Concept Sketch 1 & 2</span>
+            </div>
+          </a>
+        </div>
+        <div class="gal-item">
+          <a href="img/hydrohive/phase-3b.jpg" data-lightbox="concepts">
+            <img src="img/hydrohive/phase-3b.jpg" alt="Concept sketch 2">
+            <div class="gal-overlay">
+              <span class="cap">Concept Sketch 3 & 4</span>
+            </div>
+          </a>
+        </div>
+        <div class="gal-item">
+          <a href="img/hydrohive/phase-3c.jpg" data-lightbox="concepts">
+            <img src="img/hydrohive/phase-3c.jpg" alt="Concept sketch 3">
+            <div class="gal-overlay">
+              <span class="cap">Concept Sketch 5 & 6</span>
+            </div>
+          </a>
+        </div>
+        <div class="gal-item">
+          <a href="img/hydrohive/phase-3d.jpg" data-lightbox="concepts">
+            <img src="img/hydrohive/phase-3d.jpg" alt="Concept sketch 4">
+            <div class="gal-overlay">
+              <span class="cap">Concept Sketch 7 & 8</span>
+            </div>
+          </a>
+        </div>
+        <div class="gal-item">
+          <a href="img/hydrohive/phase-3e.jpg" data-lightbox="concepts">
+            <img src="img/hydrohive/phase-3e.jpg" alt="Concept sketch 5">
+            <div class="gal-overlay">
+              <span class="cap">Concept Sketch 9 & 10</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Phase 4 -->
+<div class="section">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-num">Phase 04</div>
+      <h2 class="sec-title">Realize</h2>
+    </div>
+    <div class="cols rev">
+      <div class="col-img">
+        <img src="img/hydrohive/phase-40.jpg" alt="Phase 4 prototype">
+      </div>
+      <div class="col-text">
+        <span class="date">Nov 9 — Dec 8</span>
+        <p>During phase 4, we decided on the final concept design by voting which was my second concept design out of the 10 I developed. After that, we proceeded into the prototyping phase where we first worked on the two prototyping canvases laying out the assumptions, questions on prototyping, resources, and challenges. I worked on the prototyping canvas shown in the picture here. The solution to the challenge that our prototyping canvas presented was 'designing and implementing male and female connectors for hexagons and piping system connections.'</p>
+        <p>I extensively worked on sketching the proposed prototype to study the feasibility of the product for manufacturing and also to come up with a minimalistic design. After team discussions and a review from design stand-up, I created the final sketch for the prototype which was later designed in 3D in SolidWorks.</p>
+      </div>
+    </div>
+
+    <!-- Prototype sketches -->
+    <div class="gallery-wrap">
+      <h3>Prototype Sketches</h3>
+      <div class="gallery">
+        <div class="gal-item">
+          <a href="img/hydrohive/phase-4a.jpg" data-lightbox="prototypes">
+            <img src="img/hydrohive/phase-4a.jpg" alt="Prototype sketch 1">
+            <div class="gal-overlay">
+              <span class="cap">Front view with three hexagonal compartments</span>
+            </div>
+          </a>
+        </div>
+        <div class="gal-item">
+          <a href="img/hydrohive/phase-4b.jpg" data-lightbox="prototypes">
+            <img src="img/hydrohive/phase-4b.jpg" alt="Prototype sketch 2">
+            <div class="gal-overlay">
+              <span class="cap">Isometric view of one compartment</span>
+            </div>
+          </a>
+        </div>
+        <div class="gal-item">
+          <a href="img/hydrohive/phase-4c.jpg" data-lightbox="prototypes">
+            <img src="img/hydrohive/phase-4c.jpg" alt="Prototype sketch 3">
+            <div class="gal-overlay">
+              <span class="cap">Back view with three hexagonal compartments</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3D Design -->
+    <div class="gallery-wrap">
+      <h3>3D Design using SolidWorks</h3>
+      <div class="gallery">
+        <div class="gal-item">
+          <a href="img/hydrohive/hexagon.jpg" data-lightbox="3d">
+            <img src="img/hydrohive/hexagon.jpg" alt="Hexagonal compartment">
+            <div class="gal-overlay">
+              <span class="cap">Hexagonal Compartment</span>
+            </div>
+          </a>
+        </div>
+        <div class="gal-item">
+          <a href="img/hydrohive/container.jpg" data-lightbox="3d">
+            <img src="img/hydrohive/container.jpg" alt="Container">
+            <div class="gal-overlay">
+              <span class="cap">Container</span>
+            </div>
+          </a>
+        </div>
+        <div class="gal-item">
+          <a href="img/hydrohive/tray.jpg" data-lightbox="3d">
+            <img src="img/hydrohive/tray.jpg" alt="Tray">
+            <div class="gal-overlay">
+              <span class="cap">Tray</span>
+            </div>
+          </a>
+        </div>
+        <div class="gal-item">
+          <a href="img/hydrohive/cup.jpg" data-lightbox="3d">
+            <img src="img/hydrohive/cup.jpg" alt="Cup">
+            <div class="gal-overlay">
+              <span class="cap">Cup</span>
+            </div>
+          </a>
+        </div>
+        <div class="gal-item">
+          <a href="img/hydrohive/oneunit.jpg" data-lightbox="3d">
+            <img src="img/hydrohive/oneunit.jpg" alt="One complete unit">
+            <div class="gal-overlay">
+              <span class="cap">One Complete Unit</span>
+            </div>
+          </a>
+        </div>
+        <div class="gal-item">
+          <a href="img/hydrohive/exploded.jpg" data-lightbox="3d">
+            <img src="img/hydrohive/exploded.jpg" alt="Exploded view">
+            <div class="gal-overlay">
+              <span class="cap">Exploded view</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Design Showcase -->
+<div class="section">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-num">Showcase</div>
+      <h2 class="sec-title">Design <em>Showcase</em></h2>
+    </div>
+    <div class="showcase">
+      <div class="show-item">
+        <div class="show-img">
+          <img src="img/hydrohive/complete.JPG" alt="Full assembly">
+        </div>
+        <div class="show-cap">Full Assembly</div>
+      </div>
+      <div class="show-item">
+        <div class="show-img">
+          <img src="img/hydrohive/poster.png" alt="Poster">
+        </div>
+        <div class="show-cap">Poster</div>
+      </div>
+    </div>
+
+    <!-- Video -->
+    <div class="video-wrap">
+      <h3>3D Animation Video</h3>
+      <div class="video-box">
+        <iframe src="https://www.youtube.com/embed/DG_kF3KfdXE" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <a href="https://www.behance.net/gallery/186356629/HydroHive-HCDM-F23" target="_blank" class="btn">See Behance Page <i class="fas fa-external-link-alt"></i></a>
+    </div>
+
+    <!-- Prototype pictures -->
+    <div class="gallery-wrap">
+      <h3>Prototype Pictures</h3>
+      <div class="gallery">
+        <div class="gal-item">
+          <a href="img/hydrohive/prototype-1.jpeg" data-lightbox="proto">
+            <img src="img/hydrohive/prototype-1.jpeg" alt="Prototype 1">
+          </a>
+        </div>
+        <div class="gal-item">
+          <a href="img/hydrohive/prototype-2.jpg" data-lightbox="proto">
+            <img src="img/hydrohive/prototype-2.jpg" alt="Prototype 2">
+          </a>
+        </div>
+        <div class="gal-item">
+          <a href="img/hydrohive/prototype-3.jpeg" data-lightbox="proto">
+            <img src="img/hydrohive/prototype-3.jpeg" alt="Prototype 3">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Reflection -->
+<div class="section">
+  <div class="container">
+    <div class="cols">
+      <div class="col-text">
+        <h3>Reflection</h3>
+        <p>I really enjoyed the Human Centered Design course throughout the semester. The course design was very practical and unique for me. Getting to work on a project since the beginning of the semester and working step by step, considering all the factors needed to create a human-centered design, was a wonderful experience. Also, I have my huge respect and gratitude for the faculty team, Prof. Kosa, and our GSI/TA Ananya. I really appreciate their effort to make this learning experience a successful one. Their teaming strategy was very practical and I really loved this team and enjoyed working with each of them the whole semester. Overall, the project HydroHive turned out to be a successful course project for the time and budget allocated. The team did a fantastic job. Thanks to everyone involved in this process.</p>
+        <a href="https://classes.berkeley.edu/content/2022-fall-meceng-292c-001-lec-001" target="_blank" class="btn">Learn More <i class="fas fa-external-link-alt"></i></a>
+      </div>
+      <div class="col-img">
+        <img src="img/hydrohive/reflection.JPG" alt="Reflection" style="border-radius:50%;">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Team -->
+<div class="section">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-num">Team</div>
+      <h2 class="sec-title">Meet the <em>Team</em></h2>
+    </div>
+    <div class="team">
+      <div class="team-mem">
+        <div class="team-av">
+          <img src="img/team1.jpg" alt="Rupesh Shrestha">
+        </div>
+        <div class="team-name">Rupesh Shrestha</div>
+        <div class="team-role">Mechanical Engineer</div>
+        <div class="team-org">UC Berkeley</div>
+      </div>
+      <div class="team-mem">
+        <div class="team-av">
+          <img src="img/team2.jpg" alt="Quentin Daurat">
+        </div>
+        <div class="team-name">Quentin Daurat</div>
+        <div class="team-role">Mechanical Engineer</div>
+        <div class="team-org">UC Berkeley</div>
+      </div>
+      <div class="team-mem">
+        <div class="team-av">
+          <img src="img/team3.jpg" alt="Sean Chu">
+        </div>
+        <div class="team-name">Sean Chu</div>
+        <div class="team-role">Mechanical Engineer</div>
+        <div class="team-org">UC Berkeley</div>
+      </div>
+      <div class="team-mem">
+        <div class="team-av">
+          <img src="img/team4.jpg" alt="Yash Saravan Nalina">
+        </div>
+        <div class="team-name">Yash Saravan Nalina</div>
+        <div class="team-role">Mechanical Engineer</div>
+        <div class="team-org">UC Berkeley</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Other Projects -->
+<div class="section">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-num">More work</div>
+      <h2 class="sec-title">Other <em>Projects</em></h2>
+    </div>
+    <div class="projects">
+      <div class="proj">
+        <img src="img/portfolio-1.jpg" alt="Sunseeker yacht">
+        <div class="proj-body">
+          <h5>Design of Sunseeker Predator Yacht</h5>
+          <a href="https://skill-lync.com/student-projects/assembly-of-yacht-142" target="_blank" class="btn">Read More</a>
+        </div>
+      </div>
+      <div class="proj">
+        <img src="img/portfolio-2.jpg" alt="Tree planting drone">
+        <div class="proj-body">
+          <h5>Design of Tree Planting Drone</h5>
+          <a href="https://skill-lync.com/student-projects/final-independent-project-103" target="_blank" class="btn">Read More</a>
+        </div>
+      </div> 
+      <div class="proj">
+        <img src="img/portfolio-3.jpg" alt="American chopper">
+        <div class="proj-body">
+          <h5>Design of an American Chopper</h5>
+          <a href="https://skill-lync.com/student-projects/photo-realistic-rendering-101" target="_blank" class="btn">Read More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="foot-link">
+    <a href="https://skill-lync.com/profiles/rupesh-shrestha" target="_blank"><i class="fas fa-link"></i> See Skill-Lync Portfolio</a>
+  </div>
+  <div class="socials">
+    <a href="https://twitter.com/RupeshMDE" target="_blank"><i class="fab fa-twitter"></i></a>
+    <a href="https://www.facebook.com/shrestharupesh.me/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.linkedin.com/in/shrestha-rupesh/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+    <a href="https://www.instagram.com/rupeshjournal/" target="_blank"><i class="fab fa-instagram"></i></a>
+  </div>
+  <div class="copy">
+    © <a href="https://shrestharupesh.com/" target="_blank">Rupesh Shrestha</a>. All Rights Reserved.
+  </div>
+</footer>
+
+<!-- Back to top -->
+<a href="#" class="totop" id="top">
+  <i class="fas fa-angle-double-up"></i>
+</a>
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="lib/lightbox/js/lightbox.min.js"></script>
+<script>
+// Navbar auto-hide after 1.5 seconds of idle
+let navTimer;
+const nav = document.querySelector('nav');
+
+function showNav() {
+  nav.classList.remove('hide');
+  clearTimeout(navTimer);
+  navTimer = setTimeout(() => {
+    nav.classList.add('hide');
+  }, 1500); // 1.5 seconds
+}
+
+// Show on mouse movement and scroll
+document.addEventListener('mousemove', showNav);
+document.addEventListener('scroll', showNav);
+
+// Start visible, then begin timer
+showNav();
+
+// Back to top
+const top = document.getElementById('top');
+window.addEventListener('scroll', () => {
+  top.classList.toggle('show', window.scrollY > 300);
+});
+top.addEventListener('click', (e) => {
+  e.preventDefault();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// Lightbox config
+lightbox.option({
+  'resizeDuration': 200,
+  'wrapAround': true,
+  'albumLabel': 'Image %1 of %2'
+});
+</script>
+</body>
+</html>

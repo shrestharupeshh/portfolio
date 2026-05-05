@@ -391,6 +391,8 @@ nav {
     <button class="guide-tab" onclick="showGuide('strength',this)">Strength &amp; Calisthenics</button>
     <button class="guide-tab" onclick="showGuide('speed',this)">Speed Work</button>
     <button class="guide-tab" onclick="showGuide('raceday',this)">Race Day</button>
+    <!-- NUTRITION PLAN TAB BUTTON — add to your guide-tabs div -->
+    <button class="guide-tab" onclick="showGuide('nutrition-plan',this)">Nutrition Plan</button>
   </div>
 
   <!-- THE PLAN -->
@@ -1018,6 +1020,339 @@ nav {
     </div>
   </div>
 
+
+  <!-- FROM HERE -->
+
+
+<!-- NUTRITION PLAN SECTION — add after your existing guide sections -->
+<div id="guide-nutrition-plan" class="guide-section">
+  <div class="guide-grid">
+
+    <!-- SECTION 1: THE SCIENCE FOUNDATION -->
+    <div class="guide-card" style="grid-column:1/-1">
+      <h3><span class="icon ic-amber">🔬</span> The science foundation — how your body uses food</h3>
+      <p style="margin-bottom:10px">Everything in this plan is built on four principles. Understanding them means you can make your own decisions when situations don't match the plan exactly.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px">
+        <div class="highlight">
+          <strong>Energy balance</strong><br>
+          Calories in vs calories out determines body weight. For marathon training, the goal is not a deficit — it's fueling performance and recovery. Undereating during training causes muscle loss, poor adaptation, hormonal disruption, and injury. You are an athlete in training, not someone trying to lose weight. Eat enough.
+        </div>
+        <div class="highlight">
+          <strong>Macronutrient roles</strong><br>
+          Carbohydrates = primary running fuel (stored as glycogen). Protein = muscle repair and maintenance. Fat = hormones, joint health, fat-soluble vitamins, and sustained energy. All three are required every day. None should be avoided or minimized during marathon training.
+        </div>
+        <div class="highlight">
+          <strong>Nutrient timing</strong><br>
+          When you eat matters almost as much as what you eat. The same food eaten at different times produces different outcomes — pre-run carbs fuel performance, post-run carbs restore glycogen, post-run protein triggers repair. The plan specifies timing for every meal for this reason.
+        </div>
+        <div class="highlight">
+          <strong>Gut health priority</strong><br>
+          Given your IBS and prostatitis history, gut comfort takes precedence over theoretical optimums. A meal that is 90% optimal but causes bloating or GI distress is worse than an 80% optimal meal that digests cleanly. Every recommendation here is filtered through gut-safety first.
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2: YOUR CALORIE TARGETS -->
+    <div class="guide-card" style="grid-column:1/-1">
+      <h3><span class="icon ic-coral">🔢</span> Your calorie targets — by training phase</h3>
+      <p style="margin-bottom:10px">At 63kg, male, 25 years old, moderately active baseline (bike commute + desk job), your maintenance calories are approximately 2,200–2,400 kcal/day without training. Running adds significant demand on top of this.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px">
+        <div class="highlight">
+          <strong>Phase 1 — now (wk 1–5)</strong><br>
+          ~2,600–2,800 kcal/day on run days<br>
+          ~2,200–2,400 kcal/day on rest days<br>
+          Running burns ~65 kcal/km at your weight. A 10K run = ~650 kcal. A 5K easy run = ~325 kcal. Add this to your maintenance number and that's your target.
+        </div>
+        <div class="highlight">
+          <strong>Phase 2 (wk 6–10)</strong><br>
+          ~2,800–3,000 kcal/day on run days<br>
+          ~2,300–2,500 kcal/day on rest days<br>
+          Long runs of 15–21K burn 975–1,365 kcal. Your body will be hungrier — feed it. Do not restrict here.
+        </div>
+        <div class="highlight">
+          <strong>Phase 3 — peak (wk 11–13)</strong><br>
+          ~3,000–3,400 kcal/day on long run days<br>
+          ~2,800–3,000 kcal/day on other training days<br>
+          ~2,400 kcal on rest days<br>
+          Peak week (32K long run) burns ~2,080 kcal from running alone. Carbohydrate intake must increase significantly.
+        </div>
+        <div class="highlight">
+          <strong>Taper (wk 14–16)</strong><br>
+          ~2,600–2,800 kcal/day<br>
+          Mileage drops but appetite stays high — this is normal. Don't cut food. Keep carbs high. Body is storing glycogen for race day. Weight may increase 1–2kg from glycogen water storage — this is correct and means you are race-ready.
+        </div>
+      </div>
+      <div class="highlight" style="margin-top:10px">
+        <strong>How to estimate without tracking apps:</strong> Use your hand as a measuring tool. One cupped hand of cooked rice = ~200 kcal. One palm-sized chicken breast = ~25g protein / ~150 kcal. One thumb of peanut butter = ~100 kcal. One egg = ~70 kcal. One banana = ~100 kcal. One scoop whey = ~120 kcal / 25g protein. This is not precise but gives you enough awareness to know if you're severely under or over eating. If you're losing weight during training, eat more carbs. If energy crashes after km 7, eat more carbs pre-run.
+      </div>
+    </div>
+
+    <!-- SECTION 3: MACROS -->
+    <div class="guide-card" style="grid-column:1/-1">
+      <h3><span class="icon ic-blue">📊</span> Your macro targets — daily breakdown</h3>
+      <p style="margin-bottom:10px">At 63kg, these are your daily targets. Ranges are given because exact precision is neither necessary nor realistic — hitting the middle of each range on most days is sufficient.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px">
+        <div class="highlight">
+          <strong>Carbohydrates — your primary fuel</strong><br>
+          Phase 1: 5–6g/kg = 315–378g/day<br>
+          Phase 2: 6–7g/kg = 378–441g/day<br>
+          Phase 3: 7–8g/kg = 441–504g/day<br><br>
+          In practical terms: 3–4 cups cooked rice per day covers most of this. Add chiura, oats, banana, roti, potato, dal. Rice is your best friend. Do not fear it.
+        </div>
+        <div class="highlight">
+          <strong>Protein — repair and muscle retention</strong><br>
+          All phases: 1.6–1.8g/kg = 101–113g/day<br><br>
+          Your current sources: 2 eggs (12g) + 1 scoop whey (25g) + 100g chicken (30g) + 100g tofu (8–10g) + dal serving (10–15g) = ~85–92g. You are close but slightly under. Adding soybean chunks (restock soon — 52g protein per 100g dry) closes the gap easily.
+        </div>
+        <div class="highlight">
+          <strong>Fat — hormones and joints</strong><br>
+          All phases: 1.0–1.2g/kg = 63–76g/day<br><br>
+          Your current sources cover this easily: half avocado (15g) + walnuts/almonds snack (10–15g) + cooking oil (5–10g) + eggs (10g) + peanut butter if used (8g per tbsp). Do not add more fat — your intake is appropriate. The issue is timing, not quantity.
+        </div>
+        <div class="highlight">
+          <strong>Fiber — gut health maintenance</strong><br>
+          Target: 25–30g/day<br><br>
+          Given your IBS history: distribute fiber across the day rather than loading it in one meal. Avoid raw high-fiber foods within 2 hours of running. Cooked vegetables digest significantly better than raw for you — cabbage, broccoli, and carrots are all safer cooked. Raw romaine and raw carrots are fine at lunch when you have 4+ hours before running.
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 4: NEPALI MEAL TEMPLATES -->
+    <div class="guide-card" style="grid-column:1/-1">
+      <h3><span class="icon ic-teal">🍚</span> Nepali-adapted meal templates — by day type</h3>
+      <p style="margin-bottom:10px">These are templates built around your actual food access and cooking style. Mix and match within each category — the goal is hitting the macro targets, not following a rigid menu.</p>
+
+      <div class="highlight" style="margin-bottom:8px">
+        <strong>WEEKDAY TRAINING DAY — full structure</strong><br><br>
+        <strong>6:45am — Breakfast (400–500 kcal, carb + protein focus)</strong><br>
+        Option A (oatmeal base): 60–80g oats + 4–5 tbsp yogurt + handful walnuts + almonds + frozen blueberries + 1 scoop whey stirred in OR 2 boiled eggs on the side. This is your current breakfast and it is well-structured. The whey in oatmeal is underrated — fast protein with slow carbs.<br>
+        Option B (egg base): 2–3 boiled eggs + 1 banana + 2–3 tbsp yogurt + 4–5 walnuts. Lighter, faster to make, better on mornings when gut is sensitive.<br>
+        Option C (chiura base on rest days or easy days): Roasted chiura 80–100g + 2 eggs + yogurt + banana. Low fiber, gentle on gut, excellent glycogen fuel.<br><br>
+        <strong>Avoid at breakfast:</strong> Peanut butter + avocado together with dairy — this combination is high fat and can slow digestion significantly, causing heaviness that lingers into your afternoon run. Save avocado for non-running days or post-run.<br><br>
+
+        <strong>12:00–12:30pm — Lunch (550–650 kcal, balanced)</strong><br>
+        Rice 1–1.5 cups cooked + dal (mung or masoor preferred — lighter on gut than black dal at midday) + one vegetable curry (potato, cabbage, cauliflower, green beans, tofu) + 2–3 baby carrots raw + 1 broccoli floret raw. This is your current lunch and it is good. The raw fiber here is fine — you have 4–5 hours before your run.<br>
+        Add soybean chunks to the curry whenever you have them — they absorb curry flavour well and add ~15–20g protein per serving cooked.<br>
+        Quinoa swap: replace rice with 3/4 cup dry quinoa (cooked) twice a week — complete protein, slightly higher iron than rice. Good gut tolerance for most people.<br><br>
+
+        <strong>3:30–4:00pm — Pre-run snack (150–200 kcal, simple carbs)</strong><br>
+        1 banana + 1 mandarin + 6–8 almonds. Your current pattern is correct. The banana provides fast glucose for the run. The almonds slow the sugar spike slightly. No pumpkin seeds within 90 min of running — they're high fat and slow gastric emptying.<br>
+        If running within 45 min of leaving office: banana only, no nuts.<br>
+        If running 75+ min after leaving office: banana + mandarin + small handful almonds is fine.<br><br>
+
+        <strong>Immediately post-run (within 30 min) — Recovery window</strong><br>
+        Whey 1 scoop (25g protein) + 5g creatine in water. You are already doing this correctly. ✅<br>
+        Add 1 banana or 1 mandarin alongside the shake — the simple carbs alongside the protein maximises the glycogen + protein synthesis window simultaneously.<br><br>
+
+        <strong>7:00–8:00pm — Dinner (550–650 kcal, carb + protein + cooked veg)</strong><br>
+        Same template as lunch: rice + protein source + cooked vegetable curry + small side salad if desired.<br>
+        Key rule: dinner vegetables should be cooked, not raw, especially on high-mileage days. Your gut handles cooked cabbage, cooked broccoli, cooked green beans significantly better than raw versions. Raw romaine at dinner is fine in small amounts.<br>
+        Portion rice slightly larger at dinner on long run eve (Sunday night, Week 5+) — you are carb loading for the next day's run.
+      </div>
+
+      <div class="highlight" style="margin-bottom:8px">
+        <strong>SATURDAY — Calisthenics + Shakeout Run day</strong><br><br>
+        <strong>Before calisthenics (11am session):</strong> Light only — 1 banana + 1 mandarin + small handful pumpkin seeds. No heavy meal within 90 min of a hard upper body session. The pump and effort quality of your calisthenics suffers with a full stomach.<br><br>
+        <strong>Post-calisthenics brunch (1:00–1:30pm):</strong> This is your main meal of the day. Chiura 80–100g roasted + 3-egg omelette + half avocado + apple or banana. Or leftover rice + curry + eggs. Eat well here — you have 3.5–4 hours before the shakeout run.<br>
+        Protein shake with creatine here ✅ — correct timing after the strength session.<br><br>
+        <strong>Pre-shakeout snack (3:00–3:30pm):</strong> 1 banana + 1 mandarin. No nuts at this point — 45–60 min to run.<br><br>
+        <strong>Post-run (5:30–6pm):</strong> Banana + pumpkin seeds fine here. Dinner at 7:30pm as usual.<br><br>
+        <strong>Saturday night — pre-long-run dinner (critical):</strong> This meal fuels Sunday's long run. Rice 1.5–2 cups cooked + chicken or dal + cooked vegetables only (no raw salad). No heavy fat (no avocado, no peanut butter, no ice cream). No excess fiber. Eat by 7:30pm. This is the most important meal of your week.
+      </div>
+
+      <div class="highlight">
+        <strong>SUNDAY — Long run day</strong><br><br>
+        <strong>Breakfast/brunch (9:00–10:00am):</strong> 3-egg omelette + oats 50g + yogurt + blueberries + banana. This is your current pattern and it is well-structured. No peanut butter, no avocado — keep fat minimal to speed gastric emptying before the run.<br><br>
+        <strong>30 min before run:</strong> 1 banana or 3–4 dates. Simple carbs only.<br><br>
+        <strong>During run — at 45 min mark:</strong> 1 mandarin or 2–3 dates. You started this correctly on Day 27. ✅ For runs over 90 min (from Week 5 onward): second fuel at 85–90 min mark.<br><br>
+        <strong>Immediately post-run:</strong> Whey + creatine + banana within 30 min ✅. Then rest 20–30 min before cooking or eating more.<br><br>
+        <strong>1–1.5 hrs post-run:</strong> Proper meal — rice + protein + cooked vegetables. This is your glycogen restoration window. Eat more rice than usual here — your muscles are maximally insulin-sensitive and will store it as glycogen, not fat.<br><br>
+        <strong>Sunday evening treat timing:</strong> Ice cream, chocolate, cake, or brownie belongs HERE — 1.5–2 hours post-run, after the main recovery meal. Your muscles are fueled, protein synthesis is running, and the simple sugars go to glycogen restoration rather than fat storage. This is the correct time for treats, not pre-run.
+      </div>
+    </div>
+
+    <!-- SECTION 5: ANTINUTRIENTS AND FOOD INTERACTIONS -->
+    <div class="guide-card" style="grid-column:1/-1">
+      <h3><span class="icon ic-purple">⚠️</span> Antinutrients, food interactions, and gut safety</h3>
+      <p style="margin-bottom:10px">You specifically asked about antinutrients — this is a real and relevant topic given your gut history. Here is what you need to know about the foods in your diet.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px">
+        <div class="highlight">
+          <strong>What are antinutrients?</strong><br>
+          Antinutrients are compounds in food that interfere with the absorption of nutrients. They evolved in plants as protection against being eaten. Common ones: phytates (in grains, legumes, nuts), oxalates (in spinach, nuts), lectins (in beans, lentils), tannins (in tea, cocoa). They are not dangerous in normal dietary amounts — but they can reduce mineral absorption and cause GI discomfort if eaten in excess or in certain conditions.
+        </div>
+        <div class="highlight">
+          <strong>Phytates — in oats, dal, nuts, rice bran</strong><br>
+          Bind to iron, zinc, calcium and reduce absorption. Risk for you: you eat oats and dal daily, both high in phytates. Mitigation: soaking oats 30+ min before cooking reduces phytates 30–50%. Soaking and rinsing dal before cooking does the same. You likely already do this — it's standard Nepali practice. Yogurt alongside oats helps too (fermentation/acid degrades phytates).
+        </div>
+        <div class="highlight">
+          <strong>Lectins — in beans, chickpeas, soybean chunks, kidney beans</strong><br>
+          Raw lectins cause serious GI distress (nausea, vomiting). Fully cooked lectins are almost entirely inactivated and safe. Your soybean chunks are pre-processed — lectin content is low. Chickpeas must be fully cooked, never eat undercooked. Pressure cooking destroys lectins more completely than boiling.
+        </div>
+        <div class="highlight">
+          <strong>Oxalates — in spinach, nuts, cocoa</strong><br>
+          Bind calcium and can contribute to kidney stones in susceptible people. Your nut intake (walnuts, almonds) is moderate — no concern at your quantities. If you add spinach to curries, alternate with other greens. Cocoa in oatmeal occasionally is fine.
+        </div>
+        <div class="highlight">
+          <strong>FODMAPs — your IBS history</strong><br>
+          FODMAPs are fermentable carbohydrates that cause bloating and GI distress in IBS-prone people. High-FODMAP foods in your diet: cabbage, cauliflower, broccoli (in large amounts), black dal (whole), chickpeas, peanut butter (in large amounts). These are all fine in moderate portions but cooking them well reduces their FODMAP load significantly. Raw cabbage causes far more bloating than cooked cabbage. This explains your historical bloating — not just fiber quantity but FODMAP load from raw + dairy together.
+        </div>
+        <div class="highlight">
+          <strong>Milk and lactose — why it stopped working for you</strong><br>
+          Lactase enzyme production decreases in many South Asian adults after childhood — this is genetically common in Nepali and South Asian populations. US dairy is often higher in fat and processed differently than what you were used to. Your decision to quit milk was correct. Yogurt and paneer are lower-lactose dairy options that most lactose-sensitive people tolerate well because fermentation partially degrades the lactose. Keep yogurt, avoid liquid milk.
+        </div>
+        <div class="highlight">
+          <strong>Raw vs cooked — your specific profile</strong><br>
+          Cook: cabbage, cauliflower, broccoli, green beans, chickpeas, all dal, soybean chunks, tofu (always better cooked — improves protein digestibility).<br>
+          Raw is fine in small amounts: romaine lettuce, baby carrots, cucumber at lunch when you have 4+ hours before running.<br>
+          Never raw before running: any high-fiber vegetable within 2 hours of a run. Cooked only.
+        </div>
+        <div class="highlight">
+          <strong>Problematic combinations for your gut</strong><br>
+          Raw fiber + dairy together (your old bloating trigger) — keep yogurt with cooked oats, not with raw salad.<br>
+          High fat + high fiber before running — avocado + raw vegetables = delayed gastric emptying = GI distress mid-run.<br>
+          Dal + raw cruciferous vegetables in same meal — both are gas-producing. Fine if either is cooked well, problematic if both are eaten in large amounts simultaneously.<br>
+          Ice cream before any training session — fat + sugar combination requires 3–4 hours to clear.
+        </div>
+        <div class="highlight">
+          <strong>Foods better eaten with something</strong><br>
+          Iron-rich foods (dal, soybean chunks, leafy greens) + Vitamin C (mandarin, lemon juice, tomato) = 2–3× better iron absorption. Squeeze lemon on dal curry or eat a mandarin alongside. This matters for you as a runner — iron deficiency causes fatigue and elevated HR at the same pace.<br>
+          Fat-soluble vitamins (A, D, E, K) require fat to absorb — your avocado alongside vegetables is nutritionally smart, not just tasty.<br>
+          Calcium + Vitamin D — yogurt provides calcium, Sacramento sun provides D. Both needed for bone stress fracture prevention at marathon mileage.
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 6: SPECIFIC FOODS IN YOUR DIET -->
+    <div class="guide-card" style="grid-column:1/-1">
+      <h3><span class="icon ic-amber">🥘</span> Your specific foods — optimised usage</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px">
+        <div class="highlight">
+          <strong>Rice</strong><br>
+          Your primary carbohydrate and the correct choice. White rice is lower in phytates and fiber than brown — better for pre-run fueling and easier on your gut. Brown rice is fine at dinner on non-training days. Rinse before cooking to reduce arsenic (mild concern with daily rice consumption) and excess starch. Eat more rice on long run eve and post-long-run days.
+        </div>
+        <div class="highlight">
+          <strong>Chiura (beaten rice)</strong><br>
+          Underutilised in your current plan. It's low fiber, fast-digesting, easy to prepare, culturally familiar, and excellent pre-run carbohydrate. Roasted chiura 80–100g = ~300 kcal of clean carbs with minimal gut stress. Use it as: Saturday pre-calisthenics meal, race morning breakfast option, or quick post-run carb alongside protein shake.
+        </div>
+        <div class="highlight">
+          <strong>Dal (mung, masoor, maas, musura)</strong><br>
+          Mung dal (moong): easiest to digest, lowest FODMAP, best choice for daily use. Musura (red lentil): also easy, cooks fast, high iron.<br>
+          Maas (black dal): harder to digest, more gas-producing — eat at lunch not dinner, and not before running days.<br>
+          All dal: always soak 30+ min, rinse, cook fully. Adding a pinch of hing (asafoetida) and a small piece of ginger while cooking significantly reduces gas production.
+        </div>
+        <div class="highlight">
+          <strong>Soybean chunks (restock urgently)</strong><br>
+          52g protein per 100g dry weight — the highest protein density food in your accessible staples. Soak in hot water 20 min before cooking to rehydrate and reduce trypsin inhibitors (an antinutrient that impairs protein digestion). Squeeze out excess water before adding to curry. 50g dry per day = 26g protein. This single food can close your protein gap without relying on chicken every day.
+        </div>
+        <div class="highlight">
+          <strong>Eggs</strong><br>
+          Most bioavailable protein source available to you (digestibility score 100). 2–3 eggs daily is optimal. Boiled slightly better than fried for gut — less fat load. The yolk contains choline (brain + muscle function) and fat-soluble vitamins — don't eat egg whites only. One concern: eating 3+ eggs daily long-term raises cholesterol in ~30% of people (the rest are non-responders). At your age and activity level this is low risk, but worth knowing.
+        </div>
+        <div class="highlight">
+          <strong>Tofu</strong><br>
+          Good protein (8–10g per 100g) but lower bioavailability than eggs or chicken. Always cook tofu — raw or cold tofu has lower protein digestibility. Your microwaved tofu with salt and pepper is fine as a quick protein fix. Sautéed is better — light oil + heat improves amino acid availability. Firm tofu is higher protein than soft. Buy firm.
+        </div>
+        <div class="highlight">
+          <strong>Peanut butter</strong><br>
+          High fat (16g per 2 tbsp), moderate protein (8g), good taste. The issue is timing — peanut butter slows gastric emptying significantly. Fine at breakfast on rest days or non-training mornings. Avoid within 3 hours of any run. Avoid at Saturday dinner (pre-long-run eve). Natural peanut butter (no added oil/sugar) is better — less inflammatory than processed versions.
+        </div>
+        <div class="highlight">
+          <strong>Yogurt</strong><br>
+          Your gut's best friend. Probiotics help maintain the microbiome you've worked hard to restore. Eat daily ✅. Plain full-fat Greek yogurt is ideal — higher protein (10–15g per 100g) than regular yogurt, lower sugar. If you're using regular yogurt, that's fine too. Eat with cooked foods, not raw fiber — this was your historical bloating trigger.
+        </div>
+        <div class="highlight">
+          <strong>Walnuts and almonds</strong><br>
+          Walnuts: highest omega-3 content of all nuts — anti-inflammatory, directly supports knee health alongside fish oil. 4–6 walnut halves daily is the research-backed dose. Almonds: high magnesium, calcium, vitamin E. 8–10 almonds daily. Both: high phytates — eating with yogurt or soaking overnight reduces this. Don't eat large amounts within 2 hours of running.
+        </div>
+        <div class="highlight">
+          <strong>Banana</strong><br>
+          Perfect running fuel. Fast-digesting carbs (27g per medium banana), potassium (prevents cramping), easy to carry. Eat 30–45 min before runs. Riper bananas are higher glycaemic index (faster glucose release) — better pre-run. Less ripe bananas have more resistant starch — better as a regular snack. Keep both on hand.
+        </div>
+        <div class="highlight">
+          <strong>Ghee (restock)</strong><br>
+          Restock this. Ghee is clarified butter — lactose and casein removed, so it's safe for you despite dairy sensitivity. It contains butyrate, a short-chain fatty acid that directly feeds gut lining cells and supports the gut health restoration you've been building. 1 tsp on rice or roti is enough. Anti-inflammatory. Also improves absorption of fat-soluble vitamins from vegetables cooked with it.
+        </div>
+        <div class="highlight">
+          <strong>Dhindo (corn/millet flour)</strong><br>
+          Excellent whole grain carbohydrate. Millet is higher in iron and magnesium than rice. Corn dhindo is faster digesting. Use on non-running days or as a dinner carb variety. Not ideal immediately pre-run due to fiber content — eat 3+ hours before running if using millet flour dhindo.
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 7: SUPPLEMENTS -->
+    <div class="guide-card">
+      <h3><span class="icon ic-teal">💊</span> Supplements — current and recommended</h3>
+      <div class="highlight">
+        <strong>Keep — already taking correctly:</strong><br>
+        Whey protein (1 scoop post-run/gym) ✅<br>
+        Creatine 5g daily ✅<br>
+        Nordic Naturals fish oil 2 softgels with largest meal ✅<br><br>
+        <strong>Add from Week 6:</strong><br>
+        Magnesium glycinate 300–400mg before bed. Reduces cramping, improves sleep quality, supports connective tissue. Your walnut intake helps but doesn't fully cover requirements at marathon training volume.<br><br>
+        <strong>Consider:</strong><br>
+        Vitamin D3 1,000–2,000 IU daily if working indoors most of the day. Sacramento sun helps but desk job limits exposure.<br>
+        Iron — do not supplement without a blood test first. Too much iron is harmful. But given your mung dal + soybean intake, you are probably covering requirements. If fatigue is disproportionate to training load, get ferritin checked.<br><br>
+        <strong>Not needed:</strong><br>
+        BCAAs, glutamine, pre-workout stimulants, fat burners. These add cost without meaningful benefit given your current diet quality.
+      </div>
+    </div>
+
+    <!-- SECTION 8: HYDRATION -->
+    <div class="guide-card">
+      <h3><span class="icon ic-blue">💧</span> Hydration — daily targets</h3>
+      <div class="highlight">
+        <strong>Daily baseline:</strong> 3–3.5L water. Urine pale yellow = correct.<br><br>
+        <strong>Training days:</strong> Add 500–750ml per hour of training.<br><br>
+        <strong>Electrolytes:</strong> Add pinch of salt + squeeze of lemon to one water bottle daily during Phase 2+. This replaces sodium lost in sweat and supports the gut motility you've worked hard to restore — sodium is essential for intestinal water absorption.<br><br>
+        <strong>Avoid:</strong> Large amounts of water immediately before running (causes sloshing and stitches). Sip steadily in the 2 hours before, stop large drinks 20 min before start.<br><br>
+        <strong>Coconut water</strong> (if accessible and affordable): natural electrolyte replacement post-run. Better than sports drinks for gut health due to potassium + natural sugars. Not essential but good if you can find it reasonably priced.
+      </div>
+    </div>
+
+    <!-- SECTION 9: GUT HEALTH MAINTENANCE -->
+    <div class="guide-card" style="grid-column:1/-1">
+      <h3><span class="icon ic-teal">🦠</span> Gut health during marathon training — protecting what you've built</h3>
+      <p>You've spent 18 months restoring your gut from IBS and constipation. Marathon training creates real gut stress — impact running reduces blood flow to the intestines, high training load increases cortisol which disrupts gut motility, and poor fueling around training can trigger the exact conditions you've recovered from. Here's how to protect your progress.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:10px">
+        <div class="highlight">
+          <strong>Probiotic maintenance</strong><br>
+          Continue daily yogurt ✅. Consider adding a small amount of fermented food — homemade gaadeko achaar (fermented pickle/achaar) if you can make it, or store-bought kimchi 1–2 tbsp with lunch twice a week. These add microbial diversity that yogurt alone doesn't cover. Miso paste in warm water as a light soup is another accessible option.
+        </div>
+        <div class="highlight">
+          <strong>Prebiotic foods — feed your good bacteria</strong><br>
+          Oats (your daily oatmeal) ✅, slightly underripe banana ✅, cooked and cooled rice (resistant starch forms when rice cools — reheating it preserves some of this), garlic and onion in curries ✅, cooked legumes ✅. Your existing diet is actually prebiotic-rich. Keep it.
+        </div>
+        <div class="highlight">
+          <strong>Runner's gut — what it is and how to prevent it</strong><br>
+          Impact running reduces intestinal blood flow by up to 80% during intense effort. This can cause cramping, urgency, and diarrhoea — especially at higher intensities. Prevention: no high-fiber food within 2 hrs of running, no high-fat food within 3 hrs, stay hydrated, don't increase running intensity faster than your gut adapts. If you experience GI distress during runs, slow down — it almost always resolves as intensity drops.
+        </div>
+        <div class="highlight">
+          <strong>Stress and gut connection</strong><br>
+          Your prostatitis and IBS both have a stress-gut axis component. High training load weeks (Phase 3) will increase cortisol, which directly affects gut motility and can trigger flare-ups. Prioritise sleep in peak weeks not just for running performance but for gut health. The pelvic pain episodes appearing before long runs are worth monitoring for this pattern.
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 10: WEEK BY WEEK NUTRITION PROGRESSION -->
+    <div class="guide-card" style="grid-column:1/-1">
+      <h3><span class="icon ic-coral">📅</span> Nutrition progression week by week</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px">
+        <div class="highlight"><strong>Wk 1–5 (now)</strong><br>Establish consistent meal timing. No skipping meals. Protein target daily. Pre/post run protocol locked in. Ice cream and treats post-run only, not pre-run.</div>
+        <div class="highlight"><strong>Wk 6–7</strong><br>Add magnesium glycinate. Increase rice portion at dinner on run days. Begin carrying dates on all runs over 60 min. Restock soybean chunks.</div>
+        <div class="highlight"><strong>Wk 8 (deload)</strong><br>Reduce carbs slightly on easy days — you don't need Phase 2 fuel on a deload week. Maintain protein. Use deload to experiment with meal timing and find what works best before Phase 3.</div>
+        <div class="highlight"><strong>Wk 9–10</strong><br>Practice race-day breakfast at least twice (oats + egg + banana at 9am, run at 11:30am). This lets you test gut response to race morning food timing before race day.</div>
+        <div class="highlight"><strong>Wk 11–13 (peak)</strong><br>Carbs up to 7–8g/kg on long run days. No dietary experiments. No new foods. Dinner the night before 28K and 32K long runs must be white rice + mild curry — low fiber, low fat, high carb.</div>
+        <div class="highlight"><strong>Wk 14–16 (taper)</strong><br>Keep calories up despite reduced mileage. Body is storing glycogen — let it. Race week: increase carbs 20% from Thursday. White rice, chiura, banana, oats. Reduce raw vegetables and high-fiber foods from Wednesday. No new foods or restaurants.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- TILL HERE -->
+
+  
 </div>
 
 

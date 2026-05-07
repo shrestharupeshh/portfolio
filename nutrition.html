@@ -1,0 +1,2707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peak Performance Nutrition • Rupesh Shrestha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    :root {
+        /* Warm Elegant Palette */
+        --bg-primary: #fdfaf6;
+        --bg-secondary: #f5f0e8;
+        --bg-card: #ffffff;
+        --accent-primary: #d4834f;
+        --accent-secondary: #8b6f47;
+        --text-primary: #2d2416;
+        --text-secondary: #6b5d4f;
+        --border: #e8dcc8;
+        --success: #6b8e4e;
+        --warning: #d4834f;
+        --danger: #c05746;
+        --cream: #faf7f2;
+        --highlight: #fff9f0;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        line-height: 1.7;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .display-font {
+        font-family: 'Georgia', 'Times New Roman', serif;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+    }
+
+    /* Hero Section - Clean & Minimal */
+    .hero {
+        background: linear-gradient(to bottom, #ffffff 0%, var(--bg-secondary) 100%);
+        padding: 3.5rem 2rem 2.5rem;
+        border-bottom: 2px solid var(--border);
+    }
+
+    .hero-content {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .hero-title {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .hero-title h1 {
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        font-weight: 600;
+        color: var(--accent-primary);
+        font-family: 'Georgia', serif;
+    }
+
+    .hero-subtitle {
+        font-size: 1.15rem;
+        color: var(--text-secondary);
+        margin-bottom: 2rem;
+        font-weight: 400;
+    }
+
+    .profile-stats {
+        display: flex;
+        gap: 3rem;
+        flex-wrap: wrap;
+        padding: 1.5rem 2rem;
+        background: var(--bg-card);
+        border-radius: 16px;
+        border: 1px solid var(--border);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .stat-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .stat-icon {
+        font-size: 1.5rem;
+    }
+
+    .stat-value {
+        font-weight: 600;
+        color: var(--text-primary);
+        font-size: 0.95rem;
+    }
+
+    .stat-label {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+    }
+
+    /* Navigation - Elegant Pills */
+    .nav-container {
+        background: var(--cream);
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(10px);
+    }
+
+    .nav-tabs {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        padding: 1rem 2rem;
+        gap: 0.5rem;
+        overflow: visible;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .nav-tabs::-webkit-scrollbar {
+        display: none;
+    }
+
+    .nav-tab {
+        padding: 0.75rem 1.5rem;
+        background: transparent;
+        border: 1.5px solid transparent;
+        border-radius: 24px;
+        color: var(--text-secondary);
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        white-space: nowrap;
+        font-size: 0.9rem;
+    }
+
+    .nav-tab:hover {
+        color: var(--accent-primary);
+        background: var(--highlight);
+        border-color: var(--border);
+    }
+
+    .nav-tab.active {
+        color: var(--bg-card);
+        background: var(--accent-primary);
+        border-color: var(--accent-primary);
+        box-shadow: 0 2px 8px rgba(212, 131, 79, 0.25);
+    }
+
+
+
+/* Navigation - Desktop stays same, Mobile gets collapse */
+    .nav-container {
+        background: var(--cream);
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(10px);
+    }
+
+    .nav-collapse-btn {
+        display: none; /* Hidden on desktop */
+    }
+
+    .nav-tabs {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        padding: 1rem 2rem;
+        gap: 0.5rem;
+        overflow: visible;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .nav-tabs::-webkit-scrollbar {
+        display: none;
+    }
+
+    .nav-tab {
+        padding: 0.75rem 1.5rem;
+        background: transparent;
+        border: 1.5px solid transparent;
+        border-radius: 24px;
+        color: var(--text-secondary);
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        white-space: nowrap;
+        font-size: 0.9rem;
+    }
+
+    .nav-tab:hover {
+        color: var(--accent-primary);
+        background: var(--highlight);
+        border-color: var(--border);
+    }
+
+    .nav-tab.active {
+        color: var(--bg-card);
+        background: var(--accent-primary);
+        border-color: var(--accent-primary);
+        box-shadow: 0 2px 8px rgba(212, 131, 79, 0.25);
+    }
+    
+    
+    /* Main Content */
+    .main-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 3.5rem 2rem;
+    }
+
+    .tab-content {
+        display: none;
+        animation: fadeIn 0.5s ease;
+    }
+
+    .tab-content.active {
+        display: block;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(15px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Section Headers */
+    .section-header {
+        margin-bottom: 3rem;
+    }
+
+    .section-title {
+        font-size: clamp(2rem, 3vw, 2.75rem);
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+        color: var(--text-primary);
+        font-family: 'Georgia', serif;
+    }
+
+    .section-description {
+        color: var(--text-secondary);
+        font-size: 1.05rem;
+        max-width: 800px;
+        line-height: 1.8;
+    }
+
+    /* Grid Layouts */
+    .grid {
+        display: grid;
+        gap: 2rem;
+    }
+
+    .grid-2 {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+
+    .grid-3 {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .grid-4 {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    /* Cards - Clean & Elevated */
+    .card {
+        background: var(--bg-card);
+        border-radius: 20px;
+        padding: 2.5rem;
+        border: 1px solid var(--border);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(212, 131, 79, 0.12);
+        border-color: var(--accent-primary);
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: var(--text-primary);
+    }
+
+    .card-icon {
+        font-size: 1.75rem;
+    }
+
+    /* Highlight Boxes - Warm & Subtle */
+    /* Highlight Boxes - Clean Border Style */
+    .highlight-box {
+        background: linear-gradient(135deg, var(--highlight) 0%, #fffbf7 100%);
+        padding: 1.75rem;
+        border-radius: 14px;
+        border: 1.5px solid var(--border);  /* Thin border all around */
+        margin-bottom: 1.25rem;
+    }
+
+    .highlight-box h4 {
+        color: var(--accent-primary);
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+        font-size: 1.05rem;
+    }
+
+    .highlight-box p {
+        color: var(--text-secondary);
+        line-height: 1.8;
+    }
+
+    .highlight-box strong {
+        color: var(--text-primary);
+    }
+
+    /* Info Box Variants */
+    .info-box {
+        background: linear-gradient(135deg, #f0f4f8 0%, #e8eff5 100%);
+        border: 1.5px solid #d0dce6;  /* Thin border matching background */
+    }
+
+    .info-box h4 {
+        color: var(--accent-secondary);
+    }
+
+    .success-box {
+        background: linear-gradient(135deg, #f0f7f0 0%, #e6f2e6 100%);
+        border: 1.5px solid #c8ddc8;  /* Thin border matching background */
+    }
+
+    .success-box h4 {
+        color: var(--success);
+    }
+
+    .warning-box {
+        background: linear-gradient(135deg, #fef6f0 0%, #fceee0 100%);
+        border: 1.5px solid #f5dcc8;  /* Thin border matching background */
+    }
+
+    .warning-box h4 {
+        color: var(--warning);
+    }
+    
+    
+
+    /* Macro Distribution Bars */
+    .macro-bar-container {
+        margin: 2.5rem 0;
+    }
+
+    .macro-label-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+        font-weight: 600;
+        font-size: 0.95rem;
+    }
+
+    .macro-bar {
+        height: 48px;
+        background: var(--bg-secondary);
+        border-radius: 24px;
+        overflow: hidden;
+        display: flex;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+    }
+
+    .bar-segment {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+    }
+
+    .bar-segment:hover {
+        filter: brightness(1.1);
+    }
+
+    .bar-carbs {
+        background: linear-gradient(135deg, #8b6f47 0%, #a88c5e 100%);
+    }
+
+    .bar-protein {
+        background: linear-gradient(135deg, #6b8e4e 0%, #7fa561 100%);
+    }
+
+    .bar-fat {
+        background: linear-gradient(135deg, #d4834f 0%, #e09d68 100%);
+    }
+
+    /* Tables - Clean & Readable */
+    .table-container {
+        overflow-x: auto;
+        border-radius: 16px;
+        border: 1px solid var(--border);
+        background: var(--bg-card);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    thead {
+        background: var(--cream);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+
+    th {
+        padding: 1.25rem 1.5rem;
+        text-align: left;
+        font-weight: 600;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--text-secondary);
+        border-bottom: 2px solid var(--border);
+    }
+
+    td {
+        padding: 1.25rem 1.5rem;
+        border-bottom: 1px solid var(--border);
+        font-size: 0.95rem;
+        color: var(--text-primary);
+    }
+
+    tbody tr {
+        transition: background 0.2s ease;
+    }
+
+    tbody tr:hover {
+        background: var(--highlight);
+    }
+
+    tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+    /* Search & Filter */
+    .search-container {
+        margin-bottom: 2rem;
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .search-input {
+        flex: 1;
+        min-width: 250px;
+        padding: 1rem 1.5rem;
+        background: var(--bg-card);
+        border: 1.5px solid var(--border);
+        border-radius: 12px;
+        color: var(--text-primary);
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .search-input:focus {
+        outline: none;
+        border-color: var(--accent-primary);
+        box-shadow: 0 0 0 3px rgba(212, 131, 79, 0.1);
+    }
+
+    .filter-btn {
+        padding: 1rem 1.5rem;
+        background: var(--bg-card);
+        border: 1.5px solid var(--border);
+        border-radius: 12px;
+        color: var(--text-secondary);
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover {
+        border-color: var(--accent-primary);
+        color: var(--accent-primary);
+    }
+
+    .filter-btn.active {
+        background: var(--accent-primary);
+        color: white;
+        border-color: var(--accent-primary);
+        box-shadow: 0 2px 8px rgba(212, 131, 79, 0.25);
+    }
+
+    /* Timeline - Elegant Flow */
+    .timeline {
+        position: relative;
+        padding-left: 2.5rem;
+    }
+
+    .timeline::before {
+        content: '';
+        position: absolute;
+        left: 0.5rem;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(180deg, var(--accent-primary) 0%, var(--border) 100%);
+    }
+
+    .timeline-item {
+        position: relative;
+        margin-bottom: 2.5rem;
+        padding-bottom: 2rem;
+    }
+
+    .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: -2rem;
+        top: 0.25rem;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--accent-primary);
+        box-shadow: 0 0 0 4px var(--bg-primary), 0 0 0 6px var(--border);
+    }
+
+    .timeline-time {
+        font-weight: 700;
+        color: var(--accent-primary);
+        font-size: 1.05rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .timeline-content {
+        background: var(--bg-card);
+        padding: 1.75rem;
+        border-radius: 14px;
+        border: 1px solid var(--border);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .timeline-content h4 {
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+    }
+
+    /* Calculator - Premium Feel */
+    .calculator {
+        background: var(--bg-card);
+        border-radius: 20px;
+        padding: 3rem;
+        max-width: 700px;
+        margin: 0 auto;
+        border: 1px solid var(--border);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    .input-group {
+        margin-bottom: 1.75rem;
+    }
+
+    .input-label {
+        display: block;
+        font-weight: 500;
+        margin-bottom: 0.65rem;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+    }
+
+    .input-field,
+    .select-field {
+        width: 100%;
+        padding: 1rem 1.25rem;
+        background: var(--bg-secondary);
+        border: 1.5px solid var(--border);
+        border-radius: 12px;
+        color: var(--text-primary);
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .input-field:focus,
+    .select-field:focus {
+        outline: none;
+        border-color: var(--accent-primary);
+        box-shadow: 0 0 0 3px rgba(212, 131, 79, 0.1);
+        background: var(--bg-card);
+    }
+
+    .btn {
+        width: 100%;
+        padding: 1.25rem;
+        background: linear-gradient(135deg, var(--accent-primary) 0%, #c27345 100%);
+        color: white;
+        font-weight: 600;
+        font-size: 1.05rem;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(212, 131, 79, 0.25);
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(212, 131, 79, 0.35);
+    }
+
+    .btn:active {
+        transform: translateY(0);
+    }
+
+    .result-box {
+        margin-top: 2.5rem;
+        padding: 2.5rem;
+        background: var(--highlight);
+        border-radius: 16px;
+        border: 1.5px solid var(--border);
+        text-align: center;
+        display: none;
+    }
+
+    .result-box.show {
+        display: block;
+        animation: fadeIn 0.5s ease;
+    }
+
+    .result-value {
+        font-size: 2.75rem;
+        font-weight: 700;
+        color: var(--accent-primary);
+        margin-bottom: 0.5rem;
+        font-family: 'Georgia', serif;
+    }
+
+    .result-label {
+        color: var(--text-secondary);
+        font-size: 1.1rem;
+        font-weight: 500;
+    }
+
+    /* Chart Container */
+    .chart-container {
+        position: relative;
+        height: 400px;
+        margin: 2.5rem 0;
+        padding: 2rem;
+        background: #faf7f2;  /* Changed from var(--bg-card) to off-white */
+        border-radius: 16px;
+        border: 1px solid var(--border);
+    }
+    /* Stat Cards */
+    .stat-card {
+        text-align: center;
+        padding: 2rem;
+    }
+
+    .stat-card-value {
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--accent-primary);
+        margin-bottom: 0.5rem;
+        font-family: 'Georgia', serif;
+    }
+
+    .stat-card-label {
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+    }
+
+    /* Responsive Design */
+@media (max-width: 768px) {
+    .hero {
+        padding: 2.5rem 1rem 2rem;
+    }
+
+    .hero-title h1 {
+        font-size: 2rem;
+    }
+
+    .profile-stats {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .main-content {
+        padding: 2.5rem 1rem;
+    }
+
+    .card {
+        padding: 2rem;
+    }
+
+    /* Mobile Navigation Collapse */
+    .nav-container {
+        position: relative;
+    }
+
+    .nav-collapse-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        width: 100%;
+        padding: 0.85rem 1rem;
+        background: var(--bg-card);
+        border: none;
+        border-bottom: 1px solid var(--border);
+        color: var(--text-secondary);
+        font-weight: 500;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .nav-collapse-btn:active {
+        background: var(--bg-secondary);
+    }
+
+    .collapse-arrow {
+        font-size: 0.75rem;
+        transition: transform 0.3s ease;
+        color: var(--accent-primary);
+    }
+
+    .nav-collapse-btn.collapsed .collapse-arrow {
+        transform: rotate(-180deg);
+    }
+
+    .nav-tabs {
+        padding: 0.75rem 1rem;
+        gap: 0.5rem;
+        max-height: 500px; /* Show all tabs */
+        overflow: hidden;
+        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .nav-tabs.collapsed {
+        max-height: 0; /* Hide all tabs */
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .nav-tab {
+        flex-shrink: 0;
+        padding: 0.75rem 1.25rem;
+        font-size: 0.9rem;
+    }
+
+    .grid-2,
+    .grid-3,
+    .grid-4 {
+        grid-template-columns: 1fr;
+    }
+
+    .chart-container {
+        height: 300px;
+        padding: 1rem;
+    }
+
+    .calculator {
+        padding: 2rem;
+    }
+
+    .calculator > div[style*="grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+    /* Utility Classes */
+    .text-center {
+        text-align: center;
+    }
+
+    .mb-1 {
+        margin-bottom: 0.5rem;
+    }
+
+    .mb-2 {
+        margin-bottom: 1rem;
+    }
+
+    .mb-3 {
+        margin-bottom: 1.5rem;
+    }
+
+    .mt-2 {
+        margin-top: 1rem;
+    }
+
+    .mt-3 {
+        margin-top: 1.5rem;
+    }
+
+    .font-mono {
+        font-family: 'Courier New', monospace;
+    }
+
+    .text-secondary {
+        color: var(--text-secondary);
+    }
+
+    .text-accent {
+        color: var(--accent-primary);
+    }
+</style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-content">
+            <div class="hero-title">
+                <span style="font-size: 3.5rem;">🏃‍♂️</span>
+                <h1 class="display-font">Peak Performance Nutrition</h1>
+            </div>
+            <p class="hero-subtitle">Strategic Fueling for Marathon Training & Daily Performance</p>
+            
+            <div class="profile-stats">
+                <div class="stat-item">
+                    <span class="stat-icon">⚖️</span>
+                    <div>
+                        <div class="stat-value">63 kg</div>
+                        <div class="stat-label">Body Weight</div>
+                    </div>
+                </div>
+                <!--<div class="stat-item">-->
+                <!--    <span class="stat-icon">👤</span>-->
+                <!--    <div>-->
+                <!--        <div class="stat-value">25+ years</div>-->
+                <!--        <div class="stat-label">Age / Male</div>-->
+                <!--    </div>-->
+                <!--</div>-->
+                <div class="stat-item">
+                    <span class="stat-icon">📍</span>
+                    <div>
+                        <div class="stat-value">Sacramento, CA</div>
+                        <div class="stat-label">Location</div>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">🎯</span>
+                    <div>
+                        <div class="stat-value">Marathon Training</div>
+                        <div class="stat-label">Current Phase</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <!--<div class="nav-container">-->
+    <!--    <div class="nav-tabs">-->
+    <!--        <button class="nav-tab active" onclick="switchTab(0)">📊 Science & Targets</button>-->
+    <!--        <button class="nav-tab" onclick="switchTab(1)">🍽️ Daily Meal Plans</button>-->
+    <!--        <button class="nav-tab" onclick="switchTab(2)">🥘 Food Database</button>-->
+    <!--        <button class="nav-tab" onclick="switchTab(3)">⏰ Timing & Fueling</button>-->
+    <!--        <button class="nav-tab" onclick="switchTab(4)">🦠 Gut Safety</button>-->
+    <!--        <button class="nav-tab" onclick="switchTab(5)">💧 Hydration & Supplements</button>-->
+    <!--        <button class="nav-tab" onclick="switchTab(6)">🧮 Calorie Calculator</button>-->
+    <!--        <button class="nav-tab" onclick="switchTab(7)">📅 Weekly Progression</button>-->
+    <!--    </div>-->
+    <!--</div>-->
+
+<!-- Navigation -->
+<!--    <div class="nav-container">-->
+<!--        <div class="nav-tabs" id="navTabs">-->
+            <!--<button class="nav-tab active" onclick="switchTab(0)">📊 Science</button>-->
+            <!--<button class="nav-tab" onclick="switchTab(1)">🍽 ️Meal Plans</button>-->
+            <!--<button class="nav-tab" onclick="switchTab(2)">🥘 Food Database</button>-->
+            <!--<button class="nav-tab" onclick="switchTab(3)">⏰ ueFl Timing</button>-->
+            <!--<button class="nav-tab" onclick="switchTab(4)">🦠 Gut Safety</button>-->
+            <!--<button class="nav-tab" onclick="switchTab(5)">💧 Hydration</button>-->
+            <!--<button class="nav-tab" onclick="switchTab(6)">🧮 Calculator</button>-->
+            <!--<button class="nav-tab" onclick="switchTab(7)">📅 Progression</button>-->
+<!--        </div>-->
+<!--        <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle navigation">-->
+            <!--<span></span>-->
+            <!--<span></span>-->
+            <!--<span></span>-->
+<!--        </button>-->
+<!--    </div>-->
+
+
+<!-- Navigation -->
+    <div class="nav-container">
+        <button class="nav-collapse-btn" onclick="toggleNavCollapse()" aria-label="Toggle menu">
+            <span class="collapse-text">Menu</span>
+            <span class="collapse-arrow">▼</span>
+        </button>
+        <div class="nav-tabs" id="navTabs">
+            <button class="nav-tab active" onclick="switchTab(0)">📊 Science</button>
+            <button class="nav-tab" onclick="switchTab(1)">🍽 ️Meal Plans</button>
+            <button class="nav-tab" onclick="switchTab(2)">🥘 Food Database</button>
+            <button class="nav-tab" onclick="switchTab(2)">⏰ Fuel Timing</button>
+            <button class="nav-tab" onclick="switchTab(4)">🦠 Gut Safety</button>
+            <button class="nav-tab" onclick="switchTab(5)">💧 Hydration</button>
+            <button class="nav-tab" onclick="switchTab(6)">🧮 Calculator</button>
+            <button class="nav-tab" onclick="switchTab(7)">📅 Progression</button>
+        </div>
+    </div>
+    
+    
+    <!-- Main Content -->
+    <div class="main-content">
+
+        <!-- TAB 0: SCIENCE & TARGETS -->
+        <div id="tab-0" class="tab-content active">
+            <div class="section-header">
+                <h2 class="section-title display-font">The Science Foundation</h2>
+                <p class="section-description">Everything in this plan is built on four core principles that guide how your body uses food for performance and recovery.</p>
+            </div>
+
+            <div class="grid grid-4 mb-3">
+                <div class="highlight-box">
+                    <h4>Energy Balance</h4>
+                    <p>Calories in vs out determines weight. For marathon training, fuel performance — never deficit. Undereating causes muscle loss, injury, and hormonal disruption.</p>
+                </div>
+                <div class="highlight-box">
+                    <h4>Macronutrient Roles</h4>
+                    <p>Carbs = primary fuel (glycogen). Protein = muscle repair. Fat = hormones, joints, vitamins. All three required daily.</p>
+                </div>
+                <div class="highlight-box">
+                    <h4>Nutrient Timing</h4>
+                    <p>When you eat matters as much as what. Pre-run carbs fuel performance, post-run protein triggers repair. Timing specified for every meal.</p>
+                </div>
+                <div class="highlight-box">
+                    <h4>Gut Health Priority</h4>
+                    <p>Given IBS/prostatitis history, gut comfort > theoretical optimums. A 90% meal causing bloating is worse than an 80% meal digesting cleanly.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-2 mb-3">
+                <div class="card">
+                    <h3 class="card-title">
+                        <span class="card-icon">🏃‍♂️</span>
+                        Marathon Training Targets
+                    </h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Phase</th>
+                                    <th>Run Day</th>
+                                    <th>Rest Day</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Phase 1 (Wk 1-5)</strong></td>
+                                    <td>2,600–2,800 kcal</td>
+                                    <td>2,200–2,400 kcal</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Phase 2 (Wk 6-10)</strong></td>
+                                    <td>2,800–3,000 kcal</td>
+                                    <td>2,300–2,500 kcal</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Phase 3 Peak (Wk 11-13)</strong></td>
+                                    <td>3,000–3,400 kcal</td>
+                                    <td>2,400 kcal</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Taper (Wk 14-16)</strong></td>
+                                    <td colspan="2">2,600–2,800 kcal</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="text-secondary mt-2" style="font-size: 0.875rem;">Running burns ~65 kcal/km at 63kg. 10K = ~650 kcal, 5K = ~325 kcal.</p>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title">
+                        <span class="card-icon">🏋️</span>
+                        Normal/Gym Days (Non-Marathon)
+                    </h3>
+                    <div class="highlight-box success-box">
+                        <h4>Daily Intake: 2,200 – 2,500 kcal</h4>
+                        <p>For regular gym + work + bike commute without high-mileage running.</p>
+                    </div>
+                    <div class="grid grid-3 mt-2">
+                        <div>
+                            <div class="stat-card-value" style="font-size: 2rem;">190-250g</div>
+                            <div class="stat-card-label">Carbs (35-45%)</div>
+                        </div>
+                        <div>
+                            <div class="stat-card-value" style="font-size: 2rem;">115-125g</div>
+                            <div class="stat-card-label">Protein (20-22%)</div>
+                        </div>
+                        <div>
+                            <div class="stat-card-value" style="font-size: 2rem;">60-65g</div>
+                            <div class="stat-card-label">Fat (25-28%)</div>
+                        </div>
+                    </div>
+                    <p class="text-secondary mt-2" style="font-size: 0.875rem;">Higher protein (1.8-2.0g/kg) for gym recovery. Moderate carbs for work energy.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">
+                    <span class="card-icon">📊</span>
+                    Marathon Training Macro Distribution
+                </h3>
+
+                <!--<div class="macro-bar-container">-->
+                <!--    <div class="macro-label-row">-->
+                <!--        <span style="color: rgba(59, 130, 246, 0.8);">Carbohydrates</span>-->
+                <!--        <span style="color: rgba(16, 185, 129, 0.8);">Protein</span>-->
+                <!--        <span style="color: rgba(245, 158, 11, 0.8);">Fat</span>-->
+                <!--    </div>-->
+                <!--    <div class="macro-bar">-->
+                <!--        <div class="bar-segment bar-carbs" style="width: 60%;">55-65%</div>-->
+                <!--        <div class="bar-segment bar-protein" style="width: 20%;">18-22%</div>-->
+                <!--        <div class="bar-segment bar-fat" style="width: 20%;">20-25%</div>-->
+                <!--    </div>-->
+                <!--</div>-->
+
+                <div class="grid grid-3 mt-3">
+                    <div class="highlight-box info-box">
+                        <h4>Carbohydrates</h4>
+                        <p><strong>Phase 1:</strong> 5-6g/kg = 315-378g/day<br>
+                        <strong>Phase 2:</strong> 6-7g/kg = 378-441g/day<br>
+                        <strong>Phase 3:</strong> 7-8g/kg = 441-504g/day</p>
+                        <p class="mt-2 text-secondary">3-4 cups rice/day covers most. Add chiura, oats, banana, roti, potato.</p>
+                    </div>
+                    <div class="highlight-box success-box">
+                        <h4>Protein</h4>
+                        <p><strong>All Phases:</strong> 1.6-1.8g/kg = 101-113g/day</p>
+                        <p class="mt-2 text-secondary">Current: 2 eggs (12g) + whey (25g) + chicken (30g) + tofu (8g) + dal (12g) = ~87g. Add soybean chunks to hit target.</p>
+                    </div>
+                    <div class="highlight-box warning-box">
+                        <h4>Fat</h4>
+                        <p><strong>All Phases:</strong> 1.0-1.2g/kg = 63-76g/day</p>
+                        <p class="mt-2 text-secondary">Half avocado (15g) + nuts (12g) + cooking oil (8g) + eggs (10g). Current intake appropriate — issue is timing not quantity.</p>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="macroChart"></canvas>
+                </div>
+            </div>
+
+            <div class="card mt-3">
+                <h3 class="card-title">
+                    <span class="card-icon">🎯</span>
+                    Hand-Based Estimation Guide
+                </h3>
+                <p class="text-secondary mb-2">No apps needed — use your hand to estimate portions and calories.</p>
+                <div class="grid grid-3">
+                    <div class="highlight-box">
+                        <h4>1 Cupped Hand</h4>
+                        <p>Cooked rice = ~200 kcal / 45g carbs</p>
+                    </div>
+                    <div class="highlight-box">
+                        <h4>1 Palm Size</h4>
+                        <p>Chicken breast = ~150 kcal / 25g protein</p>
+                    </div>
+                    <div class="highlight-box">
+                        <h4>1 Thumb Size</h4>
+                        <p>Peanut butter = ~100 kcal / 8g fat</p>
+                    </div>
+                    <div class="highlight-box">
+                        <h4>1 Whole Egg</h4>
+                        <p>~70 kcal / 6g protein / 5g fat</p>
+                    </div>
+                    <div class="highlight-box">
+                        <h4>1 Banana</h4>
+                        <p>~100 kcal / 27g carbs</p>
+                    </div>
+                    <div class="highlight-box">
+                        <h4>1 Scoop Whey</h4>
+                        <p>~120 kcal / 25g protein</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 1: DAILY MEAL PLANS -->
+        <div id="tab-1" class="tab-content">
+            <div class="section-header">
+                <h2 class="section-title display-font">Nepali-Adapted Daily Meal Plans</h2>
+                <p class="section-description">Templates built around your actual food access and cooking style. Mix and match within each category to hit macro targets.</p>
+            </div>
+
+            <div class="card mb-3">
+                <h3 class="card-title">
+                    <span class="card-icon">📅</span>
+                    Weekday Training Day Structure
+                </h3>
+                
+                <div class="timeline">
+<div class="timeline-item">
+                        <div class="timeline-time">06:45 AM — Breakfast (400-500 kcal)</div>
+                        <div class="timeline-content">
+                            <p><strong>Option A (Oatmeal Base):</strong></p>
+                            <ul style="margin: 0.75rem 0 0 1.25rem; line-height: 2;">
+                                <li>🥣 60-80g oats</li>
+                                <li>🥛 4-5 tbsp yogurt</li>
+                                <li>🌰 Handful walnuts and almonds</li>
+                                <li>🫐 Frozen blueberries</li>
+                                <li>💪 1 scoop whey stirred in OR 2 boiled eggs on side</li>
+                            </ul>
+                            <p class="mt-2"><strong>Option B (Egg Base):</strong></p>
+                            <ul style="margin: 0.75rem 0 0 1.25rem; line-height: 2;">
+                                <li>🥚 2-3 boiled eggs</li>
+                                <li>🍌 1 banana</li>
+                                <li>🥛 2-3 tbsp yogurt</li>
+                                <li>🌰 4-5 walnuts</li>
+                            </ul>
+                            <p class="mt-2"><strong>Option C (Chiura Base):</strong></p>
+                            <ul style="margin: 0.75rem 0 0 1.25rem; line-height: 2;">
+                                <li>🍚 80-100g roasted chiura</li>
+                                <li>🥚 2 eggs</li>
+                                <li>🥛 Yogurt</li>
+                                <li>🍌 Banana</li>
+                            </ul>
+                            <div class="warning-box mt-2" style="padding: 1rem; border-radius: 8px;">
+                                <strong>⚠️ Avoid:</strong> Peanut butter + avocado together with dairy at breakfast. High fat slows digestion.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-time">12:00-12:30 PM — Lunch (550-650 kcal)</div>
+                        <div class="timeline-content">
+                            <ul style="margin: 0.75rem 0 0 1.25rem; line-height: 2;">
+                                <li>🍚 1-1.5 cups cooked rice</li>
+                                <li>🫘 Mung or masoor dal</li>
+                                <li>🥘 One vegetable curry (potato, cabbage, cauliflower, green beans, tofu)</li>
+                                <li>🥕 2-3 baby carrots (raw)</li>
+                                <li>🥦 1 broccoli floret (raw)</li>
+                            </ul>
+                            <p class="mt-2"><strong>💡 Add:</strong> Soybean chunks to curry — absorbs flavor well, adds 15-20g protein per serving.</p>
+                            <p class="mt-2"><strong>🌾 Quinoa swap:</strong> Replace rice with 3/4 cup dry quinoa (cooked) twice a week — complete protein, higher iron.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-time">15:30-16:00 — Pre-Run Snack (150-200 kcal)</div>
+                        <div class="timeline-content">
+                            <p><strong>Standard:</strong></p>
+                            <ul style="margin: 0.75rem 0 0 1.25rem; line-height: 2;">
+                                <li>🍌 1 banana</li>
+                                <li>🍊 1 mandarin</li>
+                                <li>🌰 6-8 almonds</li>
+                            </ul>
+                            <p class="mt-2"><strong>⏱️ If running within 45 min:</strong> Banana only, no nuts.</p>
+                            <p class="mt-2"><strong>⏱️ If running 75+ min after:</strong> Banana + mandarin + small handful almonds is fine.</p>
+                            <div class="warning-box mt-2" style="padding: 1rem; border-radius: 8px;">
+                                <strong>⚠️ No pumpkin seeds within 90 min of running</strong> — high fat slows gastric emptying.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-time">Immediately Post-Run (Within 30 min)</div>
+                        <div class="timeline-content">
+                            <p><strong>Recovery Window:</strong></p>
+                            <ul style="margin: 0.75rem 0 0 1.25rem; line-height: 2;">
+                                <li>💪 1 scoop whey protein (25g)</li>
+                                <li>⚡ 5g creatine in water</li>
+                                <li>✅ Already doing correctly!</li>
+                            </ul>
+                            <p class="mt-2"><strong>💡 Add:</strong> 1 banana or 1 mandarin alongside shake — simple carbs + protein maximizes glycogen + protein synthesis.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-time">19:00-20:00 — Dinner (550-650 kcal)</div>
+                        <div class="timeline-content">
+                            <p>Same template as lunch:</p>
+                            <ul style="margin: 0.75rem 0 0 1.25rem; line-height: 2;">
+                                <li>🍚 Rice</li>
+                                <li>🍗 Protein source (chicken/tofu/dal)</li>
+                                <li>🥘 Cooked vegetable curry</li>
+                                <li>🥗 Small side salad (optional)</li>
+                            </ul>
+                            <p class="mt-2"><strong>🔑 Key rule:</strong> Dinner vegetables should be <strong>cooked, not raw</strong>, especially on high-mileage days. Your gut handles cooked cabbage, broccoli, green beans significantly better.</p>
+                            <p class="mt-2"><strong>🏃 Long run eve (Sunday night, Week 5+):</strong> Portion rice slightly larger — carb loading for next day's run.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-2">
+<div class="card">
+                    <h3 class="card-title">
+                        <span class="card-icon">💪</span>
+                        Saturday — Calisthenics + Shakeout
+                    </h3>
+                    <div class="highlight-box mb-2">
+                        <h4>Before Calisthenics (11am session)</h4>
+                        <ul style="margin: 0.5rem 0 0 1.25rem; line-height: 2;">
+                            <li>🍌 1 banana</li>
+                            <li>🍊 1 mandarin</li>
+                            <li>🌰 Small handful pumpkin seeds</li>
+                        </ul>
+                        <p class="mt-2">No heavy meal within 90 min of hard upper body — pump and effort quality suffer.</p>
+                    </div>
+                    <div class="highlight-box mb-2">
+                        <h4>Post-Calisthenics Brunch (13:00-13:30)</h4>
+                        <p>Main meal of day. Option A:</p>
+                        <ul style="margin: 0.5rem 0 0 1.25rem; line-height: 2;">
+                            <li>🍚 80-100g roasted chiura</li>
+                            <li>🥚 3-egg omelette</li>
+                            <li>🥑 Half avocado</li>
+                            <li>🍎 Apple or banana</li>
+                        </ul>
+                        <p class="mt-2">Option B: Leftover rice + curry + eggs</p>
+                        <p class="mt-2">💪 Protein shake with creatine here ✅</p>
+                    </div>
+                    <div class="highlight-box mb-2">
+                        <h4>Pre-Shakeout Snack (15:00-15:30)</h4>
+                        <ul style="margin: 0.5rem 0 0 1.25rem; line-height: 2;">
+                            <li>🍌 1 banana</li>
+                            <li>🍊 1 mandarin</li>
+                        </ul>
+                        <p class="mt-2">No nuts — 45-60 min to run.</p>
+                    </div>
+                    <div class="highlight-box mb-2">
+                        <h4>Post-Run (17:30-18:00)</h4>
+                        <ul style="margin: 0.5rem 0 0 1.25rem; line-height: 2;">
+                            <li>🍌 Banana</li>
+                            <li>🌰 Pumpkin seeds (fine here)</li>
+                        </ul>
+                        <p class="mt-2">Dinner at 19:30 as usual.</p>
+                    </div>
+                    <div class="warning-box" style="padding: 1.5rem; border-radius: 12px;">
+                        <h4>🌙 Saturday Night — Pre-Long-Run Dinner (CRITICAL)</h4>
+                        <p>This meal fuels Sunday's long run:</p>
+                        <ul style="margin: 0.75rem 0 0 1.25rem; line-height: 2;">
+                            <li>🍚 1.5-2 cups cooked white rice</li>
+                            <li>🍗 Chicken or dal</li>
+                            <li>🥘 Cooked vegetables only (no raw salad)</li>
+                        </ul>
+                        <p class="mt-2"><strong>⚠️ NO:</strong> Avocado, peanut butter, ice cream, excess fiber</p>
+                        <p class="mt-2"><strong>⏰ Timing:</strong> Eat by 19:30</p>
+                        <p class="mt-2">Most important meal of your week.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title">
+                        <span class="card-icon">🏃</span>
+                        Sunday — Long Run Day
+                    </h3>
+                    <div class="highlight-box mb-2">
+                        <h4>Breakfast/Brunch (09:00-10:00)</h4>
+                        <ul style="margin: 0.5rem 0 0 1.25rem; line-height: 2;">
+                            <li>🥚 3-egg omelette</li>
+                            <li>🥣 50g oats</li>
+                            <li>🥛 Yogurt</li>
+                            <li>🫐 Blueberries</li>
+                            <li>🍌 Banana</li>
+                        </ul>
+                        <p class="mt-2">Current pattern is well-structured. <strong>No peanut butter, no avocado</strong> — keep fat minimal to speed gastric emptying.</p>
+                    </div>
+                    <div class="highlight-box mb-2">
+                        <h4>30 Min Before Run</h4>
+                        <ul style="margin: 0.5rem 0 0 1.25rem; line-height: 2;">
+                            <li>🍌 1 banana OR</li>
+                            <li>🫘 3-4 dates</li>
+                        </ul>
+                        <p class="mt-2">Simple carbs only.</p>
+                    </div>
+                    <div class="highlight-box mb-2">
+                        <h4>During Run — At 45 Min Mark</h4>
+                        <ul style="margin: 0.5rem 0 0 1.25rem; line-height: 2;">
+                            <li>🍊 1 mandarin OR</li>
+                            <li>🫘 2-3 dates</li>
+                        </ul>
+                        <p class="mt-2">Started this correctly on Day 27 ✅</p>
+                        <p class="mt-2"><strong>For runs over 90 min (Week 5 onward):</strong> Second fuel at 85-90 min mark.</p>
+                    </div>
+                    <div class="highlight-box mb-2">
+                        <h4>Immediately Post-Run</h4>
+                        <ul style="margin: 0.5rem 0 0 1.25rem; line-height: 2;">
+                            <li>💪 Whey + creatine (within 30 min) ✅</li>
+                            <li>🍌 Banana</li>
+                        </ul>
+                        <p class="mt-2">Then rest 20-30 min before cooking or eating more.</p>
+                    </div>
+                    <div class="highlight-box mb-2">
+                        <h4>1-1.5 Hrs Post-Run</h4>
+                        <p>Proper meal — glycogen restoration window:</p>
+                        <ul style="margin: 0.5rem 0 0 1.25rem; line-height: 2;">
+                            <li>🍚 Rice (more than usual)</li>
+                            <li>🍗 Protein source</li>
+                            <li>🥘 Cooked vegetables</li>
+                        </ul>
+                        <p class="mt-2">Muscles are maximally insulin-sensitive — will store as glycogen, not fat.</p>
+                    </div>
+                    <div class="success-box" style="padding: 1.5rem; border-radius: 12px;">
+                        <h4>🍨 Sunday Evening Treat Timing</h4>
+                        <p>Ice cream, chocolate, cake, brownie belongs HERE:</p>
+                        <ul style="margin: 0.75rem 0 0 1.25rem; line-height: 2;">
+                            <li>⏰ 1.5-2 hours post-run</li>
+                            <li>✅ After main recovery meal</li>
+                            <li>💡 Muscles fueled, protein synthesis running</li>
+                        </ul>
+                        <p class="mt-2">Simple sugars go to glycogen restoration rather than fat storage. <strong>Correct time for treats, not pre-run.</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: FOOD DATABASE -->
+        <div id="tab-2" class="tab-content">
+            <div class="section-header">
+                <h2 class="section-title display-font">Master Food & Nutrition Database</h2>
+                <p class="section-description">Comprehensive reference for all foods in your diet with complete macro and micronutrient profiles.</p>
+            </div>
+
+            <div class="search-container">
+                <input type="text" id="foodSearch" class="search-input" placeholder="Search foods..." onkeyup="filterFoods()">
+                <button class="filter-btn active" onclick="filterCategory('all')">All Foods</button>
+                <button class="filter-btn" onclick="filterCategory('staples')">Staples</button>
+                <button class="filter-btn" onclick="filterCategory('protein')">Protein Sources</button>
+                <button class="filter-btn" onclick="filterCategory('carbs')">Carbohydrates</button>
+                <button class="filter-btn" onclick="filterCategory('fats')">Healthy Fats</button>
+            </div>
+
+            <div class="table-container">
+                <table id="foodTable">
+                    <thead>
+                        <tr>
+                            <th style="min-width: 180px;">Food Item</th>
+                            <th style="min-width: 120px;">Serving Size</th>
+                            <th>Calories</th>
+                            <th>Carbs (g)</th>
+                            <th>Protein (g)</th>
+                            <th>Fat (g)</th>
+                            <th>Fiber (g)</th>
+                            <th style="min-width: 300px;">Key Nutrients & Notes</th>
+                            <th>Category</th>
+                        </tr>
+                    </thead>
+                    <tbody id="foodTableBody">
+                        <!-- Will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- TAB 3: TIMING & FUELING -->
+        <div id="tab-3" class="tab-content">
+            <div class="section-header">
+                <h2 class="section-title display-font">Nutrient Timing & Mid-Run Fueling</h2>
+                <p class="section-description">When you eat determines how your body uses fuel. Strategic timing maximizes performance and recovery.</p>
+            </div>
+
+            <div class="grid grid-2 mb-3">
+                <div class="card">
+                    <h3 class="card-title">
+                        <span class="card-icon">⏰</span>
+                        Pre-Run Timing
+                    </h3>
+                    <div class="highlight-box mb-2">
+                        <h4>2-3 Hours Before</h4>
+                        <p>Full meal — rice + dal, oats, roti + egg. Complex carbs + moderate protein. <strong>No high fat, no high fiber</strong> (causes GI issues during running).</p>
+                    </div>
+                    <div class="highlight-box mb-2">
+                        <h4>30-60 Minutes Before</h4>
+                        <p>Light snack only if needed — banana, few dates, white toast. Your banana + mandarin 40 min before runs is correct.</p>
+                    </div>
+                    <div class="warning-box" style="padding: 1.5rem; border-radius: 12px;">
+                        <h4>⚠️ Avoid: The 15-45 Min Window</h4>
+                        <p>Do not eat significant carbs in this window — reactive hypoglycemia risk. Blood sugar spikes then crashes right as you start running.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title">
+                        <span class="card-icon">⚡</span>
+                        Post-Run Recovery Window
+                    </h3>
+                    <div class="highlight-box success-box mb-2">
+                        <h4>Within 30 Minutes (Critical)</h4>
+                        <p>3:1 carb-to-protein ratio. Your whey + creatine immediately post-run + full meal within 80 min is correct two-stage approach. This is when muscles are maximally receptive to nutrients.</p>
+                    </div>
+                    <div class="highlight-box mb-2">
+                        <h4>1-2 Hours Post-Run</h4>
+                        <p>Full recovery meal. Rice + protein + cooked vegetables. Glycogen restoration continues for 24-48 hours but is fastest in first 2 hours.</p>
+                    </div>
+                    <div class="info-box" style="padding: 1.5rem; border-radius: 12px;">
+                        <h4>Example: Cookies Mid-Afternoon (Your April 18 Experience)</h4>
+                        <p>Sugar rush + crash when inactive = reactive hypoglycemia from simple sugars without exercise to absorb glucose. On rest afternoons, stick to complex carbs + protein snacks.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">
+                    <span class="card-icon">🏃‍♂️</span>
+                    Mid-Run Fueling — The Glycogen Clock
+                </h3>
+                <p class="text-secondary mb-3">Your muscles store ~90 min worth of glycogen at easy pace. After that, without external fuel, performance degrades rapidly — this is "the wall." You need 30-60g carbs per hour for runs over 75 min, consumed every 30-45 min. Start fueling before you feel hungry — hunger during run means you're already depleted.</p>
+                
+                <div class="grid grid-3 mb-3">
+                    <div class="highlight-box">
+                        <h4>Real Food Options</h4>
+                        <p><strong>Dates:</strong> 2-3 = ~20g carbs, easy to carry, Nepali-friendly<br>
+                        <strong>Half banana:</strong> 13g carbs<br>
+                        <strong>Raisins:</strong> Small bag ~25g carbs<br>
+                        <strong>White bread + honey</strong></p>
+                        <p class="mt-2 text-secondary">Gentler on stomach than gels. Start with these in training.</p>
+                    </div>
+                    <div class="highlight-box">
+                        <h4>Energy Gels (Week 9+)</h4>
+                        <p><strong>Brands:</strong> GU, Maurten, SIS, Clif Bloks<br>
+                        <strong>Carbs:</strong> ~22-25g each<br>
+                        <strong>Take with water</strong> — never dry</p>
+                        <p class="mt-2 text-secondary">Easy to carry, fast absorption. Test every gel brand in training before race day. Maurten = most stomach-friendly but expensive. Try GU first.</p>
+                    </div>
+                    <div class="highlight-box">
+                        <h4>Fueling Schedule</h4>
+                        <p><strong>First fuel:</strong> 45 min into any run over 75 min<br>
+                        <strong>Subsequent:</strong> Every 30-45 min after<br>
+                        <strong>With water:</strong> Always 100-200ml water alongside fuel<br>
+                        <strong>Race day:</strong> Gel at km 10, 20, 28, 35, 40</p>
+                    </div>
+                </div>
+
+                <div class="warning-box" style="padding: 1.5rem; border-radius: 12px;">
+                    <h4>GI Issues During Running ("Runner's Gut")</h4>
+                    <p>Very common — caused by: too much fiber pre-run, trying new foods, gels without water, dehydration, going out too fast.</p>
+                    <p class="mt-2"><strong>Fix:</strong> Low-fiber pre-run meal, nothing new on race day, always water with gels, start slower. Your chiura (beaten rice) is ideal low-fiber pre-run carb source.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">
+                    <span class="card-icon">🌙</span>
+                    Night Before Long Run & Race Day Eating
+                </h3>
+                <div class="grid grid-2">
+                    <div class="highlight-box">
+                        <h4>Night Before Long Run (16K+)</h4>
+                        <p>Rice + mild dal or curry, roti, pasta with light sauce, chiura. Eat 10-12 hours before run.</p>
+                        <p class="mt-2"><strong>Avoid:</strong> Heavy fat (slows digestion), lots of vegetables or fiber (GI risk), alcohol (dehydrates, disrupts sleep).</p>
+                        <p class="mt-2">Your tofu + vegetable + chiura dinners are good template — just go lighter on vegetables night before long runs.</p>
+                    </div>
+                    <div class="highlight-box">
+                        <h4>Race Week Carb Loading (Thu-Sat)</h4>
+                        <p>Increase carbs ~20%, reduce fiber, keep fat moderate. This fills glycogen stores completely.</p>
+                        <p class="mt-2"><strong>Race Morning:</strong> See full race day protocol with correct 5:15am start time in progression tab.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">
+                    <span class="card-icon">☕</span>
+                    Caffeine — Legitimate Performance Tool
+                </h3>
+                <p class="text-secondary mb-2">Most well-researched legal performance enhancer in endurance sport. 3-6mg/kg improves endurance 2-4% and reduces perceived effort significantly.</p>
+                <div class="grid grid-2">
+                    <div class="highlight-box success-box">
+                        <h4>For You at 61-63kg</h4>
+                        <p><strong>Dose:</strong> 180-360mg caffeine = 1-2 cups coffee or 1-2 caffeine gels</p>
+                        <p class="mt-2"><strong>Race day timing:</strong> 45-60 min before 5:15am start = coffee at 4:15-4:30am</p>
+                        <p class="mt-2"><strong>Training use:</strong> Can take before long runs if you normally drink coffee. Don't add if you don't already use — GI risk not worth it for training.</p>
+                    </div>
+                    <div class="warning-box">
+                        <h4>Caution</h4>
+                        <p>Caffeine is diuretic — increase water intake.</p>
+                        <p class="mt-2">Don't use if causes GI issues.</p>
+                        <p class="mt-2"><strong>Never use caffeine gels for first time on race day.</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: GUT SAFETY -->
+        <div id="tab-4" class="tab-content">
+            <div class="section-header">
+                <h2 class="section-title display-font">Gut Safety, Antinutrients & Food Optimization</h2>
+                <p class="section-description">You've spent 18 months restoring your gut from IBS and constipation. Here's how to protect that progress during marathon training.</p>
+            </div>
+
+            <div class="card mb-3">
+                <h3 class="card-title">
+                    <span class="card-icon">⚠️</span>
+                    Understanding Antinutrients
+                </h3>
+                <p class="text-secondary mb-3">Antinutrients are compounds in food that interfere with nutrient absorption. They evolved in plants as protection against being eaten. Not dangerous in normal amounts but can reduce mineral absorption and cause GI discomfort if eaten in excess or certain conditions.</p>
+                
+                <div class="grid grid-4">
+                    <div class="highlight-box warning-box">
+                        <h4>Phytates</h4>
+                        <p><strong>Found in:</strong> Oats, dal, nuts, rice bran</p>
+                        <p class="mt-2"><strong>Effect:</strong> Binds iron, zinc, calcium — reduces absorption</p>
+                        <p class="mt-2"><strong>Mitigation:</strong> Soak oats 30+ min before cooking (reduces 30-50%). Soak and rinse dal before cooking. Yogurt alongside oats helps (fermentation/acid degrades phytates).</p>
+                    </div>
+                    <div class="highlight-box warning-box">
+                        <h4>Lectins</h4>
+                        <p><strong>Found in:</strong> Beans, chickpeas, soybean chunks, kidney beans</p>
+                        <p class="mt-2"><strong>Effect:</strong> Raw lectins cause serious GI distress (nausea, vomiting)</p>
+                        <p class="mt-2"><strong>Mitigation:</strong> Fully cooked lectins are almost entirely inactivated and safe. Soybean chunks are pre-processed — lectin content low. Chickpeas must be fully cooked, never undercooked. Pressure cooking destroys lectins more completely than boiling.</p>
+                    </div>
+                    <div class="highlight-box warning-box">
+                        <h4>Oxalates</h4>
+                        <p><strong>Found in:</strong> Spinach, nuts, cocoa</p>
+                        <p class="mt-2"><strong>Effect:</strong> Bind calcium, can contribute to kidney stones in susceptible people</p>
+                        <p class="mt-2"><strong>Mitigation:</strong> Your nut intake (walnuts, almonds) is moderate — no concern at your quantities. If you add spinach to curries, alternate with other greens. Cocoa in oatmeal occasionally is fine.</p>
+                    </div>
+                    <div class="highlight-box warning-box">
+                        <h4>FODMAPs</h4>
+                        <p><strong>Your IBS History</strong></p>
+                        <p class="mt-2">Fermentable carbs causing bloating/distress in IBS-prone people.</p>
+                        <p class="mt-2"><strong>High-FODMAP in your diet:</strong> Cabbage, cauliflower, broccoli (large amounts), black dal (whole), chickpeas, peanut butter (large amounts)</p>
+                        <p class="mt-2"><strong>Safe when:</strong> Cooked well. Raw cabbage causes far more bloating than cooked. This explains historical bloating — FODMAP load from raw + dairy together.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-2 mb-3">
+                <div class="card">
+                    <h3 class="card-title">
+                        <span class="card-icon">🥗</span>
+                        Raw vs Cooked — Your Specific Profile
+                    </h3>
+                    <div class="highlight-box success-box mb-2">
+                        <h4>Always Cook (Better Digestion)</h4>
+                        <p>Cabbage, cauliflower, broccoli, green beans, chickpeas, all dal, soybean chunks, tofu (always better cooked — improves protein digestibility)</p>
+                    </div>
+                    <div class="highlight-box info-box mb-2">
+                        <h4>Raw is Fine (Small Amounts at Lunch)</h4>
+                        <p>Romaine lettuce, baby carrots, cucumber at lunch when you have 4+ hours before running</p>
+                    </div>
+                    <div class="warning-box" style="padding: 1.5rem; border-radius: 12px;">
+                        <h4>Never Raw Before Running</h4>
+                        <p>Any high-fiber vegetable within 2 hours of run. Cooked only.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title">
+                        <span class="card-icon">⚡</span>
+                        Problematic Combinations for Your Gut
+                    </h3>
+                    <div class="highlight-box warning-box mb-2">
+                        <h4>Raw Fiber + Dairy Together</h4>
+                        <p>Your old bloating trigger. Keep yogurt with cooked oats, not with raw salad.</p>
+                    </div>
+                    <div class="highlight-box warning-box mb-2">
+                        <h4>High Fat + High Fiber Before Running</h4>
+                        <p>Avocado + raw vegetables = delayed gastric emptying = GI distress mid-run</p>
+                    </div>
+                    <div class="highlight-box warning-box mb-2">
+                        <h4>Dal + Raw Cruciferous Together</h4>
+                        <p>Both gas-producing. Fine if either is cooked well, problematic if both eaten in large amounts simultaneously.</p>
+                    </div>
+                    <div class="highlight-box warning-box">
+                        <h4>Ice Cream Before Any Training</h4>
+                        <p>Fat + sugar combination requires 3-4 hours to clear. Save for post-run treats.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-3">
+                <h3 class="card-title">
+                    <span class="card-icon">🔄</span>
+                    Foods Better Eaten With Something
+                </h3>
+                <div class="grid grid-3">
+                    <div class="highlight-box success-box">
+                        <h4>Iron + Vitamin C</h4>
+                        <p>Iron-rich foods (dal, soybean chunks, leafy greens) + Vitamin C (mandarin, lemon juice, tomato) = 2-3× better iron absorption.</p>
+                        <p class="mt-2">Squeeze lemon on dal curry or eat mandarin alongside. Matters for runners — iron deficiency causes fatigue and elevated HR at same pace.</p>
+                    </div>
+                    <div class="highlight-box success-box">
+                        <h4>Fat-Soluble Vitamins + Fat</h4>
+                        <p>Vitamins A, D, E, K require fat to absorb. Your avocado alongside vegetables is nutritionally smart, not just tasty.</p>
+                    </div>
+                    <div class="highlight-box success-box">
+                        <h4>Calcium + Vitamin D</h4>
+                        <p>Yogurt provides calcium, Sacramento sun provides D. Both needed for bone stress fracture prevention at marathon mileage.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">
+                    <span class="card-icon">🥘</span>
+                    Specific Foods — Optimized Usage
+                </h3>
+                
+                <div class="grid grid-3 mb-3">
+                    <div class="highlight-box">
+                        <h4>Rice</h4>
+                        <p>Primary carb, correct choice. White rice lower in phytates and fiber than brown — better pre-run fueling, easier on gut. Brown rice fine at dinner on non-training days.</p>
+                        <p class="mt-2"><strong>Tip:</strong> Rinse before cooking to reduce arsenic (mild concern with daily rice) and excess starch. Eat more rice on long run eve and post-long-run days.</p>
+                    </div>
+                    <div class="highlight-box">
+                        <h4>Chiura (Beaten Rice)</h4>
+                        <p>Underutilized. Low fiber, fast-digesting, easy to prepare, culturally familiar, excellent pre-run carb.</p>
+                        <p class="mt-2">Roasted chiura 80-100g = ~300 kcal clean carbs with minimal gut stress.</p>
+                        <p class="mt-2"><strong>Use as:</strong> Saturday pre-calisthenics meal, race morning breakfast, quick post-run carb alongside shake.</p>
+                    </div>
+                    <div class="highlight-box">
+                        <h4>Dal (Mung, Masoor, Maas, Musura)</h4>
+                        <p><strong>Mung (moong):</strong> Easiest digest, lowest FODMAP, best for daily use<br>
+                        <strong>Musura (red lentil):</strong> Also easy, cooks fast, high iron<br>
+                        <strong>Maas (black dal):</strong> Harder digest, more gas — eat at lunch not dinner, not before running days</p>
+                        <p class="mt-2"><strong>All dal:</strong> Always soak 30+ min, rinse, cook fully. Add pinch hing (asafoetida) + small piece ginger while cooking — significantly reduces gas.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-3 mb-3">
+                    <div class="highlight-box">
+                        <h4>Soybean Chunks (Restock Urgently)</h4>
+                        <p><strong>52g protein per 100g dry</strong> — highest protein density in your accessible staples.</p>
+                        <p class="mt-2">Soak in hot water 20 min before cooking to rehydrate and reduce trypsin inhibitors (antinutrient impairing protein digestion). Squeeze out excess water before adding to curry.</p>
+                        <p class="mt-2">50g dry/day = 26g protein. Single food closes your protein gap without relying on chicken daily.</p>
+                    </div>
+                    <div class="highlight-box">
+                        <h4>Eggs</h4>
+                        <p>Most bioavailable protein (digestibility score 100). 2-3 eggs daily optimal.</p>
+                        <p class="mt-2">Boiled slightly better than fried for gut — less fat load. Yolk contains choline (brain + muscle function) and fat-soluble vitamins — don't eat whites only.</p>
+                        <p class="mt-2"><strong>Note:</strong> 3+ eggs daily long-term raises cholesterol in ~30% of people (rest are non-responders). At your age and activity level low risk, but worth knowing.</p>
+                    </div>
+                    <div class="highlight-box">
+                        <h4>Tofu</h4>
+                        <p>Good protein (8-10g per 100g) but lower bioavailability than eggs or chicken.</p>
+                        <p class="mt-2">Always cook tofu — raw or cold has lower protein digestibility. Your microwaved tofu with salt and pepper is fine. Sautéed better — light oil + heat improves amino acid availability.</p>
+                        <p class="mt-2">Firm tofu higher protein than soft. Buy firm.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-3 mb-3">
+                    <div class="highlight-box">
+                        <h4>Peanut Butter</h4>
+                        <p>High fat (16g per 2 tbsp), moderate protein (8g), good taste. Issue is timing — slows gastric emptying significantly.</p>
+                        <p class="mt-2"><strong>Fine at:</strong> Breakfast on rest days or non-training mornings</p>
+                        <p class="mt-2"><strong>Avoid:</strong> Within 3 hours of any run. Saturday dinner (pre-long-run eve)</p>
+                        <p class="mt-2">Natural peanut butter (no added oil/sugar) better — less inflammatory.</p>
+                    </div>
+                    <div class="highlight-box">
+                        <h4>Yogurt</h4>
+                        <p>Your gut's best friend. Probiotics help maintain microbiome you've worked hard to restore. Eat daily ✅</p>
+                        <p class="mt-2">Plain full-fat Greek yogurt ideal — higher protein (10-15g per 100g) than regular, lower sugar. If using regular yogurt, fine too.</p>
+                        <p class="mt-2"><strong>Eat with cooked foods, not raw fiber</strong> — this was historical bloating trigger.</p>
+                    </div>
+                    <div class="highlight-box">
+                        <h4>Walnuts and Almonds</h4>
+                        <p><strong>Walnuts:</strong> Highest omega-3 of all nuts — anti-inflammatory, directly supports knee health alongside fish oil. 4-6 walnut halves daily is research-backed dose.</p>
+                        <p class="mt-2"><strong>Almonds:</strong> High magnesium, calcium, vitamin E. 8-10 almonds daily.</p>
+                        <p class="mt-2"><strong>Both:</strong> High phytates — eating with yogurt or soaking overnight reduces this. Don't eat large amounts within 2 hours of running.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-3">
+                    <div class="highlight-box">
+                        <h4>Banana</h4>
+                        <p>Perfect running fuel. Fast-digesting carbs (27g per medium), potassium (prevents cramping), easy to carry.</p>
+                        <p class="mt-2">Eat 30-45 min before runs. <strong>Riper bananas</strong> = higher glycemic index (faster glucose release) = better pre-run. <strong>Less ripe</strong> = more resistant starch = better as regular snack.</p>
+                        <p class="mt-2">Keep both on hand.</p>
+                    </div>
+                    <div class="highlight-box">
+                        <h4>Ghee (Restock)</h4>
+                        <p>Restock this. Clarified butter — lactose and casein removed, safe for you despite dairy sensitivity.</p>
+                        <p class="mt-2">Contains butyrate (short-chain fatty acid) that directly feeds gut lining cells and supports gut health restoration you've been building.</p>
+                        <p class="mt-2">1 tsp on rice or roti enough. Anti-inflammatory. Also improves absorption of fat-soluble vitamins from vegetables cooked with it.</p>
+                    </div>
+                    <div class="highlight-box">
+                        <h4>Dhindo (Corn/Millet Flour)</h4>
+                        <p>Excellent whole grain carb. Millet higher in iron and magnesium than rice. Corn dhindo faster digesting.</p>
+                        <p class="mt-2">Use on non-running days or as dinner carb variety. Not ideal immediately pre-run due to fiber content — eat 3+ hours before running if using millet flour dhindo.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">
+                    <span class="card-icon">🦠</span>
+                    Gut Health During Marathon Training
+                </h3>
+                <p class="text-secondary mb-3">Marathon training creates real gut stress — impact running reduces blood flow to intestines, high training load increases cortisol disrupting gut motility, poor fueling can trigger conditions you've recovered from. Here's how to protect your progress.</p>
+                
+                <div class="grid grid-2">
+                    <div class="highlight-box success-box">
+                        <h4>Probiotic Maintenance</h4>
+                        <p>Continue daily yogurt ✅. Consider adding fermented food — homemade gaadeko achaar (fermented pickle) if you can make it, or store-bought kimchi 1-2 tbsp with lunch twice a week.</p>
+                        <p class="mt-2">These add microbial diversity yogurt alone doesn't cover. Miso paste in warm water as light soup is another accessible option.</p>
+                    </div>
+                    <div class="highlight-box success-box">
+                        <h4>Prebiotic Foods — Feed Your Good Bacteria</h4>
+                        <p>Oats (daily oatmeal) ✅, slightly underripe banana ✅, cooked and cooled rice (resistant starch forms when rice cools — reheating preserves some), garlic and onion in curries ✅, cooked legumes ✅</p>
+                        <p class="mt-2">Your existing diet is actually prebiotic-rich. Keep it.</p>
+                    </div>
+                    <div class="highlight-box warning-box">
+                        <h4>Runner's Gut — What It Is</h4>
+                        <p>Impact running reduces intestinal blood flow by up to 80% during intense effort. Can cause cramping, urgency, diarrhea — especially at higher intensities.</p>
+                        <p class="mt-2"><strong>Prevention:</strong> No high-fiber within 2 hrs of running, no high-fat within 3 hrs, stay hydrated, don't increase intensity faster than gut adapts.</p>
+                        <p class="mt-2">If you experience GI distress during runs, <strong>slow down</strong> — it almost always resolves as intensity drops.</p>
+                    </div>
+                    <div class="highlight-box info-box">
+                        <h4>Stress and Gut Connection</h4>
+                        <p>Your prostatitis and IBS both have stress-gut axis component. High training load weeks (Phase 3) will increase cortisol, directly affecting gut motility and can trigger flare-ups.</p>
+                        <p class="mt-2">Prioritize sleep in peak weeks not just for running performance but for gut health. Pelvic pain episodes appearing before long runs worth monitoring for this pattern.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">
+                    <span class="card-icon">🥛</span>
+                    Milk and Lactose — Why It Stopped Working
+                </h3>
+                <p class="text-secondary mb-2">Lactase enzyme production decreases in many South Asian adults after childhood — genetically common in Nepali and South Asian populations. US dairy often higher in fat and processed differently than what you were used to.</p>
+                <div class="highlight-box success-box">
+                    <p>Your decision to quit milk was correct. Yogurt and paneer are lower-lactose dairy options most lactose-sensitive people tolerate well because fermentation partially degrades lactose. <strong>Keep yogurt, avoid liquid milk.</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 5: HYDRATION & SUPPLEMENTS -->
+        <div id="tab-5" class="tab-content">
+            <div class="section-header">
+                <h2 class="section-title display-font">Hydration & Supplementation Strategy</h2>
+                <p class="section-description">Strategic hydration and evidence-based supplements to support performance, recovery, and long-term health.</p>
+            </div>
+
+            <div class="grid grid-2 mb-3">
+                <div class="card">
+                    <h3 class="card-title">
+                        <span class="card-icon">💧</span>
+                        Daily Hydration Targets
+                    </h3>
+                    <p class="text-secondary mb-3">You lose ~0.5-1.5L/hour running depending on temperature and sweat rate. Sacramento in April-July gets warm — dehydration of just 2% body weight reduces performance by 10-20%. By peak summer long runs, heat and dehydration management become as important as training itself.</p>
+                    
+                    <div class="highlight-box success-box mb-2">
+                        <h4>Daily Baseline</h4>
+                        <p><strong>3.0 – 3.5 Liters water/day</strong> during training weeks. Urine should be pale yellow — dark yellow = dehydrated, clear = overhydrated (also bad).</p>
+                    </div>
+                    <div class="highlight-box info-box mb-2">
+                        <h4>Before Runs</h4>
+                        <p>Drink 400-600ml in the 2 hours before. Don't chug right before — sip steadily.</p>
+                    </div>
+                    <div class="highlight-box mb-2">
+                        <h4>After Runs</h4>
+                        <p>1.5× whatever you lost. Weigh yourself before/after long run — every 1kg lost = ~1L to replace.</p>
+                    </div>
+                    <div class="warning-box" style="padding: 1.5rem; border-radius: 12px;">
+                        <h4>Sacramento Summer Reality</h4>
+                        <p>From Week 8 onward (mid-May), start runs before 7am or after 7pm. Running in 35°C+ adds ~20 bpm to HR at any pace — this is physiological, not fitness decline. Always carry water on runs over 8K in summer.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title">
+                        <span class="card-icon">🧂</span>
+                        Electrolytes — Why They Matter
+                    </h3>
+                    <p class="text-secondary mb-3">Sweat contains sodium, potassium, magnesium, chloride — not just water. Replacing water without electrolytes during long runs causes hyponatremia (dangerously low sodium), which has hospitalized runners. Especially relevant for runs over 2 hours.</p>
+                    
+                    <div class="highlight-box mb-2">
+                        <h4>Sodium (Most Important)</h4>
+                        <p>Lost heavily in sweat. Add pinch of salt to water bottle on runs over 90 min. Or use electrolyte tabs (Nuun, SIS Go Hydro).</p>
+                    </div>
+                    <div class="highlight-box mb-2">
+                        <h4>Potassium</h4>
+                        <p>Banana before/during long runs. Helps prevent cramping.</p>
+                    </div>
+                    <div class="highlight-box mb-2">
+                        <h4>Magnesium</h4>
+                        <p>Your walnuts, raisins, seeds help. Cramping not fixed by hydration often magnesium deficiency.</p>
+                    </div>
+                    <div class="success-box" style="padding: 1.5rem; border-radius: 12px;">
+                        <h4>Simple Rule</h4>
+                        <p><strong>Runs under 75 min:</strong> Water only</p>
+                        <p><strong>Over 75 min:</strong> Electrolytes every 45-60 min alongside water</p>
+                        <p class="mt-2">Your Day 13 long run (80 min) was right at threshold — add electrolytes from next long run onward.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-3">
+                <h3 class="card-title">
+                    <span class="card-icon">💊</span>
+                    Evidence-Based Supplement Stack
+                </h3>
+                <p class="text-secondary mb-3">Strategic supplementation fills gaps your diet can't efficiently cover and supports specific performance/recovery needs.</p>
+                
+                <div class="grid grid-2 mb-3">
+                    <div class="highlight-box success-box">
+                        <h4>Keep — Already Taking Correctly</h4>
+                        <p><strong>Whey Protein</strong> (1 scoop post-run/gym) ✅<br>
+                        Fast-digesting, high leucine triggers muscle protein synthesis. Timing within 30 min post-exercise is key — you're doing correctly.</p>
+                        <p class="mt-2"><strong>Creatine</strong> (5g daily) ✅<br>
+                        Helps gym recovery and explosive strength. Minimal direct marathon benefit but Tuesday/Thursday sessions benefit. 1-2kg water retention normal.</p>
+                        <p class="mt-2"><strong>Nordic Naturals Fish Oil</strong> (2 softgels/day) ✅<br>
+                        1,100mg EPA+DHA daily. Anti-inflammatory for your knee. Triglyceride form (rTG) for best absorption. Take with largest meal.</p>
+                    </div>
+                    <div class="highlight-box warning-box">
+                        <h4>Add from Week 6+</h4>
+                        <p><strong>Magnesium Glycinate</strong> (300-400mg before bed)<br>
+                        Reduces muscle cramping, improves sleep quality, supports connective tissue. Very relevant as mileage increases.</p>
+                        <p class="mt-2"><strong>Consider: Vitamin D3</strong> (1,000-2,000 IU/day)<br>
+                        Important for bone stress fracture prevention — real risk at marathon mileage. Sacramento sun exposure likely covers this, but if you work indoors most of day, supplement.</p>
+                        <p class="mt-2"><strong>Consider: Iron</strong><br>
+                        Do NOT supplement without blood test first. Too much iron is harmful. Given your mung dal + soybean intake, probably covering requirements. If fatigue disproportionate to training load, get ferritin checked.</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box info-box">
+                    <h4>Not Necessary</h4>
+                    <p><strong>BCAAs, glutamine, pre-workout stimulants, fat burners.</strong> These add cost without meaningful benefit given your current diet quality. Redundant if you eat enough protein.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">
+                    <span class="card-icon">🚰</span>
+                    Drinking During Runs — How and When
+                </h3>
+                <p class="text-secondary mb-2">Drinking strategy matters — both when you drink and how much. Overdrinking is also real risk (hyponatremia).</p>
+                <div class="grid grid-3">
+                    <div class="highlight-box">
+                        <h4>Short Runs (<60 min)</h4>
+                        <p>No water needed if well hydrated going in. Bring water once Sacramento summer starts (May onward).</p>
+                    </div>
+                    <div class="highlight-box">
+                        <h4>Runs 60-90 min</h4>
+                        <p>150-200ml every 20 min. Sip — don't chug. Chugging causes stitch.</p>
+                    </div>
+                    <div class="highlight-box">
+                        <h4>Long Runs 90+ min</h4>
+                        <p>150-250ml every 15-20 min + electrolytes every 45 min. Carry handheld bottle or hydration vest from Week 7 onward.</p>
+                    </div>
+                </div>
+                <div class="highlight-box success-box mt-2">
+                    <h4>How to Drink While Running</h4>
+                    <p>Slow to easy jog, don't stop completely. Pinch cup into tube shape (at aid stations), tilt head slightly back. Takes practice — do it at least 3 times in training.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 6: CALORIE CALCULATOR -->
+        <!--<div id="tab-6" class="tab-content">-->
+        <!--    <div class="section-header text-center">-->
+        <!--        <h2 class="section-title display-font">Interactive Calorie & Macro Calculator</h2>-->
+        <!--        <p class="section-description">Calculate your personalized nutrition targets based on current metrics and training phase.</p>-->
+        <!--    </div>-->
+
+        <!--    <div class="calculator">-->
+        <!--        <div class="input-group">-->
+        <!--            <label class="input-label">Current Weight (kg)</label>-->
+        <!--            <input type="number" id="calcWeight" class="input-field" value="63" min="40" max="120" step="0.1">-->
+        <!--        </div>-->
+
+        <!--        <div class="input-group">-->
+        <!--            <label class="input-label">Training Phase</label>-->
+        <!--            <select id="calcPhase" class="select-field">-->
+        <!--                <option value="normal">Normal/Gym Days (No Marathon Training)</option>-->
+        <!--                <option value="phase1" selected>Marathon Phase 1 (Weeks 1-5)</option>-->
+        <!--                <option value="phase2">Marathon Phase 2 (Weeks 6-10)</option>-->
+        <!--                <option value="phase3">Marathon Phase 3 Peak (Weeks 11-13)</option>-->
+        <!--                <option value="taper">Marathon Taper (Weeks 14-16)</option>-->
+        <!--            </select>-->
+        <!--        </div>-->
+
+        <!--        <div class="input-group">-->
+        <!--            <label class="input-label">Day Type (Marathon Phases Only)</label>-->
+        <!--            <select id="calcDayType" class="select-field">-->
+        <!--                <option value="run" selected>Running Day</option>-->
+        <!--                <option value="rest">Rest Day</option>-->
+        <!--            </select>-->
+        <!--        </div>-->
+
+        <!--        <button class="btn" onclick="calculateNutrition()">Calculate My Targets</button>-->
+
+        <!--        <div id="calcResults" class="result-box">-->
+                    <!-- Results will be populated here -->
+        <!--        </div>-->
+        <!--    </div>-->
+        <!--</div>-->
+        
+        
+        <!-- TAB 6: NEWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW CALORIE CALCULATOR -->
+        
+        <div id="tab-6" class="tab-content">
+            <div class="section-header text-center">
+                <h2 class="section-title display-font">Interactive Nutrition Calculators</h2>
+                <p class="section-description">Calculate your personalized nutrition targets based on current metrics, training phase, and weight goals.</p>
+            </div>
+
+            <!-- CALCULATOR 1: CURRENT WEIGHT TARGETS -->
+            <div class="calculator" style="max-width: 700px;">
+                <h3 style="text-align: center; margin-bottom: 1.5rem; color: var(--accent-primary);">📊 Current Weight Nutrition Targets</h3>
+                <p class="text-secondary text-center mb-3" style="font-size: 0.95rem;">Calculate what you should eat NOW based on your current weight and training phase.</p>
+                
+                <div class="input-group">
+                    <label class="input-label">Current Weight (kg)</label>
+                    <input type="number" id="calcWeight" class="input-field" value="63" min="40" max="120" step="0.1">
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label">Training Phase</label>
+                    <select id="calcPhase" class="select-field">
+                        <option value="normal">Normal/Gym Days (No Marathon Training)</option>
+                        <option value="phase1" selected>Marathon Phase 1 (Weeks 1-5)</option>
+                        <option value="phase2">Marathon Phase 2 (Weeks 6-10)</option>
+                        <option value="phase3">Marathon Phase 3 Peak (Weeks 11-13)</option>
+                        <option value="taper">Marathon Taper (Weeks 14-16)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label">Day Type (Marathon Phases Only)</label>
+                    <select id="calcDayType" class="select-field">
+                        <option value="run" selected>Running Day</option>
+                        <option value="rest">Rest Day</option>
+                    </select>
+                </div>
+
+                <button class="btn" onclick="calculateNutrition()">Calculate My Targets</button>
+
+                <div id="calcResults" class="result-box">
+                    <!-- Results will be populated here -->
+                </div>
+            </div>
+
+            <!-- DIVIDER -->
+            <div style="max-width: 700px; margin: 4rem auto; border-top: 2px solid var(--border);"></div>
+
+            <!-- CALCULATOR 2: WEIGHT GOAL CALCULATOR -->
+            <div class="calculator" style="max-width: 700px;">
+                <h3 style="text-align: center; margin-bottom: 1.5rem; color: var(--accent-primary);">🎯 Weight Goal Calculator</h3>
+                <p class="text-secondary text-center mb-3" style="font-size: 0.95rem;">Calculate calorie adjustments needed to reach your target weight while maintaining training performance.</p>
+                
+                <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="input-group">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                        <div>
+                            <label class="input-label">Current Weight (kg)</label>
+                            <input type="number" id="goalCurrentWeight" class="input-field" value="63" min="40" max="120" step="0.1">
+                        </div>
+                        <div>
+                            <label class="input-label">Goal Weight (kg)</label>
+                            <input type="number" id="goalTargetWeight" class="input-field" value="65" min="40" max="120" step="0.1">
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label">Training Context</label>
+                    <select id="goalTrainingPhase" class="select-field">
+                        <option value="normal" selected>Normal/Gym Days (No Marathon)</option>
+                        <option value="offseason">Off-Season / Base Building</option>
+                        <option value="maintain">During Marathon Training (Maintenance Priority)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label">Target Timeline</label>
+                    <select id="goalTimeline" class="select-field">
+                        <option value="conservative">Conservative (0.25 kg/week)</option>
+                        <option value="moderate" selected>Moderate (0.5 kg/week)</option>
+                        <option value="aggressive">Aggressive (0.75 kg/week) — Not recommended during marathon training</option>
+                    </select>
+                </div>
+
+                <button class="btn" onclick="calculateWeightGoal()">Calculate Calorie Adjustment</button>
+
+                <div id="goalResults" class="result-box">
+                    <!-- Results will be populated here -->
+                </div>
+            </div>
+
+            <!-- EDUCATIONAL NOTE -->
+            <div class="card" style="max-width: 700px; margin: 3rem auto 0;">
+                <h3 class="card-title">
+                    <span class="card-icon">💡</span>
+                    Important Notes on Weight Goals During Training
+                </h3>
+                <div class="highlight-box warning-box">
+                    <h4>Bulking During Marathon Training (Not Recommended)</h4>
+                    <p>Gaining weight while running high mileage is metabolically difficult and biomechanically inefficient. Extra weight increases joint stress and injury risk. If you must bulk, do it in off-season with reduced running volume and increased strength training.</p>
+                </div>
+                <div class="highlight-box info-box">
+                    <h4>Cutting/Losing Weight During Marathon Training (Risky)</h4>
+                    <p>Calorie deficit during training impairs recovery, increases injury risk, and reduces performance. If you need to lose fat, do it in base-building phases with <strong>very conservative deficits (250 kcal/day max)</strong>. Never cut during peak training weeks.</p>
+                </div>
+                <div class="highlight-box success-box">
+                    <h4>Best Approach for Most Runners</h4>
+                    <p>Maintain weight during marathon training. Focus on body recomposition (lose fat, gain muscle) through proper nutrient timing and strength work. Save intentional weight changes for off-season.</p>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        
+
+        <!-- TAB 7: WEEKLY PROGRESSION -->
+        <div id="tab-7" class="tab-content">
+            <div class="section-header">
+                <h2 class="section-title display-font">Week-by-Week Nutrition Progression</h2>
+                <p class="section-description">Strategic nutrition adjustments synchronized with your training phases for optimal performance and recovery.</p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-time">Weeks 1-5 (Current — Foundation Phase)</div>
+                    <div class="timeline-content">
+                        <h4 class="mb-1">Focus: Establish Consistency</h4>
+                        <p><strong>Calories:</strong> 2,600-2,800 kcal run days | 2,200-2,400 rest days</p>
+                        <p><strong>Carbs:</strong> 5-6g/kg (315-378g/day)</p>
+                        <p><strong>Key Actions:</strong></p>
+                        <ul class="mt-2" style="list-style: disc; margin-left: 1.5rem; line-height: 1.8;">
+                            <li>No skipping meals — lock in consistent meal timing</li>
+                            <li>Hit protein target daily (101-113g)</li>
+                            <li>Pre/post run protocol locked in ✅</li>
+                            <li>Ice cream and treats post-run only, not pre-run</li>
+                            <li>Practice banana + mandarin pre-run timing</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-time">Weeks 6-7 (Volume Increase)</div>
+                    <div class="timeline-content">
+                        <h4 class="mb-1">Focus: Fuel the Increase</h4>
+                        <p><strong>Calories:</strong> 2,800-3,000 kcal run days</p>
+                        <p><strong>Carbs:</strong> 6-7g/kg (378-441g/day)</p>
+                        <p><strong>Key Actions:</strong></p>
+                        <ul class="mt-2" style="list-style: disc; margin-left: 1.5rem; line-height: 1.8;">
+                            <li><strong>Add magnesium glycinate</strong> (400mg before bed) — cramping prevention</li>
+                            <li>Increase rice portion at dinner on run days</li>
+                            <li>Begin carrying dates on all runs over 60 min</li>
+                            <li><strong>Restock soybean chunks urgently</strong> — protein gap closure</li>
+                            <li>First practice of mid-run fueling on 15K+ long runs</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-time">Week 8 (Deload Week)</div>
+                    <div class="timeline-content">
+                        <h4 class="mb-1">Focus: Active Recovery</h4>
+                        <p><strong>Calories:</strong> Reduce slightly — 2,400-2,600 kcal</p>
+                        <p><strong>Carbs:</strong> Back to 5g/kg — you don't need Phase 2 fuel on deload</p>
+                        <p><strong>Key Actions:</strong></p>
+                        <ul class="mt-2" style="list-style: disc; margin-left: 1.5rem; line-height: 1.8;">
+                            <li>Maintain protein — recovery still happening</li>
+                            <li>Use deload to experiment with meal timing</li>
+                            <li>Find what works best before Phase 3 intensity</li>
+                            <li>Test different pre-run food combinations</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-time">Weeks 9-10 (Build to Peak)</div>
+                    <div class="timeline-content">
+                        <h4 class="mb-1">Focus: Race Day Rehearsal</h4>
+                        <p><strong>Calories:</strong> 2,800-3,200 kcal run days</p>
+                        <p><strong>Carbs:</strong> 6-7g/kg</p>
+                        <p><strong>Key Actions:</strong></p>
+                        <ul class="mt-2" style="list-style: disc; margin-left: 1.5rem; line-height: 1.8;">
+                            <li><strong>Practice race-day breakfast at least twice</strong> — oats + egg + banana at 9am, run at 11:30am</li>
+                            <li>Test gut response to race morning food timing before race day</li>
+                            <li>Start testing energy gels if using on race day (introduce one brand, stick with it)</li>
+                            <li>Finalize your preferred mid-run fuel (dates vs gels vs banana)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-time">Weeks 11-13 (Peak Training)</div>
+                    <div class="timeline-content">
+                        <h4 class="mb-1">Focus: Maximum Fuel for Maximum Load</h4>
+                        <p><strong>Calories:</strong> 3,000-3,400 kcal long run days | 2,800-3,000 other training days</p>
+                        <p><strong>Carbs:</strong> 7-8g/kg (441-504g/day) — highest of entire plan</p>
+                        <p><strong>Key Actions:</strong></p>
+                        <div class="warning-box mt-2" style="padding: 1rem; border-radius: 8px;">
+                            <p><strong>NO DIETARY EXPERIMENTS. NO NEW FOODS.</strong></p>
+                        </div>
+                        <ul class="mt-2" style="list-style: disc; margin-left: 1.5rem; line-height: 1.8;">
+                            <li>Dinner night before 28K and 32K long runs: white rice + mild curry — <strong>low fiber, low fat, high carb</strong></li>
+                            <li>Prioritize sleep in these weeks for both performance AND gut health</li>
+                            <li>Watch for pelvic pain/prostatitis flare signals — stress-gut connection highest here</li>
+                            <li>Hydration becomes critical — 3.5L+ daily, electrolytes every long run</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-time">Weeks 14-16 (Taper)</div>
+                    <div class="timeline-content">
+                        <h4 class="mb-1">Focus: Glycogen Supercompensation</h4>
+                        <p><strong>Calories:</strong> 2,600-2,800 kcal — <strong>KEEP HIGH despite reduced mileage</strong></p>
+                        <p><strong>Carbs:</strong> Maintain 6-7g/kg — body is storing glycogen, let it happen</p>
+                        <p><strong>Key Actions:</strong></p>
+                        <ul class="mt-2" style="list-style: disc; margin-left: 1.5rem; line-height: 1.8;">
+                            <li>Appetite stays high despite lower volume — this is normal, DO NOT cut food</li>
+                            <li>Weight may increase 1-2kg from glycogen water storage — <strong>this is correct and means you are race-ready</strong></li>
+                            <li><strong>Race week (starting Thursday):</strong> Increase carbs 20%</li>
+                            <li><strong>Wednesday onward:</strong> Reduce raw vegetables and high-fiber foods</li>
+                            <li>White rice, chiura, banana, oats become staples</li>
+                            <li><strong>NO new foods or restaurants in taper week</strong></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-time">Race Week Protocol</div>
+                    <div class="timeline-content">
+                        <h4 class="mb-1">The Final Countdown</h4>
+                        <div class="grid grid-2 mt-2" style="gap: 1rem;">
+                            <div class="highlight-box success-box">
+                                <h4>Thursday-Saturday</h4>
+                                <p>Carbs at every meal. Rice, chiura, oats, banana, white bread. Reduce fiber, reduce fat. Keep protein moderate. No experiments.</p>
+                            </div>
+                            <div class="highlight-box">
+                                <h4>Saturday Night (Pre-Race Dinner)</h4>
+                                <p>Eat by 18:00-19:00. White rice 1.5-2 cups + mild chicken or dal curry. Cooked vegetables only, small portions. NO avocado, NO peanut butter, NO ice cream. Low fat, low fiber, high carb. Hydrate well but not excessively.</p>
+                            </div>
+                            <div class="highlight-box warning-box">
+                                <h4>Race Morning (5:15am start)</h4>
+                                <p><strong>04:00 — Wake Up</strong><br>
+                                Chiura 80-100g roasted + 2 boiled eggs + 1 banana + water. OR oats 50g + 2 eggs + banana.<br><br>
+                                <strong>04:15-04:30 — Coffee</strong> (if using caffeine)<br>
+                                1-2 cups = 180-360mg caffeine<br><br>
+                                <strong>04:45 — Final Hydration</strong><br>
+                                300-400ml water, sip slowly<br><br>
+                                <strong>05:00 — Pre-Start</strong><br>
+                                1 banana or 3-4 dates, minimal water</p>
+                            </div>
+                            <div class="highlight-box">
+                                <h4>During Race (42.2K)</h4>
+                                <p><strong>Fueling:</strong> Gel/dates at km 10, 20, 28, 35, 40 (every ~30-45 min)<br>
+                                <strong>Hydration:</strong> 150-200ml water every aid station (~2K apart), electrolytes at km 15, 25, 35<br>
+                                <strong>If GI distress hits:</strong> Slow pace immediately, walk if needed, sip water, skip next fuel if necessary — finish time matters less than finishing safely</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Tab Navigation
+        
+        
+        const tabs = document.querySelectorAll('.nav-tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+
+// Mobile Navigation Collapse Toggle
+        function toggleNavCollapse() {
+            const navTabs = document.getElementById('navTabs');
+            const collapseBtn = document.querySelector('.nav-collapse-btn');
+            const collapseText = collapseBtn.querySelector('.collapse-text');
+            
+            navTabs.classList.toggle('collapsed');
+            collapseBtn.classList.toggle('collapsed');
+            
+            // Change text
+            if (navTabs.classList.contains('collapsed')) {
+                collapseText.textContent = 'Expand Menu';
+            } else {
+                collapseText.textContent = 'Menu';
+            }
+        }
+
+        // Update switchTab to keep it simple
+        function switchTab(index) {
+            const tabs = document.querySelectorAll('.nav-tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => tab.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            tabs[index].classList.add('active');
+            tabContents[index].classList.add('active');
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        
+        // function switchTab(index) {
+        //     tabs.forEach(tab => tab.classList.remove('active'));
+        //     tabContents.forEach(content => content.classList.remove('active'));
+            
+        //     tabs[index].classList.add('active');
+        //     tabContents[index].classList.add('active');
+            
+        //     window.scrollTo({ top: 0, behavior: 'smooth' });
+        // }
+
+        // Macro Distribution Chart
+        // Macro Distribution Chart
+        const ctx = document.getElementById('macroChart');
+        if (ctx) {
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Carbohydrates (55-65%)', 'Protein (18-22%)', 'Fat (20-25%)'],
+                    datasets: [{
+                        data: [60, 20, 20],
+                        backgroundColor: [
+                            'rgba(59, 130, 246, 0.8)',
+                            'rgba(16, 185, 129, 0.8)',
+                            'rgba(245, 158, 11, 0.8)'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#000000',  // BLACK TEXT
+                                font: {
+                                    size: 14
+                                },
+                                padding: 20
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Food Database
+        const foodDatabase = [
+            // Staples
+            { name: "Cooked White Rice", serving: "1 cup (cupped hand)", kcal: 200, carbs: 45, protein: 4, fat: 0.5, fiber: 0.6, nutrients: "Primary fuel source. Low phytate when rinsed. Easy digestion. Iron, B vitamins. Arsenic: rinse before cooking.", category: "staples" },
+            { name: "Chiura (Beaten Rice)", serving: "100g dry", kcal: 360, carbs: 78, protein: 7, fat: 1, fiber: 2, nutrients: "Fast-digesting carbs, low fiber, ideal pre-run. Iron, B1. Traditional Nepali staple. Best roasted.", category: "staples" },
+            { name: "Oats (Rolled)", serving: "60g dry", kcal: 230, carbs: 40, protein: 8, fat: 4, fiber: 6, nutrients: "Beta-glucan (prebiotic), high fiber. Mg, Fe, B vitamins. Soak 30+ min to reduce phytates. Slow-release energy.", category: "staples" },
+            { name: "Brown Rice", serving: "1 cup cooked", kcal: 215, carbs: 45, protein: 5, fat: 2, fiber: 3.5, nutrients: "Higher fiber than white, more phytates. Better for non-training days. Mg, Se, Mn.", category: "staples" },
+            { name: "Quinoa", serving: "3/4 cup dry (cooked)", kcal: 220, carbs: 39, protein: 8, fat: 4, fiber: 5, nutrients: "Complete protein (all 9 essential amino acids). High Fe, Mg. Good gut tolerance. Use 2x/week as rice replacement.", category: "staples" },
+            { name: "Dhindo (Millet)", serving: "1 cup cooked", kcal: 200, carbs: 40, protein: 6, fat: 2, fiber: 4, nutrients: "High Fe, Mg, P. Whole grain. Use on non-running days. Eat 3+ hours before run due to fiber.", category: "staples" },
+            { name: "Dhindo (Corn)", serving: "1 cup cooked", kcal: 180, carbs: 38, protein: 4, fat: 1, fiber: 2.5, nutrients: "Faster digesting than millet. B vitamins, lutein (eye health). Good dinner carb variety.", category: "staples" },
+            { name: "Roti (Wheat)", serving: "1 medium", kcal: 120, carbs: 22, protein: 4, fat: 2, fiber: 2, nutrients: "Quick carb option. Fe, B vitamins. Whole wheat has more fiber — use refined for pre-run.", category: "staples" },
+            
+            // Protein Sources
+            { name: "Boiled Eggs (Whole)", serving: "1 large", kcal: 75, carbs: 0.5, protein: 6, fat: 5, fiber: 0, nutrients: "Most bioavailable protein (score 100). Choline (brain/muscle), B12, Se, D, A, E, K in yolk. Cholesterol: 186mg — 3+/day may raise cholesterol in ~30% of people.", category: "protein" },
+            { name: "Chicken Breast", serving: "100g cooked", kcal: 165, carbs: 0, protein: 31, fat: 4, fiber: 0, nutrients: "Lean protein. B3 (niacin), B6, Se, P. Low fat good for pre-run meals. Digestibility high.", category: "protein" },
+            { name: "Tofu (Firm)", serving: "100g", kcal: 80, carbs: 2, protein: 8, fat: 5, fiber: 1, nutrients: "Plant protein, lower bioavailability than eggs/chicken. Always cook — improves digestibility. Ca (if set with calcium sulfate), Fe, Mg. Isoflavones (phytoestrogens).", category: "protein" },
+            { name: "Soybean Chunks (Dry)", serving: "50g", kcal: 170, carbs: 12, protein: 26, fat: 1, fiber: 8, nutrients: "Highest protein density (52g/100g dry). Complete protein. Soak 20 min hot water to reduce trypsin inhibitors. Fe, Mg, P, folate. Restock urgently.", category: "protein" },
+            { name: "Whey Protein Isolate", serving: "1 scoop (30g)", kcal: 120, carbs: 3, protein: 25, fat: 1, fiber: 0, nutrients: "Fast-digesting, highest leucine content (triggers MPS). Post-workout optimal. Lactose removed in isolate. BCAAs.", category: "protein" },
+            { name: "Mung Dal (Moong)", serving: "1 cup cooked", kcal: 150, carbs: 25, protein: 12, fat: 1, fiber: 7.5, nutrients: "Easiest dal to digest, lowest FODMAP. High folate, Fe, Mg. Prebiotic fiber. Soak + rinse before cooking. Add hing + ginger to reduce gas.", category: "protein" },
+            { name: "Masoor Dal (Red Lentil)", serving: "1 cup cooked", kcal: 140, carbs: 24, protein: 11, fat: 0.5, fiber: 8, nutrients: "Cooks fast, easy digest. High Fe (non-heme — take with Vit C). Folate, Mg, K. Good for daily use.", category: "protein" },
+            { name: "Maas Dal (Black)", serving: "1 cup cooked", kcal: 165, carbs: 28, protein: 13, fat: 1, fiber: 10, nutrients: "Harder to digest than mung/masoor. More gas-producing. Eat at lunch not dinner. High Fe, P, B1. Avoid before running days.", category: "protein" },
+            { name: "Greek Yogurt (Plain)", serving: "100g", kcal: 60, carbs: 4, protein: 10, fat: 0.5, fiber: 0, nutrients: "Probiotics (gut health). Lower lactose than milk. Ca, B12, P. Fermentation degrades lactose. Eat daily for microbiome maintenance.", category: "protein" },
+            { name: "Paneer", serving: "50g", kcal: 130, carbs: 2, protein: 8, fat: 10, fiber: 0, nutrients: "High Ca, P. Lower lactose than milk. Good protein source but high fat — timing matters. Avoid 3+ hours before running.", category: "protein" },
+            
+            // Carbohydrates
+            { name: "Banana (Medium)", serving: "1 whole", kcal: 105, carbs: 27, protein: 1, fat: 0, fiber: 3, nutrients: "Perfect running fuel. K (prevents cramping), B6, Vit C, Mn. Prebiotic (resistant starch in less ripe). Riper = higher GI = better pre-run.", category: "carbs" },
+            { name: "Dates (Medjool)", serving: "2-3 dates", kcal: 70, carbs: 18, protein: 0.5, fat: 0, fiber: 2, nutrients: "Fast carbs for mid-run fueling. High K, Mg, Cu. Easy to carry. Natural sugars (glucose + fructose).", category: "carbs" },
+            { name: "Mandarin Orange", serving: "1 medium", kcal: 40, carbs: 10, protein: 0.5, fat: 0, fiber: 2, nutrients: "Vit C (Fe absorption), folate, K. Hydrating. Low fiber. Good pre/during run.", category: "carbs" },
+            { name: "Apple", serving: "1 medium", kcal: 95, carbs: 25, protein: 0.5, fat: 0, fiber: 4, nutrients: "Pectin (prebiotic fiber), Vit C, K. Eat 2+ hours before running due to fiber.", category: "carbs" },
+            { name: "Sweet Potato", serving: "1 medium cooked", kcal: 110, carbs: 26, protein: 2, fat: 0, fiber: 4, nutrients: "Beta-carotene (Vit A precursor), Vit C, Mn, B6. Prebiotic fiber. Good recovery carb.", category: "carbs" },
+            { name: "Potato (White)", serving: "1 medium boiled", kcal: 130, carbs: 30, protein: 3, fat: 0, fiber: 2, nutrients: "K, Vit C, B6. Resistant starch forms when cooled then reheated. Easy digest when boiled.", category: "carbs" },
+            { name: "Pasta (White)", serving: "1 cup cooked", kcal: 200, carbs: 40, protein: 7, fat: 1, fiber: 2, nutrients: "Quick carb loading option. Enriched with B vitamins, Fe. Low fiber = easy pre-race meal. Avoid heavy sauces.", category: "carbs" },
+            { name: "White Bread", serving: "2 slices", kcal: 160, carbs: 30, protein: 5, fat: 2, fiber: 1, nutrients: "Fast-digesting carbs. Enriched B vitamins, Fe. Low fiber = good pre-run if needed. Avoid whole grain before running.", category: "carbs" },
+            
+            // Healthy Fats
+            { name: "Avocado", serving: "1/2 medium", kcal: 120, carbs: 6, protein: 1.5, fat: 11, fiber: 5, nutrients: "MUFA (heart health), K, folate, B5, B6, Vit E, C. High fiber + fat = avoid 3+ hrs before running. Great post-run or non-training days.", category: "fats" },
+            { name: "Walnuts", serving: "5 halves (14g)", kcal: 90, carbs: 2, protein: 2, fat: 9, fiber: 1, nutrients: "Highest omega-3 (ALA) of all nuts. Anti-inflammatory. Mg, Cu, Mn, B6. Supports knee health alongside fish oil. 4-6 halves daily. Phytates: eat with yogurt or soak.", category: "fats" },
+            { name: "Almonds", serving: "10 nuts (14g)", kcal: 80, carbs: 3, protein: 3, fat: 7, fiber: 2, nutrients: "Vit E (antioxidant), Mg, Ca, riboflavin. Phytates present. Avoid large amounts 2 hrs before running.", category: "fats" },
+            { name: "Pumpkin Seeds", serving: "2 tbsp (16g)", kcal: 90, carbs: 2, protein: 5, fat: 7, fiber: 1, nutrients: "Zn, Mg, Fe, K. High protein for a seed. Omega-6. Good post-workout. Avoid 90 min before running — high fat slows gastric emptying.", category: "fats" },
+            { name: "Peanut Butter (Natural)", serving: "1 tbsp (16g)", kcal: 95, carbs: 3, protein: 4, fat: 8, fiber: 1, nutrients: "MUFA, Mg, B3, Vit E, P. Issue is timing — slows gastric emptying significantly. Fine at breakfast on rest days. Avoid 3+ hrs before any run. Avoid Saturday dinner (pre-long-run eve).", category: "fats" },
+            { name: "Ghee (Clarified Butter)", serving: "1 tsp (5g)", kcal: 45, carbs: 0, protein: 0, fat: 5, fiber: 0, nutrients: "Lactose/casein removed — safe despite dairy sensitivity. Butyrate (feeds gut lining cells). Fat-soluble vitamins (A, D, E, K). Anti-inflammatory. RESTOCK. Use on rice/roti.", category: "fats" },
+            { name: "Nordic Naturals Fish Oil", serving: "2 softgels", kcal: 20, carbs: 0, protein: 0, fat: 2, fiber: 0, nutrients: "1,100mg EPA+DHA. Anti-inflammatory (targets knee specifically). Triglyceride form (rTG) for best absorption. Take with largest meal. ✅ Keep taking.", category: "fats" },
+            { name: "Coconut Oil", serving: "1 tbsp", kcal: 120, carbs: 0, protein: 0, fat: 14, fiber: 0, nutrients: "MCT (medium-chain triglycerides) — faster absorption than other fats. Use for cooking. Neutral for inflammation.", category: "fats" },
+            
+            // Vegetables
+            { name: "Cooked Cabbage", serving: "1 cup", kcal: 35, carbs: 8, protein: 2, fat: 0, fiber: 3, nutrients: "Vit C, K, B6. Cruciferous (sulforaphane — antioxidant). Always cook — raw is high FODMAP and causes bloating. Eat at lunch or dinner, never raw before runs.", category: "vegetables" },
+            { name: "Cooked Cauliflower", serving: "1 cup", kcal: 30, carbs: 6, protein: 2, fat: 0, fiber: 3, nutrients: "Vit C, K, B6, folate. Choline. Always cook — reduces FODMAP load. Avoid raw 2 hrs before running.", category: "vegetables" },
+            { name: "Cooked Broccoli", serving: "1 cup", kcal: 55, carbs: 11, protein: 4, fat: 0.5, fiber: 5, nutrients: "Vit C, K, folate, A. Sulforaphane (anticancer compound). Cook well — easier on gut. Raw broccoli = high FODMAP. Eat cooked at lunch/dinner.", category: "vegetables" },
+            { name: "Green Beans (Cooked)", serving: "1 cup", kcal: 45, carbs: 10, protein: 2, fat: 0, fiber: 4, nutrients: "Vit C, K, folate, A, Mn. Low FODMAP when cooked. Good dinner vegetable.", category: "vegetables" },
+            { name: "Romaine Lettuce (Raw)", serving: "2 cups", kcal: 15, carbs: 3, protein: 1, fat: 0, fiber: 2, nutrients: "Vit A, K, C, folate. Low fiber, safe raw at lunch. Avoid within 2 hrs of running. Good salad base.", category: "vegetables" },
+            { name: "Baby Carrots (Raw)", serving: "3 carrots", kcal: 15, carbs: 4, protein: 0.5, fat: 0, fiber: 1, nutrients: "Beta-carotene (Vit A), K. Safe raw at lunch (4+ hrs before run). Cooked better before running.", category: "vegetables" },
+            { name: "Spinach (Cooked)", serving: "1 cup", kcal: 40, carbs: 7, protein: 5, fat: 0.5, fiber: 4, nutrients: "High Fe (non-heme), Ca, Mg, Vit A, K, folate. Oxalates present — alternate with other greens. Always cook.", category: "vegetables" },
+            
+            // Extras & Treats
+            { name: "Ice Cream (Vanilla)", serving: "1/2 cup", kcal: 140, carbs: 17, protein: 2.5, fat: 7, fiber: 0.5, nutrients: "Ca, P. Fat + sugar = requires 3-4 hrs to clear. ONLY post-run treat (1.5-2 hrs after recovery meal) — correct timing for glycogen storage not fat storage. Never pre-run.", category: "treats" },
+            { name: "Dark Chocolate (70%+)", serving: "1 oz (28g)", kcal: 170, carbs: 13, protein: 2, fat: 12, fiber: 3, nutrients: "Flavonoids (antioxidants), Mg, Fe, Cu. Theobromine (mild stimulant). Small amounts fine post-run. Timing same as ice cream.", category: "treats" },
+            { name: "Energy Gel (GU)", serving: "1 packet", kcal: 100, carbs: 25, protein: 0, fat: 0, fiber: 0, nutrients: "Fast carbs (maltodextrin + fructose). Electrolytes (Na, K). Caffeine optional. ALWAYS take with water. Test in training before race. Introduce Week 9+.", category: "fueling" },
+            { name: "Electrolyte Tab (Nuun)", serving: "1 tablet in 500ml", kcal: 10, carbs: 2, protein: 0, fat: 0, fiber: 0, nutrients: "Na 300mg, K 150mg, Mg 25mg. Use on runs 90+ min. One tab every 45-60 min alongside water.", category: "fueling" },
+            { name: "Creatine Monohydrate", serving: "5g", kcal: 0, carbs: 0, protein: 0, fat: 0, fiber: 0, nutrients: "Improves ATP regeneration. Benefits gym/explosive strength. Minimal direct marathon benefit. 1-2kg water retention normal. ✅ Keep taking daily.", category: "supplements" }
+        ];
+
+        function populateFoodTable() {
+            const tbody = document.getElementById('foodTableBody');
+            tbody.innerHTML = '';
+            
+            foodDatabase.forEach(food => {
+                const row = tbody.insertRow();
+                row.innerHTML = `
+                    <td><strong>${food.name}</strong></td>
+                    <td>${food.serving}</td>
+                    <td class="font-mono">${food.kcal}</td>
+                    <td class="font-mono">${food.carbs}</td>
+                    <td class="font-mono">${food.protein}</td>
+                    <td class="font-mono">${food.fat}</td>
+                    <td class="font-mono">${food.fiber}</td>
+                    <td class="text-secondary" style="font-size: 0.875rem;">${food.nutrients}</td>
+                    <td style="display: none;">${food.category}</td>
+                `;
+            });
+        }
+
+        function filterFoods() {
+            const searchTerm = document.getElementById('foodSearch').value.toLowerCase();
+            const rows = document.getElementById('foodTableBody').getElementsByTagName('tr');
+            
+            Array.from(rows).forEach(row => {
+                const foodName = row.cells[0].textContent.toLowerCase();
+                const nutrients = row.cells[7].textContent.toLowerCase();
+                
+                if (foodName.includes(searchTerm) || nutrients.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        function filterCategory(category) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            const rows = document.getElementById('foodTableBody').getElementsByTagName('tr');
+            
+            Array.from(rows).forEach(row => {
+                const rowCategory = row.cells[8].textContent;
+                
+                if (category === 'all' || rowCategory === category) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        // Calculator
+        function calculateNutrition() {
+            const weight = parseFloat(document.getElementById('calcWeight').value);
+            const phase = document.getElementById('calcPhase').value;
+            const dayType = document.getElementById('calcDayType').value;
+            
+            let calories, carbsMin, carbsMax, protein, fat;
+            let phaseName = '';
+            
+            // Calculate based on phase
+            if (phase === 'normal') {
+                calories = '2,200 – 2,500';
+                carbsMin = Math.round(weight * 3);
+                carbsMax = Math.round(weight * 4);
+                protein = Math.round(weight * 1.8);
+                fat = Math.round(weight * 1.0);
+                phaseName = 'Normal/Gym Days';
+            } else if (phase === 'phase1') {
+                if (dayType === 'run') {
+                    calories = '2,600 – 2,800';
+                    carbsMin = Math.round(weight * 5);
+                    carbsMax = Math.round(weight * 6);
+                } else {
+                    calories = '2,200 – 2,400';
+                    carbsMin = Math.round(weight * 4);
+                    carbsMax = Math.round(weight * 5);
+                }
+                protein = Math.round(weight * 1.7);
+                fat = Math.round(weight * 1.0);
+                phaseName = 'Marathon Phase 1 (Weeks 1-5)';
+            } else if (phase === 'phase2') {
+                if (dayType === 'run') {
+                    calories = '2,800 – 3,000';
+                    carbsMin = Math.round(weight * 6);
+                    carbsMax = Math.round(weight * 7);
+                } else {
+                    calories = '2,300 – 2,500';
+                    carbsMin = Math.round(weight * 5);
+                    carbsMax = Math.round(weight * 6);
+                }
+                protein = Math.round(weight * 1.7);
+                fat = Math.round(weight * 1.1);
+                phaseName = 'Marathon Phase 2 (Weeks 6-10)';
+            } else if (phase === 'phase3') {
+                if (dayType === 'run') {
+                    calories = '3,000 – 3,400';
+                    carbsMin = Math.round(weight * 7);
+                    carbsMax = Math.round(weight * 8);
+                } else {
+                    calories = '2,400';
+                    carbsMin = Math.round(weight * 5);
+                    carbsMax = Math.round(weight * 6);
+                }
+                protein = Math.round(weight * 1.7);
+                fat = Math.round(weight * 1.2);
+                phaseName = 'Marathon Phase 3 Peak (Weeks 11-13)';
+            } else if (phase === 'taper') {
+                calories = '2,600 – 2,800';
+                carbsMin = Math.round(weight * 6);
+                carbsMax = Math.round(weight * 7);
+                protein = Math.round(weight * 1.7);
+                fat = Math.round(weight * 1.0);
+                phaseName = 'Marathon Taper (Weeks 14-16)';
+            }
+            
+            const resultsDiv = document.getElementById('calcResults');
+            resultsDiv.innerHTML = `
+                <div class="result-value">${calories} kcal/day</div>
+                <div class="result-label">${phaseName}${phase !== 'normal' && phase !== 'taper' ? ' — ' + (dayType === 'run' ? 'Running Day' : 'Rest Day') : ''}</div>
+                
+                <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border);">
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; text-align: center;">
+                        <div>
+                            <div style="font-size: 2rem; font-weight: 700; color: #3b82f6; margin-bottom: 0.5rem;">${carbsMin}-${carbsMax}g</div>
+                            <div style="color: var(--text-secondary);">Carbohydrates</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 2rem; font-weight: 700; color: #10b981; margin-bottom: 0.5rem;">${protein}g</div>
+                            <div style="color: var(--text-secondary);">Protein</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 2rem; font-weight: 700; color: #f59e0b; margin-bottom: 0.5rem;">${fat}g</div>
+                            <div style="color: var(--text-secondary);">Fat</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem; padding: 1.5rem; background: var(--bg-secondary); border-radius: 12px;">
+                    <div style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.7;">
+                        <strong>Quick Reference:</strong><br>
+                        • 1 cup rice ≈ 45g carbs<br>
+                        • 1 palm chicken ≈ 25g protein<br>
+                        • 1 banana ≈ 27g carbs<br>
+                        • 1 egg ≈ 6g protein<br>
+                        • 1 scoop whey ≈ 25g protein
+                    </div>
+                </div>
+            `;
+            resultsDiv.classList.add('show');
+        }
+
+        // Initialize food table on load
+        document.addEventListener('DOMContentLoaded', function() {
+            populateFoodTable();
+        });
+
+        // Show/hide day type selector based on phase
+        document.getElementById('calcPhase').addEventListener('change', function() {
+            const dayTypeGroup = document.getElementById('calcDayType').parentElement;
+            if (this.value === 'normal' || this.value === 'taper') {
+                dayTypeGroup.style.display = 'none';
+            } else {
+                dayTypeGroup.style.display = 'block';
+            }
+        });
+        
+        
+        
+        
+        
+        
+        // Weight Goal Calculator
+        function calculateWeightGoal() {
+            const currentWeight = parseFloat(document.getElementById('goalCurrentWeight').value);
+            const targetWeight = parseFloat(document.getElementById('goalTargetWeight').value);
+            const trainingPhase = document.getElementById('goalTrainingPhase').value;
+            const timeline = document.getElementById('goalTimeline').value;
+            
+            // Determine if bulking or cutting
+            const weightDiff = targetWeight - currentWeight;
+            const isBulking = weightDiff > 0;
+            const isLosing = weightDiff < 0;
+            const goalType = isBulking ? 'Bulking' : (isLosing ? 'Cutting' : 'Maintenance');
+            
+            // Calculate maintenance calories based on training phase
+            let maintenanceCalories;
+            if (trainingPhase === 'normal') {
+                maintenanceCalories = Math.round(currentWeight * 35); // ~2,200 for 63kg
+            } else if (trainingPhase === 'offseason') {
+                maintenanceCalories = Math.round(currentWeight * 37); // Slightly higher with base training
+            } else { // marathon training
+                maintenanceCalories = Math.round(currentWeight * 42); // ~2,650 for 63kg average
+            }
+            
+            // Calculate deficit/surplus based on timeline
+            let weeklyWeightChange, dailyCalorieAdjustment;
+            if (timeline === 'conservative') {
+                weeklyWeightChange = 0.25;
+                dailyCalorieAdjustment = 275; // ~0.25kg/week = 275 kcal/day
+            } else if (timeline === 'moderate') {
+                weeklyWeightChange = 0.5;
+                dailyCalorieAdjustment = 550; // ~0.5kg/week = 550 kcal/day
+            } else { // aggressive
+                weeklyWeightChange = 0.75;
+                dailyCalorieAdjustment = 825; // ~0.75kg/week = 825 kcal/day
+            }
+            
+            // Apply adjustment based on bulk vs cut
+            let targetCalories;
+            if (isBulking) {
+                targetCalories = maintenanceCalories + dailyCalorieAdjustment;
+            } else if (isLosing) {
+                targetCalories = maintenanceCalories - dailyCalorieAdjustment;
+            } else {
+                targetCalories = maintenanceCalories;
+            }
+            
+            // Calculate timeline to goal
+            const weeksToGoal = Math.abs(weightDiff) / weeklyWeightChange;
+            const monthsToGoal = (weeksToGoal / 4.33).toFixed(1);
+            
+            // Calculate macros
+            const protein = Math.round(currentWeight * (isBulking ? 2.0 : 1.8));
+            const fat = Math.round(currentWeight * 1.0);
+            const proteinCal = protein * 4;
+            const fatCal = fat * 9;
+            const carbCal = targetCalories - proteinCal - fatCal;
+            const carbs = Math.round(carbCal / 4);
+            
+            // Warning messages
+            let warningMessage = '';
+            if (trainingPhase === 'maintain' && Math.abs(dailyCalorieAdjustment) > 300) {
+                warningMessage = '<div style="background: rgba(239, 68, 68, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #ef4444; margin-top: 1rem;"><strong>⚠️ High Risk:</strong> This deficit/surplus is too aggressive during marathon training. Injury and performance decline are likely. Reduce to conservative timeline or wait for off-season.</div>';
+            } else if (isBulking && trainingPhase === 'maintain') {
+                warningMessage = '<div style="background: rgba(245, 158, 11, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #f59e0b; margin-top: 1rem;"><strong>⚠️ Not Recommended:</strong> Bulking during marathon training increases injury risk and running becomes harder with extra weight. Consider waiting for off-season.</div>';
+            } else if (isLosing && trainingPhase === 'maintain' && dailyCalorieAdjustment > 300) {
+                warningMessage = '<div style="background: rgba(245, 158, 11, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #f59e0b; margin-top: 1rem;"><strong>⚠️ Caution:</strong> Cutting during marathon training impairs recovery. Only proceed with conservative timeline and monitor performance closely. If training quality drops, return to maintenance.</div>';
+            }
+            
+            const resultsDiv = document.getElementById('goalResults');
+            resultsDiv.innerHTML = `
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <div style="font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Goal: ${goalType}</div>
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 2rem; font-size: 1.5rem; font-weight: 700;">
+                        <span>${currentWeight} kg</span>
+                        <span style="color: var(--accent-primary);">${isBulking ? '→' : (isLosing ? '→' : '=')} </span>
+                        <span style="color: var(--accent-primary);">${targetWeight} kg</span>
+                    </div>
+                    <div style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                        ${weightDiff === 0 ? 'Already at target weight' : `${Math.abs(weightDiff).toFixed(1)} kg to ${isBulking ? 'gain' : 'lose'}`}
+                    </div>
+                </div>
+
+                ${weightDiff !== 0 ? `
+                <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem;">
+                    <div style="text-align: center; margin-bottom: 1rem;">
+                        <div class="result-value">${targetCalories.toLocaleString()} kcal/day</div>
+                        <div class="result-label">Target Daily Intake</div>
+                    </div>
+                    <div style="font-size: 0.9rem; color: var(--text-secondary); text-align: center;">
+                        ${isBulking ? '+' : ''}${(isBulking ? dailyCalorieAdjustment : -dailyCalorieAdjustment).toLocaleString()} kcal ${isBulking ? 'surplus' : 'deficit'} from maintenance (${maintenanceCalories.toLocaleString()} kcal)
+                    </div>
+                </div>
+
+                <div style="padding: 1.5rem; background: var(--bg-secondary); border-radius: 12px; margin-bottom: 2rem;">
+                    <div style="font-weight: 600; margin-bottom: 1rem; text-align: center;">Estimated Timeline</div>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; text-align: center;">
+                        <div>
+                            <div style="font-size: 2rem; font-weight: 700; color: var(--accent-primary);">${Math.ceil(weeksToGoal)}</div>
+                            <div style="color: var(--text-secondary); font-size: 0.875rem;">Weeks</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 2rem; font-weight: 700; color: var(--accent-primary);">${monthsToGoal}</div>
+                            <div style="color: var(--text-secondary); font-size: 0.875rem;">Months</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; text-align: center; font-size: 0.875rem; color: var(--text-secondary);">
+                        At ${weeklyWeightChange} kg per week
+                    </div>
+                </div>
+
+                <div style="padding-top: 2rem; border-top: 1px solid var(--border);">
+                    <div style="text-align: center; font-weight: 600; margin-bottom: 1.5rem;">Recommended Macros</div>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; text-align: center;">
+                        <div>
+                            <div style="font-size: 1.8rem; font-weight: 700; color: #3b82f6; margin-bottom: 0.5rem;">${carbs}g</div>
+                            <div style="color: var(--text-secondary); font-size: 0.875rem;">Carbohydrates</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 1.8rem; font-weight: 700; color: #10b981; margin-bottom: 0.5rem;">${protein}g</div>
+                            <div style="color: var(--text-secondary); font-size: 0.875rem;">Protein</div>
+                            <div style="color: var(--text-secondary); font-size: 0.75rem; margin-top: 0.25rem;">${isBulking ? '2.0g/kg' : '1.8g/kg'}</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 1.8rem; font-weight: 700; color: #f59e0b; margin-bottom: 0.5rem;">${fat}g</div>
+                            <div style="color: var(--text-secondary); font-size: 0.875rem;">Fat</div>
+                            <div style="color: var(--text-secondary); font-size: 0.75rem; margin-top: 0.25rem;">1.0g/kg</div>
+                        </div>
+                    </div>
+                </div>
+
+                ${warningMessage}
+
+                <div style="margin-top: 2rem; padding: 1.5rem; background: var(--bg-secondary); border-radius: 12px;">
+                    <div style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.7;">
+                        <strong style="color: var(--text-primary);">${isBulking ? 'Bulking' : 'Cutting'} Implementation Tips:</strong><br>
+                        ${isBulking ? `
+                        • Add extra carbs around training sessions (pre/post workout)<br>
+                        • Increase meal frequency or portion sizes rather than adding junk food<br>
+                        • Prioritize strength training 3-4x/week to ensure weight gain is muscle<br>
+                        • Monitor weekly — if not gaining, add another 200-300 kcal
+                        ` : `
+                        • Never cut carbs drastically — reduce fats slightly, keep protein high<br>
+                        • Maintain training quality — if performance drops, deficit is too large<br>
+                        • Prioritize protein (${protein}g daily) to preserve muscle mass<br>
+                        • Track weekly — if losing faster than ${weeklyWeightChange} kg/week, increase calories
+                        `}
+                    </div>
+                </div>
+                ` : `
+                <div style="text-align: center; padding: 2rem;">
+                    <div style="font-size: 1.2rem; color: var(--text-secondary);">You're already at your target weight!</div>
+                    <div style="margin-top: 1rem; color: var(--accent-primary); font-weight: 600;">Maintenance Calories: ${maintenanceCalories.toLocaleString()} kcal/day</div>
+                </div>
+                `}
+            `;
+            resultsDiv.classList.add('show');
+        }
+        
+        
+        
+        // Mobile Navigation Toggle
+        function toggleNav() {
+            const navTabs = document.getElementById('navTabs');
+            const navToggle = document.querySelector('.nav-toggle');
+            navTabs.classList.toggle('active');
+            navToggle.classList.toggle('active');
+            
+            // Prevent body scroll when menu is open
+            if (navTabs.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Close mobile menu when tab is clicked
+        function switchTab(index) {
+            const tabs = document.querySelectorAll('.nav-tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            const navTabs = document.getElementById('navTabs');
+            const navToggle = document.querySelector('.nav-toggle');
+            
+            tabs.forEach(tab => tab.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            tabs[index].classList.add('active');
+            tabContents[index].classList.add('active');
+            
+            // Close mobile menu
+            if (window.innerWidth <= 768) {
+                navTabs.classList.remove('active');
+                navToggle.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        
+        
+        
+    </script>
+
+</body>
+</html>

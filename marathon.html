@@ -3528,8 +3528,8 @@ const phases = [
   },
   {
     title: 'Phase 2 — Build to Half Marathon',
-    desc: 'Long runs build smoothly from 15K to 21K. Tuesday introduces speed work (strides or fartlek) from Week 6 — aligned with the official SFM training plan which adds speed sessions at this stage. Speed work is optional on deload weeks. Wednesday grows into a proper mid-week medium run. Saturday calisthenics: keep but cap at 2 sets.',
-    stats: ['Wk 6–10', '~34–46 km/wk', 'Long run: 15→21K', 'Speed from wk 6'],
+    desc: 'Build phase adjusted for fatigue management: keep 80/20 intensity split, cap Tuesday quality to controlled strides/fartlek, and keep one lighter cutback before the half-marathon simulation. If knee soreness rises above baseline, switch Tuesday to easy only and trim Sunday by 2–4K that week.',
+    stats: ['Wk 6–10', '~34–43 km/wk', 'Long run: 15→21K', 'Speed capped'],
     weeks: [
       { label:'Week 6', meta:'~34 km total · May 11–17', days:[
         d('recovery','Recovery',null,'IT band + hip flexors'),
@@ -3540,10 +3540,10 @@ const phases = [
         d('run-easy','Shakeout + Calis','5K','Reduced calis — 2 sets'),
         d('run-long','Long run','15K','First fueling run — eat at 45 min'),
       ]},
-      { label:'Week 7', meta:'~37 km total · May 18–24', days:[
+      { label:'Week 7', meta:'~35 km total · May 18–24', days:[
         d('recovery','Recovery',null,'Full foam roll session'),
-        d('speed','Speed + Gym','8K','Fartlek: 5×2 min fast / 2 min easy + upper/core'),
-        d('run-easy','Med run','9K','Comfortable'),
+        d('speed','Speed + Gym','7K','Fartlek: 4×2 min controlled / 2 min easy + upper/core'),
+        d('run-easy','Med run','8K','Comfortable · stay strict Zone 2'),
         d('gym-legs','Leg day',null,'Single-leg RDL, hip thrusts, clamshells'),
         d('rest','Rest',null,'Full rest'),
         d('run-easy','Shakeout + Calis','5K','Pull-ups, dips — 2 sets'),
@@ -3558,19 +3558,19 @@ const phases = [
         d('run-easy','Shakeout + Calis','5K','Normal calis'),
         d('run-long','Long run','13K','Recovery long run — easy effort'),
       ]},
-      { label:'Week 9', meta:'~41 km total · Jun 1–7', days:[
+      { label:'Week 9', meta:'~39 km total · Jun 1–7', days:[
         d('recovery','Recovery',null,'Foam roll everything'),
-        d('speed','Speed + Gym','9K','Fartlek: 6×2 min fast / 90s easy + upper/core'),
-        d('run-easy','Med run','10K','Comfortable'),
+        d('speed','Speed + Gym','8K','Fartlek: 5×2 min steady / 2 min easy + upper/core'),
+        d('run-easy','Med run','9K','Comfortable · no pace chasing'),
         d('gym-legs','Leg day',null,'Glutes, step-ups, terminal knee ext.'),
         d('rest','Rest',null,'Full rest'),
         d('run-easy','Shakeout + Calis','5K','2 sets pull-ups, dips'),
         d('run-long','Long run','19K','Fuel every 45 min'),
       ]},
-      { label:'Week 10 — Half Marathon', meta:'~46 km total · Jun 8–14', days:[
+      { label:'Week 10 — Half Marathon', meta:'~43 km total · Jun 8–14', days:[
         d('recovery','Recovery',null,'Full mobility protocol'),
-        d('speed','Speed + Gym','9K','8×30s strides after easy 6K warm-up + upper/core'),
-        d('run-easy','Med run','11K','Steady effort'),
+        d('speed','Speed + Gym','8K','6×30s relaxed strides after easy warm-up + upper/core'),
+        d('run-easy','Med run','9K','Steady but easy · protect legs for Sunday'),
         d('gym-legs','Leg day',null,'Glutes + hip stability'),
         d('rest','Rest',null,'Full rest'),
         d('run-easy','Shakeout','5K','No calis this week'),
@@ -3580,35 +3580,35 @@ const phases = [
   },
   {
     title: 'Phase 3 — Peak',
-    desc: 'Hardest block. Long runs build to 32K by Week 13 — the furthest you\'ll go. Peaking at week 13 gives 3 weeks of taper, which research shows optimizes supercompensation for first-time marathoners. Gym legs becomes core-only when cumulative fatigue is high. Drop Saturday calisthenics from Week 11. Sleep 8h minimum. Carb intake matters now.',
-    stats: ['Wk 11–13', '~48–54 km/wk', 'Long run: 24→32K', 'Gym 2×/wk'],
+    desc: 'Peak block adjusted to reduce knee load accumulation while preserving marathon specificity: one threshold-lite Tuesday per week, medium run held steady, and long run progression softened to 24K → 27K → 30K. This keeps the key endurance signal while reducing connective-tissue overload risk.',
+    stats: ['Wk 11–13', '~45–49 km/wk', 'Long run: 24→30K', 'Gym 2×/wk'],
     weeks: [
-      { label:'Week 11', meta:'~48 km total · Jun 15–21', days:[
+      { label:'Week 11', meta:'~45 km total · Jun 15–21', days:[
         d('recovery','Recovery',null,'Ice knees if needed, full foam roll'),
-        d('speed','Speed + Gym','10K','4×1km at tempo pace + easy warm/cool + upper/core'),
-        d('run-easy','Med run','11K','Easy'),
+        d('speed','Speed + Gym','9K','3×1km at controlled tempo (not all-out) + easy warm/cool + upper/core'),
+        d('run-easy','Med run','10K','Easy · cadence focus'),
         d('gym-legs','Leg day',null,'Core + glutes — light'),
         d('rest','Rest',null,'Full rest'),
         d('run-easy','Shakeout','5K','No calisthenics from here'),
         d('run-long','Long run','24K','Fuel every 45 min — practice plan'),
       ]},
-      { label:'Week 12', meta:'~52 km total · Jun 22–28', days:[
+      { label:'Week 12', meta:'~47 km total · Jun 22–28', days:[
         d('recovery','Recovery',null,'Foam roll everything'),
-        d('speed','Speed + Gym','10K','3×1.5km tempo + easy warm/cool + upper/core'),
-        d('run-easy','Med run','12K','Easy'),
+        d('speed','Speed + Gym','8K','20 min tempo block inside easy run + upper/core'),
+        d('run-easy','Med run','9K','Easy only · fatigue management week'),
         d('gym-legs','Leg day',null,'Core only — protect legs'),
         d('rest','Rest',null,'Full rest'),
         d('run-easy','Shakeout','5K','Easy'),
-        d('run-long','Long run','28K','Race nutrition rehearsal'),
+        d('run-long','Long run','27K','Race nutrition rehearsal · stop if knee pain rises'),
       ]},
-      { label:'Week 13 — PEAK', meta:'~54 km total · Jun 29–Jul 5', days:[
+      { label:'Week 13 — PEAK', meta:'~49 km total · Jun 29–Jul 5', days:[
         d('recovery','Recovery',null,'Full recovery — extra sleep'),
         d('speed','Speed + Gym','10K','6×30s strides only — legs need to be fresh + upper/core'),
-        d('run-easy','Med run','11K','Easy'),
+        d('run-easy','Med run','9K','Easy only'),
         d('gym-legs','Leg day',null,'Core only'),
         d('rest','Rest',null,'Full rest'),
         d('run-easy','Shakeout','5K','Easy'),
-        d('run-long','Long run — PEAK','32K','Last 5K at goal pace. You\'ve done it.'),
+        d('run-long','Long run — PEAK','30K','Finish steady. Optional final 3K at goal pace only if pain-free.'),
       ]},
     ]
   },

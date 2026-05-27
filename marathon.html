@@ -4267,7 +4267,7 @@ window.addEventListener('DOMContentLoaded', function() { buildDashboard(); start
 /*THE FOLLOWING ARE FOR MAKING THE 'DISTANCE PER RUN' AND 'FULL RUN LOG' EXPANDABLE*/
 
 .db-modal-overlay{display:none;position:fixed;inset:0;z-index:9999;background:rgba(20,19,17,0.65);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);padding:20px;box-sizing:border-box;overflow-y:auto}
-.db-modal-box{background:var(--surface);border-radius:16px;max-width:960px;margin:0 auto;padding:1.5rem;position:relative;box-shadow:0 24px 60px rgba(0,0,0,0.28)}
+.db-modal-box{background:var(--surface);border-radius:16px;max-width:1100px;width:calc(100vw - 40px);margin:0 auto;padding:1.5rem;position:relative;box-shadow:0 24px 60px rgba(0,0,0,0.28)}
 .db-modal-close{position:absolute;top:12px;right:14px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--muted);line-height:1;padding:4px 8px;border-radius:6px}
 .db-modal-close:hover{background:var(--border)}
 .db-modal-title{font-size:15px;font-weight:600;margin-bottom:1rem;padding-right:32px}
@@ -4567,7 +4567,7 @@ var coachMsg = (function() {
   
 //   NEW ADDITION
   var barColors = runs.map(function(r) { return r.isLong ? '#7f77dd' : '#85b7eb'; });
-  _dbModalDist = '<div style="font-size:11px;color:#6b6860;margin-bottom:10px">Purple = long · blue = easy · swipe to scroll</div><div style="overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:8px">' + dbBars(dayLbls, distPts, barColors, Math.max(560, runs.length * 50), 200) + '</div>';
+  var distBarW = Math.max(700, runs.length * 52); var distBarH = 240; _dbModalDist = '<div style="font-size:11px;color:#6b6860;margin-bottom:12px">Purple = long &middot; blue = easy &middot; scroll horizontally to see all runs</div><div style="overflow-x:auto;overflow-y:visible;-webkit-overflow-scrolling:touch;padding-bottom:12px;padding-top:4px">' + '<div style="min-width:' + distBarW + 'px;padding:0 8px">' + dbBars(dayLbls, distPts, barColors, distBarW, distBarH) + '</div>' + '</div>';
   _dbModalTable = '<div style="overflow-x:auto;overflow-y:auto;max-height:65vh"><table class="db-tbl"><thead><tr><th>Day</th><th>Session</th><th>Type</th><th>Dist</th><th>Pace</th><th>HR avg</th><th>HR max</th><th>Z2</th></tr></thead><tbody>' + tableRows + '</tbody></table></div>';
 
   el.innerHTML =
@@ -4609,7 +4609,7 @@ var coachMsg = (function() {
         '<div class="db-chart-card db-expandable" onclick="dbShowDistModal()">' +
           '<div class="db-chart-title">Distance per run <span class="db-expand-hint">tap to expand ↗</span></div>' +
           '<div class="db-chart-sub">Purple = long &middot; blue = easy &middot; building to 32K</div>' +
-          '<div style="overflow:hidden;height:150px">' + dbBars(dayLbls, distPts, runs.map(function(r) { return r.isLong ? '#7f77dd' : '#85b7eb'; }), Math.max(250, runs.length * 30), 150) + '</div>' +
+          '<div style="overflow:hidden;height:150px;pointer-events:none">' + dbBars(dayLbls, distPts, runs.map(function(r) { return r.isLong ? '#7f77dd' : '#85b7eb'; }), Math.max(250, runs.length * 30), 150) + '</div>' +
         '</div>' +
         '<div class="db-chart-card db-span2 db-expandable" onclick="dbShowTableModal()">' +
           '<div class="db-chart-title">Full run log <span class="db-expand-hint">tap to expand ↗</span></div>' +

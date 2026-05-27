@@ -4470,7 +4470,20 @@ function dbCloseModal(e) {
 var _dbModalDist = '';
 var _dbModalTable = '';
 
-function dbShowDistModal() { dbOpenModal('Distance per run', _dbModalDist); }
+  
+function dbShowDistModal() {
+  dbOpenModal('Distance per run', _dbModalDist);
+  setTimeout(function() {
+    var sc = document.querySelector('#db-modal-body > div');
+    if (!sc) return;
+    sc.addEventListener('wheel', function(e) {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+      e.preventDefault();
+      sc.scrollLeft += e.deltaY * 1.5;
+    }, { passive: false });
+  }, 50);
+}
+  
 function dbShowTableModal() { dbOpenModal('Full run log', _dbModalTable); }
 
 
